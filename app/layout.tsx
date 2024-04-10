@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     siteName: siteMetadata.title,
     images: [
       {
-        url: `/og.jpg`,
+        url: `/ola3.jpg`,
         width: 1200,
         height: 630,
         alt: siteMetadata.title,
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteMetadata.title,
     description: siteMetadata.description,
-    images: [`/og.png`],
+    images: [`/ola3.jpeg`],
     creator: "@kosemani1",
   },
   icons: {

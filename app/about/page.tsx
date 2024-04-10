@@ -4,11 +4,8 @@ import Image from "next/image"
 import { notFound } from "next/navigation"
 
 import { allAuthors } from "@/.contentlayer/generated/index.mjs"
-import AIDark from "@/public/images/general/ai-dark.webp"
-import AILight from "@/public/images/general/ai-light.webp"
 
 import { CodingTimeline } from "@/components/coding-timeline"
-import ImageSwitcher from "@/components/image-switcher"
 import { Mdx } from "@/components/mdx/mdx"
 import SocialIcon from "@/components/social-icons"
 
@@ -31,20 +28,12 @@ export default function About() {
       </div>
       <div className=" items-start space-y-2 pt-3 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
         <div className="relative flex flex-col items-center space-x-2 pt-8">
-          <ImageSwitcher
-            light={AIDark}
-            dark={AILight}
-            alt={"image made with ai art"}
-            width={250}
-            height={106}
-            className="absolute top-[-6px]"
-          />
           {avatar && (
             <Image
               src={avatar}
               alt="avatar"
-              width={192}
-              height={192}
+              width={800}
+              height={800}
               className="h-48 w-48 rounded-full"
               priority={true}
             />
