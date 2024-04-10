@@ -17,18 +17,6 @@ export function LatestPosts({ posts }: LatestPostsProps) {
   return (
     <>
       <div className="mx-auto max-w-3xl  px-4 sm:px-6 xl:max-w-5xl ">
-        <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <h1 className="pb-3 text-center text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Latest Posts
-          </h1>
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            As a software engineer with a passion for problem-solving and
-            creativity, I love exploring new ideas and discovering the latest
-            trends in this rapidly changing field. In this blog, I share my
-            thoughts on various topics, from projects I have worked on to
-            emerging technologies and industry news
-          </p>
-        </div>
         <div className="flex-1 rounded-3xl bg-gradient-to-br from-blue-200 to-blue-600 p-px transition duration-300 hover:shadow-2xl hover:shadow-blue-800">
           <ul className="flex h-full flex-col justify-between divide-y divide-gray-400 rounded-3xl bg-slate-200 px-6 dark:divide-gray-700 dark:bg-slate-950">
             {!posts.length && "No posts found."}

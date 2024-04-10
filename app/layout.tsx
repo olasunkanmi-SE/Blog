@@ -40,6 +40,10 @@ export const metadata: Metadata = {
     "Oyinlola Olasunkanmi Raymond",
     "Machine learning Engineer",
     "Software Engineer",
+    "Software Engineer in Malaysia",
+    "Software engineer in Kuala Lumpur",
+    "Nigeria software engineer in Malaysia",
+    "Artificial intellegence",
   ],
   authors: [
     {
@@ -69,7 +73,7 @@ export const metadata: Metadata = {
     title: siteMetadata.title,
     description: siteMetadata.description,
     images: [`/og.png`],
-    creator: "@jollyshopland",
+    creator: "@kosemani1",
   },
   icons: {
     icon: "/favicon.ico",

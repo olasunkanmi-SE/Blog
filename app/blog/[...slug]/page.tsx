@@ -211,7 +211,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </dd>
             </dl>
             <div className="col-span-8 col-start-3 divide-y divide-gray-200 dark:divide-gray-700  xl:row-span-2 xl:pb-0">
-              <div className="max-w-none rounded-xl bg-gray-200 px-6 py-6  dark:bg-gray-900">
+              <div className="max-w-none rounded-xl bg-gray-200 px-6 py-6  dark:bg-slate-950">
                 <Mdx code={post.body.code} />
               </div>
               <div className="mt-10 pb-6 pt-6 text-center text-sm text-gray-700 dark:text-gray-300">
