@@ -13,7 +13,7 @@ const siteMetadata: SiteConfig = {
   siteUrl: "https://fiatinnovations.com",
   siteRepo: "https://github.com/olasunkanmi-SE/Blog",
   siteLogo: "",
-  image: "",
+  image: "/static/images/author/ola3.jpg",
   socialBanner: "",
   email: "",
   github: "https://github.com/olasunkanmi-SE",
