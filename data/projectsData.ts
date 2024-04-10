@@ -10,92 +10,33 @@ export interface ProjectData {
 
 const projectsData: ProjectData[] = [
   {
-    title: "JollyUI",
+    title: "Restaurant",
     description:
-      "Styled React Aria components that you can copy and paste into your apps. The components are accessible, customizable, and open source. Over 300 GitHub stars! \n The library includes components like date pickers, sliders, progress bars, meters and more...",
-    titleLink: "https://jollyui.dev",
+      "The restaurant is a user-friendly web application that revolutionizes the dining experience by allowing customers to conveniently customize and place their orders directly from their smartphones. With an intuitive interface and a range of features, The restaurant simplifies the ordering process and enhances customer satisfaction. The web application is designed to streamline the ordering process, improve order accuracy, and provide a convenient experience for customers. Whether you're dining in or opting for takeout, the restaurant empowers you to personalize your orders and have them prepared to your liking.",
+    titleLink: "https://github.com/olasunkanmi-SE/restaurant",
     links: [
-      {
-        title: "Docs",
-        href: "https://jollyui.dev",
-      },
-      { title: "GitHub", href: "https://github.com/jolbol1/jolly-ui" },
+      { title: "GitHub", href: "https://github.com/olasunkanmi-SE/restaurant" },
     ],
-    icons: ["react", "tailwind", "typescript"],
   },
   {
-    title: "F1 GPT",
+    title: "IntelliSearch",
     description:
-      "A OpenAI powered chat application with access to realtime F1 data. You can ask about events of the race, conditions and even transcribe radio messages. Uses Vercel Generative UI to reply with components for a better user experience.",
-    titleLink: "https://f1-gpt.vercel.app",
+      "IntelliSearch is an advanced retrieval-based question-answering and recommendation system (RAG system) that leverages embeddings and a large language model (LLM) to provide accurate and relevant information to users. With its intelligent search capabilities and future recommendation features, IntelliSearch aims to be a comprehensive solution for extracting knowledge and discovering personalized content from a vast corpus of documents.",
+    titleLink: "https://github.com/olasunkanmi-SE/IntelliSearch",
     links: [
       {
-        title: "Demo",
-        href: "https://f1-gpt.vercel.app",
+        title: "GitHub",
+        href: "https://github.com/olasunkanmi-SE/IntelliSearch",
       },
     ],
-    icons: ["next", "react", "typescript"],
   },
   {
-    title: "Opening Lines",
-    description: `Generate Opening Message tool, which utilizes ChatGPTs API to help you craft the perfect opening message for any situation. Whether you're looking to make a professional introduction or start a conversation on a dating app, this tool can help you get started with the right words and vibe.`,
-    titleLink: "https://opening-lines.jamesshopland.cloud/",
+    title: "CodeBuddy - AI-Powered Coding Assistant",
+    description: `CodeBuddy is a Visual Studio Code extension that provides an AI-powered coding assistant to help developers write better code more efficiently. With CodeBuddy, you can get intelligent code suggestions, completions, and assistance based on the context and requirements of your code.`,
+    titleLink: "https://github.com/olasunkanmi-SE/codebuddy",
     links: [
-      { title: "GitHub", href: "https://github.com/jolbol1/opening-lines" },
-      { title: "Demo", href: "https://opening-lines.jamesshopland.cloud/" },
+      { title: "GitHub", href: "https://github.com/olasunkanmi-SE/codebuddy" },
     ],
-    icons: ["next", "react", "typescript"],
-  },
-
-  {
-    title: "Random Coordinates",
-    description: `Advanced random teleporter for Minecraft with over 100,000 downloads, this popular tool could utilize atmospheric noise to generate random coordinates, providing a more accurate and reliable method than traditional pseudo-random number algorithms commonly used in computer programs.`,
-    titleLink: "https://github.com/jolbol1/RandomCoordinatesV2",
-    links: [
-      { title: "Wiki", href: "https://github.com/jolbol1/RandomCoordinatesV2" },
-      {
-        title: "Spigot MC",
-        href: "https://www.spigotmc.org/resources/randomcoords-rtp-advanced-random-teleporter.1680/",
-      },
-    ],
-    icons: ["java"],
-  },
-  {
-    title: "F1-Calc",
-    description: ` F1 Game 2022 AI Difficulty Calculator, a tool designed for Formula 1 racing game enthusiasts. This application allows you to input your best lap times and receive recommendations for the optimal AI level to play at, ensuring a challenging and exciting experience. The included chart provides additional context by showing you the times to beat if you want to push yourself even further. `,
-    titleLink: "https://jolbol1.github.io/f1-calc/",
-    links: [
-      { title: "GitHub", href: "https://github.com/jolbol1/f1-calc" },
-      {
-        title: "Demo",
-        href: "https://jolbol1.github.io/f1-calc/",
-      },
-    ],
-    icons: ["typescript", "svelte"],
-  },
-  {
-    title: "cz-gitmojis",
-    description: `Commitizen Adaptor for Gitmoji project, tool that simplifies and standardizes the commit process. This project features is easy-to-use adaptor that follows the popular Gitmoji convention, displaying all available emojis and their descriptions to help developers choose the right emoji to convey the content and status of their commits.`,
-    titleLink: "https://www.npmjs.com/package/cz-gitmojis",
-    links: [
-      { title: "GitHub", href: "https://github.com/jolbol1/cz-gitmojis" },
-      { title: "NPM", href: "https://www.npmjs.com/package/cz-gitmojis" },
-    ],
-    icons: ["javascript", "npm"],
-  },
-  {
-    title: "Plex Bedtime",
-    description: `A tool to allow users to kill a plex stream at a particular time. Built as a dashboard add-on for Organizr. The idea was to stop plex playing on when you had fallen asleep, before sites started to add these features themselves.`,
-    titleLink: "https://github.com/jolbol1/bedTime",
-    links: [{ title: "GitHub", href: "https://github.com/jolbol1/bedTime" }],
-    icons: ["python", "php"],
-  },
-  {
-    title: "JamesShopland.com",
-    description: `This site! A dynamic website designed to showcase my coding skills and expertise across a range of different frameworks. As I learn and explore new technologies, this project evolves, as I test out frameworks at the forefront of the latest trends in software engineering. Currently on v4, previous versions include: pure HTML, Gatsby React, Svelte Static Site and now Next.JS!`,
-    titleLink: "https://github.com/jolbol1/jshopland",
-    links: [{ title: "GitHub", href: "https://github.com/jolbol1/jshopland" }],
-    icons: ["next", "react", "typescript"],
   },
 ]
 
