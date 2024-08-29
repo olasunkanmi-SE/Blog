@@ -42,7 +42,7 @@ module.exports = {
         sans: ["var(--font-inter)", ...fontFamily.sans],
       },
       colors: {
-        primary: colors.blue,
+        primary: colors.amber,
         gray: colors.neutral,
       },
     },

@@ -17,7 +17,7 @@ export function LatestPosts({ posts }: LatestPostsProps) {
   return (
     <>
       <div className="mx-auto max-w-3xl  px-4 sm:px-6 xl:max-w-5xl ">
-        <div className="flex-1 rounded-3xl bg-gradient-to-br from-blue-200 to-blue-600 p-px transition duration-300 hover:shadow-2xl hover:shadow-blue-800">
+        <div className="flex-1 rounded-3xl bg-gradient-to-br from-amber-200 p-px transition duration-300 hover:shadow-amber-800">
           <ul className="flex h-full flex-col justify-between divide-y divide-gray-400 rounded-3xl bg-slate-200 px-6 dark:divide-gray-700 dark:bg-slate-950">
             {!posts.length && "No posts found."}
             {posts.slice(0, MAX_DISPLAY).map((post) => {
@@ -43,7 +43,7 @@ export function LatestPosts({ posts }: LatestPostsProps) {
                                   <Tag
                                     key={tag}
                                     text={tag}
-                                    className="2xl rounded-lg bg-blue-600  px-2 py-1 text-sm text-white hover:scale-110 hover:bg-blue-600 dark:bg-blue-950 "
+                                    className="2xl rounded-lg bg-amber-600  px-2 py-1 text-sm text-white hover:scale-110 hover:bg-amber-600 dark:bg-yellow-950 "
                                   />
                                 ))}
                             </div>
@@ -57,7 +57,7 @@ export function LatestPosts({ posts }: LatestPostsProps) {
 
                           <Link
                             href={`/blog/${slug}`}
-                            className="h-fit text-blue-700 hover:text-primary-600 dark:text-primary-500 dark:hover:text-primary-400"
+                            className="h-fit text-amber-700 hover:text-primary-600 dark:text-primary-500 dark:hover:text-primary-400"
                             aria-label={`Read "${title}"`}
                           >
                             {`Read ${
@@ -82,7 +82,7 @@ export function LatestPosts({ posts }: LatestPostsProps) {
       <div className="mx-auto mt-6 flex max-w-3xl justify-center px-4 text-base  font-medium leading-6 sm:px-6 xl:max-w-5xl">
         <Link
           href="/blog"
-          className="my-3 w-full rounded-lg bg-primary-600 p-3 text-center text-white"
+          className="my-amber my-3 w-full rounded-lg p-3 text-center text-white"
           aria-label="All posts"
         >
           See the full blog &rarr;

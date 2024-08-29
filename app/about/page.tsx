@@ -34,7 +34,6 @@ export default function About() {
               alt="avatar"
               width={800}
               height={800}
-              className="h-48 w-48 rounded-full"
               priority={true}
             />
           )}

@@ -80,7 +80,7 @@ export default async function PagePage({ params }: TagPageProps) {
 
         <div className="grid grid-cols-12 gap-3 pt-6 ">
           <div className="col-span-12 col-start-1 sm:col-span-8 ">
-            <div className="flex-1 rounded-3xl bg-gradient-to-br from-blue-200 to-blue-600 p-px transition duration-300 hover:shadow-2xl hover:shadow-blue-800">
+            <div className="flex-1 rounded-3xl bg-gradient-to-br from-amber-200  p-px transition duration-300">
               <ul className="flex h-full flex-col justify-between divide-y divide-gray-400 rounded-3xl bg-slate-200 px-6 dark:divide-gray-700 dark:bg-slate-950">
                 {posts.map((post) => {
                   const { slug, date, title, summary, tags } = post
@@ -105,7 +105,7 @@ export default async function PagePage({ params }: TagPageProps) {
                                       <Tag
                                         key={tag}
                                         text={tag}
-                                        className="2xl rounded-lg bg-blue-600  px-2 py-1 text-sm text-white hover:scale-110 hover:bg-blue-600 dark:bg-blue-950 "
+                                        className="2xl rounded-lg bg-amber-600  px-2 py-1 text-sm text-white hover:scale-110 hover:bg-amber-600 dark:bg-yellow-950 "
                                       />
                                     ))}
                                 </div>

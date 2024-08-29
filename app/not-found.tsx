@@ -23,7 +23,7 @@ export default function NotFound() {
           </p>
           <Link
             href="/"
-            className="focus:shadow-outline-blue mt-6 inline w-full rounded-lg border border-transparent bg-blue-600 p-4 text-center text-lg font-medium leading-5 text-white shadow transition-colors duration-150 hover:bg-blue-700 focus:outline-none dark:hover:bg-blue-500"
+            className="focus:shadow-outline-amber mt-6 inline w-full rounded-lg border border-transparent bg-amber-600 p-4 text-center text-lg font-medium leading-5 text-white shadow transition-colors duration-150 hover:bg-yellow-950 focus:outline-none dark:hover:bg-yellow-950"
           >
             Back to homepage
           </Link>

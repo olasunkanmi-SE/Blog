@@ -2,10 +2,10 @@ export function CodingTimeline() {
   return (
     <ol className="relative ml-3 !list-none border-l border-gray-200 dark:border-gray-700">
       <li className="mb-10 ml-8">
-        <span className="absolute -left-3 flex size-6 items-center justify-center rounded-full bg-blue-600 ring-8 ring-gray-100  dark:bg-blue-600 dark:ring-gray-900">
+        <span className="absolute -left-3 flex size-6 items-center justify-center rounded-full bg-amber-600 ring-8 ring-gray-100  dark:bg-amber-600 dark:ring-gray-900">
           <svg
             aria-hidden="true"
-            className="size-4 text-blue-300 dark:text-blue-300"
+            className="size-4 text-amber-300 dark:text-amber-300"
             fill="currentColor"
             viewBox="0 0 16 16"
             xmlns="http://www.w3.org/2000/svg"
@@ -15,8 +15,8 @@ export function CodingTimeline() {
           </svg>
         </span>
         <h3 className="mb-1 flex flex-col items-start text-lg font-semibold text-gray-900 dark:text-white sm:flex-row sm:items-center">
-          Senior Software Engineer @ Regov Technologies, Kuala Lumpur.
-          <span className="relative my-2 mr-2 flex min-w-[105px]  items-center rounded bg-blue-600 px-2.5 py-0.5 text-sm font-medium text-white dark:bg-blue-600 dark:text-white sm:my-0 sm:ml-3">
+          Senior Software Engineer @ Regov Technologies , Kuala Lumpur Malaysia
+          <span className="relative my-2 mr-2 flex min-w-[105px]  items-center rounded bg-amber-600 px-2.5 py-0.5 text-sm font-medium text-white dark:bg-amber-600 dark:text-white sm:my-0 sm:ml-3">
             <span className="relative mr-2 flex size-3">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-lime-400 opacity-75"></span>
               <span className="relative inline-flex size-3 rounded-full bg-lime-500"></span>
@@ -28,15 +28,42 @@ export function CodingTimeline() {
           2023
         </time>
         <p>
-          Working on some Blockchain and Finance application. System Design,
-          Code Review, Mentor juniors on writing clean code
+          <ul className="activities-ul">
+            <li className="activities-li">
+              Lead the development of a critical token dashboard, driving
+              data-driven decision-making
+            </li>
+            <li className="activities-li">
+              Implemented scalable backend services using AWS serverless
+              architecture.
+            </li>
+            <li className="activities-li">
+              Mentored junior developers and fostered a collaborative team
+              culture.
+            </li>
+            <li className="activities-li">
+              Developed AI-powered tools to enhance developer productivity and
+              knowledge management.
+            </li>
+          </ul>
+        </p>
+        <br />
+        <p>Tech Stack</p>
+        <p className="mb-4 text-base font-normal text-gray-700 dark:text-gray-400">
+          Typescript, SQL, Express, NATS, Blockchain, MongoDB, PostgresSQL,
+          Docker
+        </p>
+        <p>Skills</p>
+        <p className="mb-4 text-base font-normal text-gray-700 dark:text-gray-400">
+          Systems Design , Decentralised applications, Smart contracts, SDKs
+          Development, REST APIs, GraphQL, Hyperledger, Unit Testing
         </p>
       </li>
       <li className="mb-10 ml-8">
-        <span className="absolute -left-3 flex size-6 items-center justify-center rounded-full bg-blue-600 ring-8 ring-gray-100  dark:bg-blue-600 dark:ring-gray-900">
+        <span className="absolute -left-3 flex size-6 items-center justify-center rounded-full bg-amber-600 ring-8 ring-gray-100  dark:bg-amber-600 dark:ring-gray-900">
           <svg
             aria-hidden="true"
-            className="size-4 text-blue-300 dark:text-blue-300"
+            className="size-4 text-amber-300 dark:text-amber-300"
             fill="currentColor"
             viewBox="0 0 16 16"
             xmlns="http://www.w3.org/2000/svg"
@@ -48,38 +75,40 @@ export function CodingTimeline() {
           Backend Engineer @ Pickles Auctions, Kuala Lumpur.
         </h3>
         <time className="text-md my-2  block font-bold leading-none text-gray-600 dark:text-gray-200">
-          2020 - 2023
+          2021 - 2023
         </time>
         <p>
-          Backend development of a highly scalable online auctioning application
-          that spans several microservice. Development of SDKs and cross-domain
-          applications to support the microservice application. Worked with
-          technologies such as Docker and Kubernetes for the smooth deployment
-          of microservices. Contributed to CI/CD pipelines to ensure the
-          reliability, security, and continuous delivery of the platform
-          Collaborated effectively with cross-functional teams, including
-          front-end developers, UI/UX designers, and product managers, fostering
-          effective communication and alignment throughout the project lifecycle
+          <ul className="activities-ul">
+            <li className="activities-li">
+              Designed and implemented a high-performance microservices
+              architecture.
+            </li>
+            <li className="activities-li">
+              Developed event-driven systems for real-time auction management.
+            </li>
+            <li className="activities-li">
+              Contributed to CI/CD pipelines and DevOps practices.
+            </li>
+          </ul>
         </p>
         <br />
         <p>Tech Stack</p>
         <p className="mb-4 text-base font-normal text-gray-700 dark:text-gray-400">
-          Typescript, SQL, Express, Kafka, MongoDB, TypeORM, Docker
+          Typescript, SQL, Express, Kafka, MongoDB, PostgresSQL, Docker
         </p>
         <p>Skills</p>
-        <p>
-          Microservices , Back-End Web Development , Systems Design , Continuous
-          Integration and Continuous Delivery (CI/CD) , Containerization ,
-          Node.js , Event Driven Programming , Message Broker , Web Application
-          Security , Agile Methodologies , Version Control , SDKs , REST APIs ,
-          Database Development , API Gateways , Unit Testing
+        <p className="mb-4 text-base font-normal text-gray-700 dark:text-gray-400">
+          Decentralised applications, Systems Design , Continuous Integration
+          and Continuous Delivery (CI/CD) , Containerization , Node.js , SDKs
+          Development, Shared web libraries development, REST APIs , Database
+          Development , API Gateways , Unit Testing
         </p>
       </li>
       <li className="mb-10 ml-8">
-        <span className="absolute -left-3 flex size-6 items-center justify-center rounded-full bg-blue-600 ring-8 ring-gray-100 dark:bg-blue-600 dark:ring-gray-900">
+        <span className="absolute -left-3 flex size-6 items-center justify-center rounded-full bg-amber-600 ring-8 ring-gray-100 dark:bg-amber-600 dark:ring-gray-900">
           <svg
             aria-hidden="true"
-            className="size-4 text-blue-300 dark:text-blue-300"
+            className="size-4 text-amber-300 dark:text-amber-300"
             fill="currentColor"
             viewBox="0 0 16 16"
             xmlns="http://www.w3.org/2000/svg"
@@ -91,16 +120,20 @@ export function CodingTimeline() {
           Software Engineer @ View Qwest, Kuala Lumpur.
         </h3>
         <time className="text-md my-2  block font-bold leading-none text-gray-600 dark:text-gray-200">
-          2018 - 2019
+          2020 - 2021
         </time>
         <p className="text-base font-normal text-gray-700 dark:text-gray-400">
-          Played a pivotal role in the development cycle of various software
-          applications and websites, actively engaging in requirements gathering
-          and validation processes to ensure the delivery of scalable web
-          solutions tailored to meet specific business needs. Implemented
-          seamless integrations with third-party services and external APIs,
-          facilitating the development of high-performance web applications with
-          exceptional scalability. Skills:
+          <ul className="activities-ul">
+            <li className="activities-li">
+              Developed RESTful APIs and integrated with third-party services
+            </li>
+            <li className="activities-li">
+              Utilized Angular for frontend development.
+            </li>
+            <li className="activities-li">
+              Participated in database design and schema creation.
+            </li>
+          </ul>
         </p>
         <br />
         <p>Tech Stack</p>
@@ -115,10 +148,10 @@ export function CodingTimeline() {
         </p>
       </li>
       <li className="mb-10 ml-8">
-        <span className="absolute -left-3 flex size-6 items-center justify-center rounded-full bg-blue-600 ring-8 ring-gray-100 dark:bg-blue-600 dark:ring-gray-900">
+        <span className="absolute -left-3 flex size-6 items-center justify-center rounded-full bg-amber-600 ring-8 ring-gray-100 dark:bg-amber-600 dark:ring-gray-900">
           <svg
             aria-hidden="true"
-            className="size-4 text-blue-300 dark:text-blue-300"
+            className="size-4 text-amber-300 dark:text-amber-300"
             fill="currentColor"
             viewBox="0 0 16 16"
             xmlns="http://www.w3.org/2000/svg"
@@ -130,22 +163,33 @@ export function CodingTimeline() {
           Web Developer @ MyEventsInternational, Kuala Lumpur
         </h3>
         <time className="text-md my-2  block font-bold leading-none text-gray-600 dark:text-gray-200">
-          2017 - 2018
+          2019 - 2020
         </time>
-        <p className="text-base font-normal text-gray-700 dark:text-gray-400">
-          Built a tenant based Event application.
+        <p>
+          <ul className="activities-ui">
+            <li className="activities-li">
+              Led web development projects, ensuring timely delivery and
+              quality.
+            </li>
+            <li className="activities-li">
+              Built ticketing systems and online news portals.
+            </li>
+            <li className="activities-li">
+              Collaborated effectively with cross-functional teams.
+            </li>
+          </ul>
         </p>
         <br />
         <p>Tech Stack</p>
         <p className="text-base font-normal text-gray-700 dark:text-gray-400">
-          Back-End Web Development , TypeScript , PHP
+          Back-End Web Development , TypeScript , PHP, Laravel
         </p>
       </li>
       <li className="mb-10 ml-8">
-        <span className="absolute -left-3 flex size-6 items-center justify-center rounded-full bg-blue-600 ring-8 ring-gray-100 dark:bg-blue-600 dark:ring-gray-900">
+        <span className="absolute -left-3 flex size-6 items-center justify-center rounded-full bg-amber-600 ring-8 ring-gray-100 dark:bg-amber-600 dark:ring-gray-900">
           <svg
             aria-hidden="true"
-            className="size-4 text-blue-300 dark:text-blue-300"
+            className="size-4 text-amber-300 dark:text-amber-300"
             fill="currentColor"
             viewBox="0 0 16 16"
             xmlns="http://www.w3.org/2000/svg"
@@ -159,14 +203,24 @@ export function CodingTimeline() {
         <time className="text-md my-2  block font-bold leading-none text-gray-600 dark:text-gray-200">
           2015 - 2016
         </time>
-        <p className="text-base font-normal text-gray-700 dark:text-gray-400">
-          Worked on some government contracted applications to ease governing
+        <p>
+          <ul className="activities-ui">
+            <li className="activities-li">
+              Developed websites using HTML, CSS, JavaScript, and jQuery.
+            </li>
+            <li className="activities-li">
+              Managed WordPress and Laravel projects.
+            </li>
+            <li className="activities-li">
+              Provided technical support and troubleshooting.
+            </li>
+          </ul>
         </p>
         <br />
         <p></p>
         <p>Skills</p>
         <p className="text-base font-normal text-gray-700 dark:text-gray-400">
-          PHP, Laravel
+          PHP, Laravel, wordpress
         </p>
       </li>
     </ol>
