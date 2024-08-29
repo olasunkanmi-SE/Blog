@@ -35,7 +35,7 @@ export default async function JustGiving() {
       </div>
       <span className="text-xs">(plus £{giftAid} Gift Aid)</span>
       <a
-        href=""
+        href="abc"
         target="_blank"
         rel="noopener noreferrer"
         className="mr-3 mt-3 inline-flex w-full items-center justify-center rounded-lg bg-amber-600 px-5 py-3 text-center text-base font-medium text-white hover:bg-yellow-950 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
