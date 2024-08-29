@@ -3,8 +3,8 @@
 import { SiteConfig } from "config/config"
 
 const siteMetadata: SiteConfig = {
-  title: "Oyinlola Olasunkanmi Raymond",
-  author: "Oyinlola Olasunkanmi Raymond",
+  title: "",
+  author: "",
   headerTitle: "",
   description:
     "Experienced Software Engineer with a proven track record in designing and building scalable web applications. Skilled in full-stack development, with a particular emphasis on back-end technologies. Passionate about leveraging innovative solutions, such as generative AI, to enhance development efficiency and create impactful products",
