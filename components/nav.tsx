@@ -18,7 +18,7 @@ const Nav = () => {
                   height={48}
                   width={48}
                   priority
-                  alt="James Shopland Logo"
+                  alt="Oyinlola Olasunkanmi Raymond Logo"
                 />
               </GlowDiv>
             </div> */}

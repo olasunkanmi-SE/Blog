@@ -30,7 +30,7 @@ export default function About() {
           {avatar && (
             <Image
               src={avatar}
-              alt="avatar"
+              alt={name}
               width={800}
               height={800}
               priority={true}

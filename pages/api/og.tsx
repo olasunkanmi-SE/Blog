@@ -61,7 +61,7 @@ export default async function handler(req: NextRequest) {
             }}
           >
             <img width="64" height="64" src={imageData} />
-            <h1 tw="pl-4">James Shopland</h1>
+            <h1 tw="pl-4">Oyinlola Olasunkanmi Raymond</h1>
           </div>
 
           <div tw="flex flex-col flex-1 ">
@@ -88,7 +88,7 @@ export default async function handler(req: NextRequest) {
               tw="flex text-xl"
               style={{ fontFamily: "Inter", fontWeight: "normal" }}
             >
-              jamesshopland.com
+              fiatinnovations.com
             </div>
             <div
               tw="flex items-center text-xl"
