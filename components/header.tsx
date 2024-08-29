@@ -23,7 +23,7 @@ export function Header() {
           <div className="flex w-full">
             <Link
               href="/blog"
-              className="mr-3 inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-3 text-center text-base font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+              className="mr-3 inline-flex items-center justify-center rounded-lg bg-amber-600 px-5 py-3 text-center text-base font-medium text-white hover:bg-yellow-950 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
             >
               View my blog
             </Link>

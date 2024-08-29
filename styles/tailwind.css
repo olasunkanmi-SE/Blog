@@ -103,3 +103,16 @@ input:-webkit-autofill:focus {
 .giscus-frame {
   width: 100%;
 }
+
+.my-amber {
+  background-color: rgba(173, 125, 22, 0.5);
+}
+
+.activities-ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.activities-li {
+  margin-bottom: 10px;
+}

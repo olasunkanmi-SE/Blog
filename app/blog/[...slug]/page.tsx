@@ -16,7 +16,6 @@ import Comments from "@/components/comments"
 import ScrollTopAndComment from "@/components/floating-buttons"
 import { Mdx } from "@/components/mdx/mdx"
 import PageTitle from "@/components/page-title"
-import Tag from "@/components/tag"
 
 import { coreContent, sortedBlogPost } from "../../../lib/contentlayer"
 
@@ -131,8 +130,8 @@ export async function generateStaticParams(): Promise<
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const pageDetails = await getPostFromParams(params)
   if (!pageDetails) return notFound()
-  const { post, prev, next, authorDetails } = pageDetails
-  const { filePath, path, date, title, tags } = post
+  const { post, authorDetails } = pageDetails
+  const { filePath, path, date, title } = post
   const jsonLd = post.structuredData
   jsonLd["author"] = authorDetails.map((author) => {
     return {
@@ -223,61 +222,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
               <Comments />
             </div>
-            <footer className="col-span-2">
-              <div className=" text-sm font-medium leading-5  xl:col-start-1 xl:row-start-2 ">
-                {tags && (
-                  <div className="">
-                    <h2 className="pb-1 text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                      Tags
-                    </h2>
-                    <div className="flex flex-wrap gap-2">
-                      {tags.map((tag) => (
-                        <div
-                          key={tag}
-                          className="2xl rounded-lg bg-blue-500  px-2 py-1 text-sm text-white hover:scale-110 hover:bg-blue-600 dark:bg-blue-900 "
-                        >
-                          <Tag key={tag} text={tag} className="lowercase" />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {(next || prev) && (
-                  <div className="flex justify-between pt-4 xl:block xl:space-y-8 xl:pt-8">
-                    {prev && (
-                      <div>
-                        <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                          Previous Article
-                        </h2>
-                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/${prev.path}`}>{prev.title}</Link>
-                        </div>
-                      </div>
-                    )}
-                    {next && (
-                      <div>
-                        <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                          Next Article
-                        </h2>
-                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/${next.path}`}>{next.title}</Link>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-              <div className="flex h-fit pt-4 xl:pt-8">
-                <Link
-                  type="button"
-                  href={`/blog`}
-                  className="w-full rounded-lg  bg-primary-600 p-3 text-center font-bold text-gray-200 hover:scale-110"
-                  aria-label="Back to the blogs"
-                >
-                  &larr; Back to the blog
-                </Link>
-              </div>
-            </footer>
           </div>
         </div>
       </article>

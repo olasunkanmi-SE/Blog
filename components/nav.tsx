@@ -1,12 +1,6 @@
-import Image from "next/image"
-
-import Logo from "@/public/images/general/logo.webp"
-
 import headerNavLinks from "@/config/nav-links"
 import siteMetadata from "@/config/site-metadata"
 
-import DarkModeSwitch from "./dark-mode-button"
-import { GlowDiv } from "./glow-div"
 import Link from "./link"
 import MobileNav from "./mobile-nav"
 import KBarSearchProvider from "./search"
@@ -17,7 +11,7 @@ const Nav = () => {
       <div>
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           <div className="flex items-center justify-between align-middle">
-            <div className="mr-3">
+            {/* <div className="mr-3">
               <GlowDiv>
                 <Image
                   src={Logo}
@@ -27,7 +21,7 @@ const Nav = () => {
                   alt="James Shopland Logo"
                 />
               </GlowDiv>
-            </div>
+            </div> */}
             {typeof siteMetadata.headerTitle === "string" ? (
               <div className="underlined after:bottom[0px]  hidden text-xl font-semibold [@media(min-width:380px)]:block   [@media(min-width:440px)]:text-2xl">
                 {siteMetadata.headerTitle}
@@ -52,9 +46,9 @@ const Nav = () => {
         </div>
 
         <KBarSearchProvider kbarConfig={siteMetadata.kbarConfig} />
-        <div className="ml-0 hidden min-[700px]:block [@media(min-width:810px)]:mr-4">
+        {/* <div className="ml-0 hidden min-[700px]:block [@media(min-width:810px)]:mr-4">
           <DarkModeSwitch />
-        </div>
+        </div> */}
         <MobileNav />
       </div>
     </nav>
