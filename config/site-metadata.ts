@@ -7,7 +7,7 @@ const siteMetadata: SiteConfig = {
   author: "Oyinlola Olasunkanmi Raymond",
   headerTitle: "",
   description:
-    "As an experienced developer, I share my expertise and insights on my personal blog. Explore in-depth tutorials, practical tips, and thought-provoking discussions on system design, machine learning, artificial intelligence, and other cutting-edge technologies. Join me in mastering complex technical concepts through clear, concise explanations and stay ahead of the curve in the ever-evolving world of software development.",
+    "Experienced Software Engineer with a proven track record in designing and building scalable web applications. Skilled in full-stack development, with a particular emphasis on back-end technologies. Passionate about leveraging innovative solutions, such as generative AI, to enhance development efficiency and create impactful products",
   language: "en-us",
   theme: "system", // system, dark or light
   siteUrl: "https://fiatinnovations.com",

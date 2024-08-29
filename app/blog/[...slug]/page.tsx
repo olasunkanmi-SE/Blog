@@ -174,15 +174,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         className="flex items-center space-x-2"
                         key={author.name}
                       >
-                        {author.avatar && (
+                        {/* {author.avatar && (
                           <Image
                             src={author.avatar}
-                            width={38}
-                            height={38}
-                            alt="avatar"
+                            width={138}
+                            height={138}
+                            alt={author.name}
                             className="h-10 w-10 rounded-full"
                           />
-                        )}
+                        )} */}
                         <dl className="whitespace-nowrap text-sm font-medium leading-5">
                           <dt className="sr-only">Name</dt>
                           <dd className="text-gray-900 dark:text-gray-100">
@@ -214,11 +214,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <Mdx code={post.body.code} />
               </div>
               <div className="mt-10 pb-6 pt-6 text-center text-sm text-gray-700 dark:text-gray-300">
-                <Link href={discussUrl(path)} rel="nofollow">
+                <a
+                  href={discussUrl(path)}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
                   Discuss on Twitter
-                </Link>
+                </a>
                 {` • `}
-                <Link href={editUrl(filePath)}>View on GitHub</Link>
+                <a
+                  href={editUrl(filePath)}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View on GitHub
+                </a>
               </div>
               <Comments />
             </div>
