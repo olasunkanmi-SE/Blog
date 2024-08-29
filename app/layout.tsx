@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "Oyinlola Olasunkanmi Raymond",
-      url: "https://fiatinnovations.com",
+      url: "https://olasunkanmi.app",
     },
   ],
   creator: "Oyinlola Olasunkanmi Raymond",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     siteName: siteMetadata.title,
     images: [
       {
-        url: `/Olasunkanmi.JPG`,
+        url: `/ola.JPG`,
         width: 1200,
         height: 630,
         alt: siteMetadata.title,
@@ -86,13 +86,13 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteMetadata.title,
     description: siteMetadata.description,
-    images: [`/ola3.jpeg`],
+    images: [`/ola.JPG`],
     creator: "@kosemani1",
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    icon: "/olasunkanmi-app.png",
+    shortcut: "/olasunkanmi-app.png",
+    apple: "/olasunkanmi-app.png",
   },
   manifest: `/site.webmanifest`,
 }

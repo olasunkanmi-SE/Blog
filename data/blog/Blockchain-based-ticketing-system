@@ -1,0 +1,271 @@
+---
+title: "Blockchain-based ticketing system"
+date: "2024-08-29"
+tags: ["blockchain", "smart contract", "Solana"]
+draft: false
+summary: "A blockchain-based ticketing system is a digital solution that leverages blockchain technology to provide secure and transparent ticketing processes"
+---
+
+DPKI stands for Decentralized Public Key Infrastructure. It is a decentralized system for managing public keys and their associated identities, allowing for secure and trustless communication between parties.
+
+In traditional Public Key Infrastructure (PKI), a centralized authority (such as a Certificate Authority) is responsible for issuing and managing public key certificates. However, this approach has several limitations, including:
+
+Centralized trust: The security of the system relies on the trustworthiness of the centralized authority.
+Single point of failure: If the centralized authority is compromised, the entire system is at risk.
+Limited scalability: Centralized authorities can become bottlenecks, limiting the scalability of the system.
+Decentralized Public Key Infrastructure (DPKI) addresses these limitations by using blockchain technology or other decentralized networks to manage public keys and their associated identities. In a DPKI system:
+
+Public keys are stored on a decentralized network, such as a blockchain.
+Identities are associated with public keys through a decentralized process, such as a smart contract.
+Verification of identities and public keys is done through a decentralized network, rather than relying on a centralized authority.
+DPKI offers several benefits, including:
+
+Decentralized trust: The security of the system is distributed among the nodes on the network, rather than relying on a single centralized authority.
+Improved scalability: Decentralized networks can handle a large number of transactions and users, making them more scalable than traditional PKI systems.
+Increased security: The use of blockchain technology and decentralized networks makes it more difficult for attackers to compromise the system.
+DPKI has various applications, including:
+
+Secure communication: DPKI can be used to establish secure communication channels between parties, without relying on centralized authorities.
+Identity verification: DPKI can be used to verify identities and associate them with public keys, enabling secure authentication and authorization.
+IoT security: DPKI can be used to secure communication between IoT devices and other parties, without relying on centralized authorities.
+Some examples of DPKI implementations include:
+
+Blockchain-based PKI systems, such as Ethereum's Web3 and Hyperledger Fabric.
+Decentralized identity management systems, such as uPort and Self-Sovereign Identity.
+Decentralized authentication protocols, such as OAuth and OpenID Connect.
+Overall, DPKI offers a decentralized and secure way to manage public keys and identities, enabling secure communication and authentication in a trustless environment.
+
+A blockchain-based ticketing system is a digital solution that leverages blockchain technology to provide secure and transparent ticketing processes. Traditional ticketing systems often face challenges such as counterfeit tickets, ticket scalping, and lack of transparency.
+
+With a blockchain-based ticketing system, **each ticket is represented as a unique digital asset on a blockchain network**. This ensures that tickets cannot be duplicated or tampered with, reducing the risk of fraud. The decentralized nature of blockchain technology also eliminates the need for intermediaries, allowing for direct peer-to-peer transactions.
+
+One of the key benefits of a blockchain-based ticketing system is transparency. Every transaction and ticket transfer is recorded on the blockchain, creating an immutable and auditable trail of ownership. This transparency helps prevent ticket scalping and ensures a fair ticket distribution process.
+
+Blockchain-based ticketing systems also offer increased security. The use of cryptographic algorithms and consensus mechanisms ensures that tickets and personal information are protected from unauthorized access. This enhances trust between ticket sellers, event organizers, and ticket buyers.
+
+**Furthermore, blockchain-based ticketing systems can facilitate the integration of smart contracts. Smart contracts are self-executing contracts with predefined rules. They can automate ticket sales, transfers, and even enforce resale restrictions.** This reduces administrative overhead and provides a more efficient ticketing experience.
+
+In summary, a blockchain-based ticketing system provides a secure, transparent, and efficient way to manage ticketing processes. By leveraging blockchain technology, it addresses many of the challenges faced by traditional ticketing systems, ultimately benefiting both event organizers and ticket buyers.
+
+Edge Cases when developing a blockchain-based ticketing system
+
+1.  **Event Creation Contract:**
+
+    - Allows event organizers to create smart contracts for their events.
+    - Specifies details like event name, date, venue, and ticket limits.
+
+2.  **Ticket Minting Contract:**
+
+    - Generates a specific number of tickets defined in the event creation contract.
+    - Ensures uniqueness and scarcity of each ticket on the blockchain.
+
+3.  **Ticket Transfer Contract:**
+
+    - Enables users to transfer ownership of their tickets securely.
+    - Includes features for gifting or reselling tickets with price locking mechanisms.
+
+4.  **Dynamic Pricing Contract:**
+
+    - Implements a pricing algorithm that adjusts ticket prices based on demand and availability.
+    - Prevents price gouging and ensures fair pricing for both buyers and sellers.
+
+5.  **Access Control Contract:**
+
+    - Manages entry permissions based on the validity of the ticket.
+    - Integrates with venue systems to grant access only to valid ticket holders.
+
+6.  **Refund and Cancellation Contract:**
+
+    - Automates the refund process based on predefined rules (e.g., cancellation before a certain date).
+    - Handles event cancellations and refunds to ticket holders accordingly.
+
+7.  **Multi-Event Pass Contract:**
+
+    - Allows users to purchase passes for multiple events at once.
+    - Ensures that the pass is valid for the specified events and tracks usage.
+
+8.  **VIP and Premium Ticket Contracts:**
+
+    - Implements special ticket types with additional privileges.
+    - Manages access to VIP lounges, backstage areas, or other exclusive perks.
+
+9.  **Tokenized Merchandise Contract:**
+
+    - Integrates a system for purchasing event-related merchandise using blockchain tokens.
+    - Ensures authenticity and limited editions for collectibles.
+
+10. **Gamification Contract:**
+
+    - Introduces gamified elements for ticket holders, rewarding them with tokens or perks for attending events or engaging with the community.
+
+11. **Time-Locked Contracts:**
+
+    - Allows for timed releases of tickets or special announcements.
+    - Builds anticipation and controls the distribution of sensitive information.
+
+12. **Automated Dispute Resolution Contract:**
+
+    - Resolves disputes between buyers and sellers automatically, ensuring a fair and transparent resolution process.
+
+13. **Identity Verification Contract:**
+
+    - Integrates with identity verification systems to ensure that ticket holders match their digital identity, enhancing security and reducing fraud.
+
+14. **Integration with Secondary Markets:**
+
+    - Facilitates the creation of secondary markets for ticket resale, ensuring that resold tickets adhere to the rules set by the original event organizer.
+
+15. **Crowdfunding Event Contract:**
+
+    - Enables organizers to set up crowdfunding campaigns for events, with contributors receiving tickets or other perks based on their contribution.
+
+16. **Dynamic ticket pricing**
+
+- Program the fees to align directly with operational costs and inflation, instead of charging static, fixed fees. Smart contracts can also enable dynamic fees based on conditions such as demand. Fees can be more predictable and transparent in a blockchain event ticketing system.
+
+Remember to implement proper security measures and compliance with relevant regulations when developing these smart contracts.
+
+Further more ….
+
+Due to the thousands of nodes, requirement to reach consensus, and the corresponding transaction costs, it’s not efficient to store every piece of data on-chain. It’s good practice to determine which data points can benefit from decentralization, and which can live in more cost-efficient centralized databases. To explore this idea from a different angle, we can look at this from a file storage perspective.
+
+It’s important for NFT art files to be ubiquitous and presented in a persistent way. NFT art would benefit from decentralized [InterPlanetary File System (IPFS)](https://ipfs.tech/#why) hosting of the image file. On the other hand, a menu button PNG file doesn’t require the same qualities. A centralized hosting service can host it.
+
+```js
+
+    #[derive(BorshSerialize, BorshDeserialize, Debug)]
+    pub struct Event {
+        pub event_id: Pubkey,
+        pub name: String,
+        pub date: i64,
+        pub venue: String,
+        pub total_tickets: u32,
+        pub available_tickets: u32,
+        pub base_price: u64,
+        pub organizer_id: Pubkey,
+        pub is_active: bool,
+    }
+
+    #[derive(BorshSerialize, BorshDeserialize, Debug)]
+    pub struct Ticket {
+        pub ticket_id: Pubkey,
+        pub event_id: Pubkey,
+        pub owner: Pubkey,
+        pub price: u64,
+        pub is_used: bool,
+    }
+
+    #[derive(BorshSerialize, BorshDeserialize, Debug)]
+    pub struct Transfer {
+        pub from: Pubkey,
+        pub to: Pubkey,
+        pub timestamp: i64,
+        pub price: u64,
+    }
+
+    #[derive(BorshSerialize, BorshDeserialize, Debug)]
+    pub struct User {
+        pub address: Pubkey,
+        pub identity_verified: bool,
+    }
+
+    #[derive(BorshSerialize, BorshDeserialize, Debug)]
+    pub struct Merchandise {
+        pub item_id: Pubkey,
+        pub event_id: Pubkey,
+        pub name: String,
+        pub price: u64,
+        pub total_supply: u32,
+        pub available_supply: u32,
+    }
+```
+
+    ```js
+
+    // Off-chain Data Models (Stored in Centralized Database)
+
+    // These can remain similar to the previous version, but we'll adjust for Solana's Pubkey
+
+    pub struct EventDetails {
+        pub event_id: String, // Base58 encoded Pubkey
+        pub description: String,
+        pub lineup: Vec<String>,
+        pub terms: String,
+        pub image_url: String,
+    }
+
+    pub struct UserProfile {
+        pub user_id: String, // Base58 encoded Pubkey
+        pub email: String,
+        pub name: String,
+        pub phone_number: String,
+        pub preferences: UserPreferences,
+    }
+
+    pub struct UserPreferences {
+        pub genres: Vec<String>,
+        pub notification_preferences: Vec<String>,
+    }
+
+    pub struct Transaction {
+        pub transaction_id: String,
+        pub user_id: String, // Base58 encoded Pubkey
+        pub event_id: String, // Base58 encoded Pubkey
+        pub ticket_ids: Vec<String>, // Base58 encoded Pubkeys
+        pub amount: u64, // In lamports
+        pub timestamp: i64,
+        pub status: TransactionStatus,
+    }
+
+    pub enum TransactionStatus {
+        Pending,
+        Completed,
+        Refunded,
+    }
+
+    pub struct Dispute {
+        pub dispute_id: String,
+        pub user_id: String, // Base58 encoded Pubkey
+        pub ticket_id: String, // Base58 encoded Pubkey
+        pub reason: String,
+        pub status: DisputeStatus,
+        pub timestamp: i64,
+    }
+
+    pub enum DisputeStatus {
+        Open,
+        Resolved,
+        Rejected,
+    }
+
+    pub struct VenueLayout {
+        pub venue_id: String,
+        pub name: String,
+        pub sections: Vec<VenueSection>,
+    }
+
+    pub struct VenueSection {
+        pub section_id: String,
+        pub name: String,
+        pub capacity: u32,
+        pub section_type: SectionType,
+    }
+
+    pub enum SectionType {
+        General,
+        Vip,
+        Premium,
+    }
+
+    // Arweave Data Model (replacing IPFS for Solana ecosystem)
+
+    pub struct TicketMetadata {
+        pub ticket_id: String, // Base58 encoded Pubkey
+        pub event_name: String,
+        pub event_date: String,
+        pub venue: String,
+        pub seat_info: String,
+        pub qr_code: String, // URL to QR code image
+        pub terms: String,
+    }
+    ````

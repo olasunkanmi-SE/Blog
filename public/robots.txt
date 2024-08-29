@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://fiatinnovations.com
+Host: https://olasunkanmi.app
 
 # Sitemaps
-Sitemap: https://fiatinnovations.com/sitemap.xml
+Sitemap: https://olasunkanmi.app/sitemap.xml
