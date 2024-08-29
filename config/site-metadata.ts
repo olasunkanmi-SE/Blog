@@ -5,7 +5,7 @@ import { SiteConfig } from "config/config"
 const siteMetadata: SiteConfig = {
   title: "Fiatinnovations",
   author: "Oyinlola Olasunkanmi Raymond",
-  headerTitle: "Fiatinnovations",
+  headerTitle: "",
   description:
     "As an experienced developer, I share my expertise and insights on my personal blog. Explore in-depth tutorials, practical tips, and thought-provoking discussions on system design, machine learning, artificial intelligence, and other cutting-edge technologies. Join me in mastering complex technical concepts through clear, concise explanations and stay ahead of the curve in the ever-evolving world of software development.",
   language: "en-us",
@@ -13,7 +13,7 @@ const siteMetadata: SiteConfig = {
   siteUrl: "https://fiatinnovations.com",
   siteRepo: "https://github.com/olasunkanmi-SE/Blog",
   siteLogo: "",
-  image: "/static/images/author/ola3.jpg",
+  image: "/static/images/author/Olasunkanmi.JPG",
   socialBanner: "",
   email: "",
   github: "https://github.com/olasunkanmi-SE",

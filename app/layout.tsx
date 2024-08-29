@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     siteName: siteMetadata.title,
     images: [
       {
-        url: `/ola3.jpg`,
+        url: `/Olasunkanmi.JPG`,
         width: 1200,
         height: 630,
         alt: siteMetadata.title,

@@ -16,8 +16,7 @@ export const metadata = {
 export default function About() {
   const author = allAuthors.find((p) => p.slug === "default")
   if (!author) notFound()
-  const { name, avatar, occupation, company, twitter, linkedin, github } =
-    author
+  const { name, avatar, occupation } = author
 
   return (
     <div className="container divide-y divide-gray-200 dark:divide-gray-700">
@@ -34,7 +33,6 @@ export default function About() {
               alt="avatar"
               width={800}
               height={800}
-              className="h-48 w-48 rounded-full"
               priority={true}
             />
           )}
@@ -42,11 +40,10 @@ export default function About() {
             {name}
           </h2>
           <div className="text-gray-700 dark:text-gray-400">{occupation}</div>
-          <div className="text-gray-700 dark:text-gray-400">{company}</div>
           <div className="flex space-x-3 pt-6">
-            {github && <SocialIcon kind="github" href={github} />}
+            {/* {github && <SocialIcon kind="github" href={github} />}
             {linkedin && <SocialIcon kind="linkedin" href={linkedin} />}
-            {twitter && <SocialIcon kind="twitter" href={twitter} />}
+            {twitter && <SocialIcon kind="twitter" href={twitter} />} */}
           </div>
         </div>
         <div className="max-w-none pb-8 pt-8 text-gray-700 dark:text-gray-300 xl:col-span-2">

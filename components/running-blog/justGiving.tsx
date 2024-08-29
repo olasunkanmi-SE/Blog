@@ -28,7 +28,7 @@ export default async function JustGiving() {
       </div>
       <div className="h-6 w-full rounded-full bg-gray-400 dark:bg-gray-700">
         <div
-          className="flex h-6 items-center justify-center rounded-full bg-blue-600 p-0.5 text-center text-xs font-medium leading-none text-blue-100"
+          className="flex h-6 items-center justify-center rounded-full bg-amber-600 p-0.5 text-center text-xs font-medium leading-none text-amber-100"
           style={{
             width: `${Number.parseInt(percentage) >= 100 ? 100 : percentage}%`,
           }}
@@ -41,7 +41,7 @@ export default async function JustGiving() {
         href="https://www.justgiving.com/page/james-shopland/donate"
         target="_blank"
         rel="noopener noreferrer"
-        className="mr-3 mt-3 inline-flex w-full items-center justify-center rounded-lg bg-blue-600 px-5 py-3 text-center text-base font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+        className="mr-3 mt-3 inline-flex w-full items-center justify-center rounded-lg bg-amber-600 px-5 py-3 text-center text-base font-medium text-white hover:bg-yellow-950 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
       >
         Donate on JustGiving
       </a>

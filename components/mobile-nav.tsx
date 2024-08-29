@@ -4,7 +4,6 @@ import { useState } from "react"
 
 import headerNavLinks from "@/config/nav-links"
 
-import DarkModeSwitch from "./dark-mode-button"
 import Link from "./link"
 
 const MobileNav = () => {
@@ -88,9 +87,9 @@ const MobileNav = () => {
               </Link>
             </div>
           ))}
-          <div className="px-12 py-4">
+          {/* <div className="px-12 py-4">
             <DarkModeSwitch variant="button" />
-          </div>
+          </div> */}
         </nav>
       </div>
     </div>
