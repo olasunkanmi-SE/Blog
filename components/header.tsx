@@ -47,9 +47,7 @@ export function Header() {
             <Image
               src={hero}
               quality={50}
-              alt={
-                "cartoon image of james shopland with icons of programming languages surrounding him"
-              }
+              alt={""}
               priority
               className="max-h-[50vh] w-full object-contain lg:max-h-[75vh]"
               sizes="(max-width: 1024px) 60vw,

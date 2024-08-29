@@ -1,0 +1,138 @@
+---
+title: "Decentralized Public Key Infrastructure"
+date: "2024-08-29"
+tags: ["rust", "smart contract", "DKPI", "DID"]
+draft: false
+summary: "DPKI is a decentralized system for managing public keys and identities. It offers improved security, scalability, and decentralization compared to traditional PKI. DPKI has applications in secure communication, identity verification, and IoT security. Examples include blockchain-based PKI systems and decentralized identity management solutions."
+---
+
+DPKI stands for Decentralized Public Key Infrastructure. It is a decentralized system for managing public keys and their associated identities, allowing for secure and trustless communication between parties.
+
+In traditional Public Key Infrastructure (PKI), a centralized authority (such as a Certificate Authority) is responsible for issuing and managing public key certificates. However, this approach has several limitations, including:
+
+Centralized trust: The security of the system relies on the trustworthiness of the centralized authority.
+Single point of failure: If the centralized authority is compromised, the entire system is at risk.
+Limited scalability: Centralized authorities can become bottlenecks, limiting the scalability of the system.
+Decentralized Public Key Infrastructure (DPKI) addresses these limitations by using blockchain technology or other decentralized networks to manage public keys and their associated identities. In a DPKI system:
+
+Public keys are stored on a decentralized network, such as a blockchain.
+Identities are associated with public keys through a decentralized process, such as a smart contract.
+Verification of identities and public keys is done through a decentralized network, rather than relying on a centralized authority.
+DPKI offers several benefits, including:
+
+Decentralized trust: The security of the system is distributed among the nodes on the network, rather than relying on a single centralized authority.
+Improved scalability: Decentralized networks can handle a large number of transactions and users, making them more scalable than traditional PKI systems.
+Increased security: The use of blockchain technology and decentralized networks makes it more difficult for attackers to compromise the system.
+DPKI has various applications, including:
+
+Secure communication: DPKI can be used to establish secure communication channels between parties, without relying on centralized authorities.
+Identity verification: DPKI can be used to verify identities and associate them with public keys, enabling secure authentication and authorization.
+IoT security: DPKI can be used to secure communication between IoT devices and other parties, without relying on centralized authorities.
+Some examples of DPKI implementations include:
+
+Blockchain-based PKI systems, such as Ethereum's Web3 and Hyperledger Fabric.
+Decentralized identity management systems, such as uPort and Self-Sovereign Identity.
+Decentralized authentication protocols, such as OAuth and OpenID Connect.
+Overall, DPKI offers a decentralized and secure way to manage public keys and identities, enabling secure communication and authentication in a trustless environment.
+
+```js title="tailwind.config.js"
+use anchor_lang::prelude::*;
+use anchor_spl_governance::spl_governance_tools;
+
+declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+
+#[program]
+pub mod dski {
+    use super::*;
+
+    pub fn initialize(ctx: Context<Initialize>) -> ProgramResult {
+        let dski_account = &mut ctx.accounts.dski_account;
+        dski_account.authority = ctx.accounts.authority.key();
+        Ok(())
+    }
+
+    pub fn create_identity(ctx: Context<CreateIdentity>, identity: String) -> ProgramResult {
+        let dski_account = &mut ctx.accounts.dski_account;
+        let identity_account = &mut ctx.accounts.identity_account;
+
+        identity_account.identity = identity;
+        identity_account.public_key = ctx.accounts.public_key.key();
+        identity_account.authority = ctx.accounts.authority.key();
+
+        dski_account.identities.push(identity_account.key());
+
+        Ok(())
+    }
+
+    pub fn verify_identity(ctx: Context<VerifyIdentity>, identity: String) -> ProgramResult {
+        let dski_account = &mut ctx.accounts.dski_account;
+        let identity_account = &mut ctx.accounts.identity_account;
+
+        if identity_account.identity != identity {
+            return Err(ProgramError::IncorrectProgramId);
+        }
+
+        if identity_account.public_key != ctx.accounts.public_key.key() {
+            return Err(ProgramError::IncorrectProgramId);
+        }
+
+        Ok(())
+    }
+}
+
+#[derive(Accounts)]
+pub struct Initialize<'info> {
+    #[account(init, payer = authority, space = 8 + 40)]
+    pub dski_account: Account<'info, DskiAccount>,
+    #[account(mut)]
+    pub authority: Signer<'info>,
+    pub system_program: Program<'info, System>,
+}
+
+#[derive(Accounts)]
+pub struct CreateIdentity<'info> {
+    #[account(mut)]
+    pub dski_account: Account<'info, DskiAccount>,
+    #[account(init, payer = authority, space = 8 + 40 + 32)]
+    pub identity_account: Account<'info, IdentityAccount>,
+    pub public_key: AccountInfo<'info>,
+    #[account(mut)]
+    pub authority: Signer<'info>,
+    pub system_program: Program<'info, System>,
+}
+
+#[derive(Accounts)]
+pub struct VerifyIdentity<'info> {
+    #[account(mut)]
+    pub dski_account: Account<'info, DskiAccount>,
+    #[account(mut)]
+    pub identity_account: Account<'info, IdentityAccount>,
+    pub public_key: AccountInfo<'info>,
+    #[account(mut)]
+    pub authority: Signer<'info>,
+    pub system_program: Program<'info, System>,
+}
+
+#[account]
+pub struct DskiAccount {
+    pub authority: Pubkey,
+    pub identities: Vec<Pubkey>,
+}
+
+#[account]
+pub struct IdentityAccount {
+    pub identity: String,
+    pub public_key: Pubkey,
+    pub authority: Pubkey,
+}
+
+```
+
+This program has three main functions:
+
+- initialize: Initializes the DSKI account and sets the authority.
+- create_identity: Creates a new identity account and associates it with a public key.
+- verify_identity: Verifies that an identity account matches a given public key.
+  The program uses two account types: DskiAccount and IdentityAccount. The DskiAccount stores a list of identity accounts, while the IdentityAccount stores the identity, public key, and authority.
+
+Note that this is a basic example and you may want to add additional functionality, such as error handling and security measures, to your program.

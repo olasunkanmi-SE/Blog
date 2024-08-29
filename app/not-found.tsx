@@ -12,7 +12,7 @@ export default function NotFound() {
           priority={true}
           src={FourZeroFour}
           height={320}
-          alt={"cartoon james shopland looking confused"}
+          alt={"Page not found"}
         />
         <h1 className="mt-6 w-full text-center text-6xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100  md:text-8xl">
           404
