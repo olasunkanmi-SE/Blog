@@ -16,12 +16,12 @@ const interBold = fetch(
 ).then((res) => res.arrayBuffer())
 
 const image = fetch(
-  new URL("../../assets/logo-64x64.png", import.meta.url)
+  new URL("../../assets/olasunkanmi-app.png", import.meta.url)
 ).then((res) => res.arrayBuffer())
 
-const image2 = fetch(new URL("../../assets/icons.png", import.meta.url)).then(
-  (res) => res.arrayBuffer()
-)
+const image2 = fetch(
+  new URL("../../assets/olasunkanmi-app.png", import.meta.url)
+).then((res) => res.arrayBuffer())
 
 export default async function handler(req: NextRequest) {
   try {
@@ -88,7 +88,7 @@ export default async function handler(req: NextRequest) {
               tw="flex text-xl"
               style={{ fontFamily: "Inter", fontWeight: "normal" }}
             >
-              fiatinnovations.com
+              olasunkanmi.app
             </div>
             <div
               tw="flex items-center text-xl"

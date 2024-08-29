@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://fiatinnovations.com",
+  siteUrl: "https://olasunkanmi.app",
   generateRobotsTxt: true,
   generateIndexSitemap: false,
 }
