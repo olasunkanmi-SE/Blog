@@ -59,6 +59,13 @@ export const metadata: Metadata = {
     "Custom Software Development Malaysia",
     "Tech Talent in Kuala Lumpur",
   ],
+  authors: [
+    {
+      name: "Oyinlola Olasunkanmi Raymond",
+      url: "https://olasunkanmi.app",
+    },
+  ],
+  creator: "Oyinlola Olasunkanmi Raymond",
   openGraph: {
     type: "website",
     locale: "en_GB",
