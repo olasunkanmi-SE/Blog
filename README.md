@@ -1,6 +1,6 @@
 # Blog
 
-This project is a feature-rich Next.js application that serves as a personal blog and portfolio with advanced functionality including content management, search capabilities, and analytics integration.
+This project is a feature-rich Next.js application that serves as my personal blog and portfolio with advanced functionality including content management, search capabilities, and analytics integration.
 
 The application is built using Next.js 14 and leverages a variety of modern web technologies to create a fast, responsive, and user-friendly experience. It includes features such as a blog with MDX support, a projects showcase, a professional timeline, and integration with various third-party services.
 
