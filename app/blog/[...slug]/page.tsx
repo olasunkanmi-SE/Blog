@@ -163,7 +163,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
             </div>
           </header>
-          <div className="grid-rows-[auto_1fr]  xl:grid xl:grid-cols-12 xl:gap-x-6">
+          <div className="grid-rows-[auto_1fr]  xl:grid xl:gap-x-6">
             <dl className="col-span-12 flex items-center  justify-center pb-10 pt-10 xl:pt-3">
               <dt className="sr-only">Authors</dt>
               <dd>
@@ -210,7 +210,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </dd>
             </dl>
             <div className="col-span-8 col-start-3 divide-y divide-gray-200 dark:divide-gray-700  xl:row-span-2 xl:pb-0">
-              <div className="max-w-none rounded-xl bg-gray-200 px-6 py-6  dark:bg-slate-950">
+              <div className="max-w-none rounded-xl bg-gray-200 px-6 py-6  dark:bg-black">
                 <Mdx code={post.body.code} />
               </div>
               <div className="mt-10 pb-6 pt-6 text-center text-sm text-gray-700 dark:text-gray-300">

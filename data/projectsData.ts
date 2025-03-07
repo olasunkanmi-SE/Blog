@@ -6,36 +6,45 @@ export interface ProjectData {
   titleLink: string
   links: { title: string; href: string }[]
   icons?: DevIconTypes[]
+  techStack: string
+  designPattern: string
 }
 
 const projectsData: ProjectData[] = [
   {
+    title: "CodeBuddy",
+    description: `CodeBuddy is an AI-powered coding assistant that uses machine learning to streamline developers workflow.`,
+    titleLink: "https://github.com/olasunkanmi-SE/codebuddy",
+    techStack:
+      "Typescript, React, Generative AI, RAG, VectorDB, SQLite, AI Agent, function Calling",
+    designPattern: "Event Driven Design",
+    links: [
+      { title: "GitHub", href: "https://github.com/olasunkanmi-SE/codebuddy" },
+    ],
+  },
+  {
     title: "Restaurant",
     description:
-      "The restaurant is a web app that lets customers order food from their phones. It features an easy-to-use interface where diners can customize their meals, place orders, and choose between dine-in or takeout options. The app aims to make ordering more efficient and accurate while improving the overall dining experience.",
+      "This project is a comprehensive restaurant management system with a NestJS backend and React frontend, designed to streamline restaurant operations and enhance customer experience",
     titleLink: "https://github.com/olasunkanmi-SE/restaurant",
+    techStack: "Typescript, React, NestJs, MongoDB, RBAC, JWT",
+    designPattern: "Domain Driven Design",
     links: [
       { title: "GitHub", href: "https://github.com/olasunkanmi-SE/restaurant" },
     ],
   },
 
   {
-    title: "CodeBuddy - AI-Powered Coding Assistant",
-    description: `CodeBuddy is a Visual Studio Code extension that provides an AI-powered coding assistant to help developers write better code more efficiently. With CodeBuddy, you can get intelligent code suggestions, completions, and assistance based on the context and requirements of your code.`,
-    titleLink: "https://github.com/olasunkanmi-SE/codebuddy",
-    links: [
-      { title: "GitHub", href: "https://github.com/olasunkanmi-SE/codebuddy" },
-    ],
-  },
-  {
-    title: "IntelliSearch",
+    title: "ts-codebase-analyzer",
     description:
-      "IntelliSearch is an advanced retrieval-based question-answering and recommendation system (RAG system) that leverages embeddings and a large language model (LLM) to provide accurate and relevant information to users.",
-    titleLink: "https://github.com/olasunkanmi-SE/IntelliSearch",
+      "A powerful tool for parsing and analyzing TypeScript codebases using the TypeScript Abstract Syntax Tree (AST)",
+    titleLink: "https://github.com/olasunkanmi-SE/ts-codebase-analyzer",
+    techStack: "Typescript",
+    designPattern: "",
     links: [
       {
         title: "GitHub",
-        href: "https://github.com/olasunkanmi-SE/IntelliSearch",
+        href: "https://github.com/olasunkanmi-SE/ts-codebase-analyzer",
       },
     ],
   },

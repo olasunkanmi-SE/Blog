@@ -28,8 +28,10 @@ export function ShowcaseProjects() {
                   title={d.title}
                   description={d.description}
                   titleLink={d.titleLink}
+                  techStack={d.techStack}
                   links={d.links}
                   icons={d.icons}
+                  designPattern={d.designPattern}
                   className="md relative grow p-4 md:w-1/2 md:grow-0"
                 />
               ))}

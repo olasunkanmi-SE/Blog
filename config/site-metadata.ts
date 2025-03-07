@@ -7,7 +7,7 @@ const siteMetadata: SiteConfig = {
   author: "Oyinlola Olasunkanmi Raymond",
   headerTitle: "",
   description:
-    "Experienced Software Engineer with a proven track record in designing and building scalable web applications. Skilled in full-stack development, with a particular emphasis on back-end technologies. Passionate about leveraging innovative solutions, such as generative AI, to enhance development efficiency and create impactful products",
+    "Experienced Software Engineer with a proven track record in designing and building scalable software applications. Skilled in full-stack development, with a particular emphasis on back-end technologies. Passionate about leveraging innovative solutions, such as generative AI, to enhance development efficiency and create impactful products",
   language: "en-us",
   theme: "system", // system, dark or light
   siteUrl: "https://olasunkanmi.app",
