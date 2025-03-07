@@ -12,8 +12,10 @@ const ProjectCard = ({
   description,
   links,
   titleLink,
+  techStack,
   icons,
   className,
+  designPattern,
 }: ProjectCardProps) => (
   <div
     className={className ?? "md relative grow p-4 md:w-1/2 md:grow-0 2xl:w-1/3"}
@@ -35,30 +37,40 @@ const ProjectCard = ({
               <p className=" mb-3 max-w-none text-gray-700 dark:text-gray-400">
                 {description}
               </p>
+              <p className=" mb-3 max-w-none text-gray-700 dark:text-gray-400">
+                <span className="mb-3 font-bold leading-8 tracking-tight">
+                  Techstack:
+                </span>{" "}
+                {techStack}
+              </p>
+              <p className=" mb-3 max-w-none text-gray-700 dark:text-gray-400">
+                <span className="mb-3 font-bold leading-8 tracking-tight">
+                  Design pattern:
+                </span>{" "}
+                {designPattern}
+              </p>
             </div>
-            <div className="flex">
-              {links &&
-                links.map((link, index) => (
-                  <div key={`${title}-${link.title}-links`}>
-                    {index !== 0 && <span className="px-3">|</span>}
-                    <Link
-                      key={`${title}-${link.title}`}
-                      href={link.href}
-                      className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                      aria-label={`Link to ${link.title}`}
-                    >
-                      {link.title}
-                    </Link>
-                  </div>
-                ))}
+            <div className="flex justify-self-auto">
+              {links?.map((link, index) => (
+                <div key={`${title}-${link.title}-links`}>
+                  {index !== 0 && <span className="px-3">|</span>}
+                  <Link
+                    key={`${title}-${link.title}`}
+                    href={link.href}
+                    className="text-base font-medium leading-6 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                    aria-label={`Link to ${link.title}`}
+                  >
+                    {link.title}
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
         </div>
         <div className="absolute  bottom-[-16px] right-[-16px] flex flex-row gap-3">
-          {icons &&
-            icons.map((icon) => {
-              return <DevIcon key={icon} width={50} kind={icon} alt={icon} />
-            })}
+          {icons?.map((icon) => (
+            <DevIcon key={icon} width={50} kind={icon} alt={icon} />
+          ))}
         </div>
       </div>
     </div>

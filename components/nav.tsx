@@ -1,6 +1,7 @@
 import headerNavLinks from "@/config/nav-links"
 import siteMetadata from "@/config/site-metadata"
 
+import DarkModeSwitch from "./dark-mode-button"
 import Link from "./link"
 import MobileNav from "./mobile-nav"
 import KBarSearchProvider from "./search"
@@ -46,9 +47,9 @@ const Nav = () => {
         </div>
 
         <KBarSearchProvider kbarConfig={siteMetadata.kbarConfig} />
-        {/* <div className="ml-0 hidden min-[700px]:block [@media(min-width:810px)]:mr-4">
+        <div className="ml-0 hidden min-[700px]:block [@media(min-width:810px)]:mr-4">
           <DarkModeSwitch />
-        </div> */}
+        </div>
         <MobileNav />
       </div>
     </nav>
