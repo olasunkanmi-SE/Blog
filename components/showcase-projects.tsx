@@ -28,7 +28,7 @@ export function ShowcaseProjects() {
                   title={d.title}
                   description={d.description}
                   titleLink={d.titleLink}
-                  techStack={d.techStack}
+                  skills={d.skills}
                   links={d.links}
                   icons={d.icons}
                   designPattern={d.designPattern}

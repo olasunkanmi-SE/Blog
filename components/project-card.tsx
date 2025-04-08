@@ -12,7 +12,7 @@ const ProjectCard = ({
   description,
   links,
   titleLink,
-  techStack,
+  skills,
   icons,
   className,
   designPattern,
@@ -25,7 +25,10 @@ const ProjectCard = ({
         <div className="h-full overflow-hidden rounded-lg ">
           <div className="flex h-full flex-col justify-between ">
             <div>
-              <h2 className="mb-3 text-2xl font-bold leading-8 tracking-tight">
+              <h2
+                style={{ color: "#fff" }}
+                className="mb-3 text-2xl font-bold leading-8 tracking-tight"
+              >
                 {titleLink ? (
                   <Link href={titleLink} aria-label={`Link to ${title}`}>
                     {title}
@@ -39,9 +42,9 @@ const ProjectCard = ({
               </p>
               <p className=" mb-3 max-w-none text-gray-700 dark:text-gray-400">
                 <span className="mb-3 font-bold leading-8 tracking-tight">
-                  Techstack:
+                  Skills:
                 </span>{" "}
-                {techStack}
+                {skills}
               </p>
               <p className=" mb-3 max-w-none text-gray-700 dark:text-gray-400">
                 <span className="mb-3 font-bold leading-8 tracking-tight">

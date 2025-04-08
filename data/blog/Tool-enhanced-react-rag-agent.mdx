@@ -1,0 +1,35 @@
+---
+title: "Tool, Memory Enhanced React RAG Agents"
+date: "2024-08-29"
+tags: ["agents", "RAG", "LLMS", "AI", "Machine Learning"]
+draft: false
+summary: ""
+---
+
+Tool-enhanced agents are versatile problem solvers integrating multiple tools,
+leveraging APIs, databases, and software to handle complex, multi-domain
+workflows. They combine reasoning, retrieval, and execution for seamless
+
+Includes a RAG workflow: Has external knowledge provided through external
+database, API, or documentation with the addition of LLM-enhanced
+context.
+Grounded in current knowledge: Pulls in real-time or domain-specific
+knowledge.
+Reasoning and Action: Uses ReAct-style reasoning to break down tasks and
+dynamically retrieve information as needed.
+Low Hallucinations: Designed for scenarios where correctness and relevance
+are non-negotiable.
+
+State management
+
+Now let's talk about how our agent keeps track of everything it needs to do. Think of it like a smart to-do list system with three main parts.
+
+First, we need a way to track what the agent plans to do. We'll use a simple list of steps written as text strings. This is like having a checklist of tasks the agent needs to complete.
+
+Second, we want to remember what the agent has already done and what happened with each task. For this, we'll use a list of pairs (or tuples in programming terms). Each pair contains both the action taken and what resulted from that action.
+
+Lastly, we need to store two more important pieces of information: the original question that was asked (the input) and the final answer once the agent finishes its work (the response).
+
+This setup gives our agent everything it needs to work effectively!
+
+The plan method prompts the LLM to create the initial execution plan and updates the working memory with the user query and the generated plan.

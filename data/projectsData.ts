@@ -6,18 +6,20 @@ export interface ProjectData {
   titleLink: string
   links: { title: string; href: string }[]
   icons?: DevIconTypes[]
-  techStack: string
+  skills: string
   designPattern: string
 }
 
 const projectsData: ProjectData[] = [
   {
     title: "CodeBuddy",
-    description: `CodeBuddy is an AI-powered coding assistant that uses machine learning to streamline developers workflow.`,
+    description: `
+   AI-powered coding assistant that employs  the use of Large Language Models (LLMs), code indexing, and workflow orchestration to generate code, automate tasks, and improve developers' output.`,
     titleLink: "https://github.com/olasunkanmi-SE/codebuddy",
-    techStack:
-      "Typescript, React, Generative AI, RAG, VectorDB, SQLite, AI Agent, function Calling",
-    designPattern: "Event Driven Design",
+    skills:
+      "Nodejs, Typescript, React, Generative AI, RAG, VectorDB, SQLite, Abstract Synthax Tree (AST), MCP, CodeIndexing, workflow orchestration.",
+    designPattern: "Orchestration, Event-Driven, Command Pattern.",
+
     links: [
       { title: "GitHub", href: "https://github.com/olasunkanmi-SE/codebuddy" },
     ],
@@ -25,10 +27,11 @@ const projectsData: ProjectData[] = [
   {
     title: "Restaurant",
     description:
-      "This project is a comprehensive restaurant management system with a NestJS backend and React frontend, designed to streamline restaurant operations and enhance customer experience",
+      "This project is a comprehensive restaurant management system with a NestJS backend and React frontend. The application takes advantage of Nestjs inversion of control IOC, decorators, and modular architecture to deliver a loosely coupled extensible software.",
     titleLink: "https://github.com/olasunkanmi-SE/restaurant",
-    techStack: "Typescript, React, NestJs, MongoDB, RBAC, JWT",
-    designPattern: "Domain Driven Design",
+    skills:
+      "Typescript, React, NestJs, MongoDB, RBAC, Authentication, Authorization",
+    designPattern: "Clean Architecture, Inversion of Control.",
     links: [
       { title: "GitHub", href: "https://github.com/olasunkanmi-SE/restaurant" },
     ],
@@ -37,10 +40,10 @@ const projectsData: ProjectData[] = [
   {
     title: "ts-codebase-analyzer",
     description:
-      "A powerful tool for parsing and analyzing TypeScript codebases using the TypeScript Abstract Syntax Tree (AST)",
+      "A powerful tool for parsing and analyzing TypeScript codebases using the TypeScript Abstract Syntax Tree (AST). This npm package is useful for codeIndexing when building Generative AI application with Retrival Augumented Generator RAG and Ai agents long term memory",
     titleLink: "https://github.com/olasunkanmi-SE/ts-codebase-analyzer",
-    techStack: "Typescript",
-    designPattern: "",
+    skills: "Typescript",
+    designPattern: "Singleton",
     links: [
       {
         title: "GitHub",
