@@ -3,6 +3,7 @@
 import { SiteConfig } from "config/config"
 
 const siteMetadata: SiteConfig = {
+  solanaCerification: "/public/images/author/solana.jpg",
   title: "Oyinlola Olasunkanmi Raymond",
   author: "Oyinlola Olasunkanmi Raymond",
   headerTitle: "",

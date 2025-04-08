@@ -23,7 +23,7 @@ export default async function Projects() {
               title={d.title}
               description={d.description}
               titleLink={d.titleLink}
-              techStack={d.techStack}
+              skills={d.skills}
               designPattern={d.designPattern}
               links={d.links}
               icons={d.icons}

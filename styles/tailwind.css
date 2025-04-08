@@ -118,6 +118,12 @@ input:-webkit-autofill:focus {
 }
 
 body {
-  font-family: monospace;
-  font-size: 19px !important;
+  font-family: system-ui;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 100;
+  color: #111;
+  background-color: #fdfdfd;
+  -webkit-text-size-adjust: 100%;
 }
+
