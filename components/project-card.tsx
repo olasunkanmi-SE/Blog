@@ -25,17 +25,16 @@ const ProjectCard = ({
         <div className="h-full overflow-hidden rounded-lg ">
           <div className="flex h-full flex-col justify-between ">
             <div>
-              <h2
-                style={{ color: "#fff" }}
-                className="mb-3 text-2xl font-bold leading-8 tracking-tight"
-              >
-                {titleLink ? (
-                  <Link href={titleLink} aria-label={`Link to ${title}`}>
-                    {title}
-                  </Link>
-                ) : (
-                  title
-                )}
+              <h2 className="mb-3 max-w-none text-gray-700 dark:text-gray-100">
+                <span className="mb-3 text-2xl font-bold leading-8 tracking-tight">
+                  {titleLink ? (
+                    <Link href={titleLink} aria-label={`Link to ${title}`}>
+                      {title}
+                    </Link>
+                  ) : (
+                    title
+                  )}
+                </span>
               </h2>
               <p className=" mb-3 max-w-none text-gray-700 dark:text-gray-400">
                 {description}

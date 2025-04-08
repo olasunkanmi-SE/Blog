@@ -34,25 +34,6 @@ export default function About() {
           </div>
           <Mdx code={author.body.code} />
         </div>
-        <div className="col-span-4">
-          <div className="card">
-            <div className="card-header">Card 2</div>
-            <div className="card-body">Content for card 2</div>
-          </div>
-        </div>
-        <div className="col-span-4">
-          <div className="card">
-            <div className="card-header">Card 3</div>
-            <div className="card-body">Content for card 3</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Last 3 columns */}
-      <div className="col-span-2">
-        <div className="relative flex flex-col items-center space-x-2 pt-8">
-          <div className="flex space-x-3 pt-6"></div>
-        </div>
       </div>
     </div>
   )
