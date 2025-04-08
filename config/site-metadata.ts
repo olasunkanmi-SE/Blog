@@ -16,7 +16,7 @@ const siteMetadata: SiteConfig = {
   siteLogo: "",
   image: "/static/images/author/ola.JPG",
   socialBanner: "",
-  email: "",
+  email: "oyinolasunkanmi@gmail.com",
   github: "https://github.com/olasunkanmi-SE",
   twitter: "https://twitter.com/kosemani1",
   facebook: "",
