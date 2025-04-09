@@ -1,6 +1,6 @@
 "use client"
 
-import { ReactNode, useEffect, useState } from "react"
+import { ReactNode, useCallback, useEffect, useRef, useState } from "react"
 
 import { QRCode } from "./qrcode"
 
@@ -15,7 +15,7 @@ interface ModalProps {
 
 interface ModalButtonProps {
   onClick: () => void
-  children: ReactNode
+  children?: ReactNode // Making children optional
   className?: string
 }
 
@@ -27,7 +27,8 @@ export const Modal: React.FC<ModalProps> = ({
   title,
   subtitle,
 }) => {
-  // Add ESC key support to close modal
+  const modalRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === "Escape" && isOpen) {
@@ -44,6 +45,14 @@ export const Modal: React.FC<ModalProps> = ({
       document.body.style.overflow = "auto"
     }
 
+    // Focus management
+    if (isOpen && modalRef.current) {
+      const firstFocusableElement = modalRef.current.querySelector<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+      firstFocusableElement?.focus()
+    }
+
     return () => {
       document.removeEventListener("keydown", handleEsc)
       document.body.style.overflow = "auto"
@@ -53,21 +62,24 @@ export const Modal: React.FC<ModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto">
       {/* Background Overlay */}
       <div
-        className="absolute inset-0 bg-black opacity-75"
+        className="fixed inset-0 bg-black opacity-75 transition-opacity duration-300"
         onClick={onClose}
-        onKeyDown={(e) => e.key === "Enter" && onClose()}
-        role="button"
-        tabIndex={0}
+        aria-hidden="true" // for screen readers
       ></div>
 
       {/* Modal Content */}
-      <div className="relative z-10 flex w-4/5 max-w-sm flex-col items-center rounded-lg bg-white p-6 shadow-xl">
+      <div
+        className="relative z-10 mx-auto w-4/5 max-w-md overflow-hidden rounded-xl bg-white p-6 shadow-2xl transition-all duration-300 sm:w-full sm:max-w-sm"
+        ref={modalRef}
+        aria-modal="true"
+        role="dialog"
+      >
         {title && (
           <div className="mb-4 w-full text-center">
-            <h3 className="text-lg font-medium text-gray-900">{title}</h3>
+            <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
             {subtitle && <p className="text-sm text-gray-500">{subtitle}</p>}
           </div>
         )}
@@ -78,7 +90,7 @@ export const Modal: React.FC<ModalProps> = ({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="mt-6 rounded bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+          className="mt-6 rounded-md bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2"
         >
           Close
         </button>
@@ -118,8 +130,8 @@ interface ModalDemoProps {}
 export const ModalDemo: React.FC<ModalDemoProps> = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
-  const openModal = () => setIsModalOpen(true)
-  const closeModal = () => setIsModalOpen(false)
+  const openModal = useCallback(() => setIsModalOpen(true), [])
+  const closeModal = useCallback(() => setIsModalOpen(false), [])
 
   return (
     <div>
@@ -127,7 +139,7 @@ export const ModalDemo: React.FC<ModalDemoProps> = () => {
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
-        title="Connect On Linkedin"
+        title="Connect On LinkedIn"
         subtitle=""
       >
         <div className="text-center">
