@@ -1,0 +1,141 @@
+"use client"
+
+import { ReactNode, useEffect, useState } from "react"
+
+import { QRCode } from "./qrcode"
+
+// TypeScript interfaces for props
+interface ModalProps {
+  isOpen: boolean
+  onClose: () => void
+  children: ReactNode
+  title?: string
+  subtitle?: string
+}
+
+interface ModalButtonProps {
+  onClick: () => void
+  children: ReactNode
+  className?: string
+}
+
+// Reusable Modal Component
+export const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  children,
+  title,
+  subtitle,
+}) => {
+  // Add ESC key support to close modal
+  useEffect(() => {
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isOpen) {
+        onClose()
+      }
+    }
+
+    document.addEventListener("keydown", handleEsc)
+
+    // Prevent background scrolling when modal is open
+    if (isOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "auto"
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEsc)
+      document.body.style.overflow = "auto"
+    }
+  }, [isOpen, onClose])
+
+  if (!isOpen) return null
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      {/* Background Overlay */}
+      <div
+        className="absolute inset-0 bg-black opacity-75"
+        onClick={onClose}
+        onKeyDown={(e) => e.key === "Enter" && onClose()}
+        role="button"
+        tabIndex={0}
+      ></div>
+
+      {/* Modal Content */}
+      <div className="relative z-10 flex w-4/5 max-w-sm flex-col items-center rounded-lg bg-white p-6 shadow-xl">
+        {title && (
+          <div className="mb-4 w-full text-center">
+            <h3 className="text-lg font-medium text-gray-900">{title}</h3>
+            {subtitle && <p className="text-sm text-gray-500">{subtitle}</p>}
+          </div>
+        )}
+
+        {/* Modal Content */}
+        <div className="w-full">{children}</div>
+
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="mt-6 rounded bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  )
+}
+
+// Button that opens a modal
+export const ModalButton: React.FC<ModalButtonProps> = ({ onClick }) => {
+  return (
+    <button
+      className={`size-[34px] rounded border border-gray-800 bg-gray-200 p-1.5 dark:border-gray-200 dark:bg-gray-900`}
+      aria-label="Show QR Code"
+      onClick={onClick}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="text-gray-900 dark:text-gray-100"
+      >
+        {/* QR Code SVG icon */}
+        <path
+          fillRule="evenodd"
+          d="M3 4a1 1 0 011-1h5a1 1 0 011 1v5a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 1v3h3V5H5zm8-1a1 1 0 011-1h5a1 1 0 011 1v5a1 1 0 01-1 1h-5a1 1 0 01-1-1V4zm2 1v3h3V5h-3zm-8 8a1 1 0 011-1h5a1 1 0 011 1v5a1 1 0 01-1 1H4a1 1 0 01-1-1v-5zm2 1v3h3v-3H5zm13-1a1 1 0 00-1 1v2h-2a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2v-2a1 1 0 00-1-1z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </button>
+  )
+}
+
+// Demo component
+interface ModalDemoProps {}
+
+export const ModalDemo: React.FC<ModalDemoProps> = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+
+  const openModal = () => setIsModalOpen(true)
+  const closeModal = () => setIsModalOpen(false)
+
+  return (
+    <div>
+      <ModalButton onClick={openModal}>Connect</ModalButton>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title="Linkedin"
+        subtitle=""
+      >
+        <div className="text-center">
+          <QRCode />
+        </div>
+      </Modal>
+    </div>
+  )
+}
+
+export default ModalDemo

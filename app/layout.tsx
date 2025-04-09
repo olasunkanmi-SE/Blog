@@ -58,6 +58,8 @@ export const metadata: Metadata = {
     "AI-Powered Software Development",
     "Custom Software Development Malaysia",
     "Tech Talent in Kuala Lumpur",
+    "AI developers in Malaysia",
+    "AI developers in Malaysia",
   ],
   authors: [
     {
