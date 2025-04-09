@@ -22,19 +22,23 @@ export function ShowcaseProjects() {
           </div>
           <div className=" py-3">
             <div className="-m-4 flex flex-wrap">
-              {projectsData.slice(0, 4).map((d) => (
-                <ProjectCard
-                  key={d.title}
-                  title={d.title}
-                  description={d.description}
-                  titleLink={d.titleLink}
-                  skills={d.skills}
-                  links={d.links}
-                  icons={d.icons}
-                  designPattern={d.designPattern}
-                  className="md relative grow p-4 md:w-1/2 md:grow-0"
-                />
-              ))}
+              {projectsData
+                .slice(0, 4)
+                .filter((d) => d.type !== "Open")
+                .map((d) => (
+                  <ProjectCard
+                    key={d.title}
+                    title={d.title}
+                    description={d.description}
+                    titleLink={d.titleLink}
+                    skills={d.skills}
+                    links={d.links}
+                    icons={d.icons}
+                    designPattern={d.designPattern}
+                    type={d.type}
+                    className="md relative grow p-4 md:w-1/2 md:grow-0"
+                  />
+                ))}
             </div>
           </div>
         </div>
