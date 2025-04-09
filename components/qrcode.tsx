@@ -16,8 +16,8 @@ interface QRCodeProps {
 export const QRCode: React.FC<QRCodeProps> = ({
   value = "https://www.linkedin.com/in/oyinlola-olasunkanmi-raymond-71b6b8aa/",
   size = 280,
-  backgroundColor = "white",
-  fgColor = "black",
+  backgroundColor = "#eeeeee",
+  fgColor = "#253276",
   level = "L",
   className = "",
 }) => {
