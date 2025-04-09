@@ -15,8 +15,8 @@ interface QRCodeProps {
 // Reusable QR Code Component
 export const QRCode: React.FC<QRCodeProps> = ({
   value = "https://www.linkedin.com/in/oyinlola-olasunkanmi-raymond-71b6b8aa/",
-  size = 280,
-  backgroundColor = "white",
+  size = 220,
+  backgroundColor = "fff",
   fgColor = "black",
   level = "L",
   className = "",
