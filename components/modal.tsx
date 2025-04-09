@@ -127,7 +127,7 @@ export const ModalDemo: React.FC<ModalDemoProps> = () => {
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
-        title="Linkedin"
+        title="Connect On Linkedin"
         subtitle=""
       >
         <div className="text-center">
