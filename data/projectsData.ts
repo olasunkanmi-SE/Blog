@@ -33,7 +33,7 @@ const projectsData: ProjectData[] = [
     titleLink: "https://github.com/olasunkanmi-SE/restaurant",
     skills:
       "Typescript, Reactjs, NestJs, MongoDB, RBAC, Authentication, State management",
-    designPattern: "Hexagonal Architecture, Domain",
+    designPattern: "Hexagonal Architecture, Domain Driven Design",
     links: [
       { title: "GitHub", href: "https://github.com/olasunkanmi-SE/restaurant" },
     ],
@@ -43,7 +43,7 @@ const projectsData: ProjectData[] = [
   {
     title: "ts-codebase-analyzer",
     description:
-      "A powerful tool for parsing and analyzing TypeScript codebases with the TypeScript Abstract Syntax Tree (AST). This npm package is useful for codeIndexing and context retrieval while building Generative AI applications and AI agents",
+      "A powerful tool for parsing and analyzing TypeScript codebases with the TypeScript Abstract Syntax Tree (AST). This npm package is useful for codeIndexing and context retrieval while building Generative AI applications and AI agents.",
     titleLink: "https://github.com/olasunkanmi-SE/ts-codebase-analyzer",
     skills:
       "Typescript Abstract synthax tree AST, Typescript compiler, Files Systems ",
