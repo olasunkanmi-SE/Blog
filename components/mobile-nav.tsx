@@ -44,64 +44,61 @@ const MobileNav = () => {
   }, [])
 
   return (
-    <div className="[@media(min-width:800px)]:hidden">
-      {/* Hamburger Button */}
+    <div className="[@media(max-width:799px)]:block [@media(min-width:800px)]:hidden">
+      {/* Mobile menu button */}
       <button
-        className="relative w-8 h-8 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500"
-        aria-label="Toggle Menu"
         onClick={onToggleNav}
+        className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+        aria-expanded="false"
       >
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-5 h-4 flex flex-col justify-between">
-            <span className={`block h-0.5 w-full bg-gray-700 dark:bg-gray-300 transition-all duration-300 ${navShow ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-            <span className={`block h-0.5 w-full bg-gray-700 dark:bg-gray-300 transition-opacity duration-300 ${navShow ? 'opacity-0' : ''}`}></span>
-            <span className={`block h-0.5 w-full bg-gray-700 dark:bg-gray-300 transition-all duration-300 ${navShow ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
-          </div>
-        </div>
+        <span className="sr-only">Open main menu</span>
+        <svg
+          className="block h-6 w-6"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
       </button>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile overlay */}
       {navShow && (
-        <div className="fixed inset-0 z-[9999]">
-          {/* Backdrop */}
-          <div 
-            className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
-            onClick={closeNav}
-            aria-hidden="true"
-          />
-          
-          {/* Menu Panel */}
-          <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white dark:bg-gray-900 shadow-2xl border-l border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ease-in-out">
-            {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+        <div 
+          className="fixed inset-0 z-30 bg-black bg-opacity-50"
+          onClick={closeNav}
+        />
+      )}
+
+      {/* Mobile Menu Panel */}
+      {navShow && (
+        <div className={`fixed right-0 top-0 z-40 h-screen w-80 max-w-[85vw] overflow-y-auto border-l border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900 transform transition-transform duration-300 ease-in-out ${
+          navShow ? 'translate-x-0' : 'translate-x-full'
+        }`}>
+          <div className="p-6">
+            {/* Close button for mobile */}
+            <div className="flex justify-between items-center mb-6">
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Navigation</h2>
               <button
-                className="w-8 h-8 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500"
-                aria-label="Close Menu"
                 onClick={closeNav}
+                className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                <svg
-                  className="w-5 h-5 mx-auto text-gray-700 dark:text-gray-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
 
             {/* Navigation Links */}
-            <nav className="flex flex-col p-6 space-y-2">
+            <nav className="space-y-1">
               {headerNavLinks.map((link, index) => (
                 <Link
                   key={link.title}
                   href={link.href}
-                  className="group flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
+                  className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white rounded-md transition-all duration-200"
                   onClick={closeNav}
-                  style={{ animationDelay: `${index * 50}ms` }}
                 >
-                  <span className="w-2 h-2 rounded-full bg-amber-500 mr-3 scale-0 group-hover:scale-100 transition-transform duration-200"></span>
                   {link.title}
                 </Link>
               ))}
