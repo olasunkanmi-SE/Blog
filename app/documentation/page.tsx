@@ -1,4 +1,3 @@
-
 import { Metadata } from "next"
 import Link from "next/link"
 
@@ -11,160 +10,136 @@ export default function Documentation() {
   return (
     <div className="flex min-h-screen bg-white dark:bg-gray-900">
       {/* Sidebar */}
-      <aside className="fixed left-0 top-0 z-30 h-full w-64 overflow-y-auto bg-black text-white">
+      <aside className="fixed left-0 top-0 z-30 h-full w-64 overflow-y-auto border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
         <div className="p-6">
           {/* Logo */}
-          <div className="mb-6">
-            <h2 className="text-xl font-bold">Developer Platform</h2>
-          </div>
-
-          {/* Search */}
           <div className="mb-8">
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <svg className="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </div>
-              <input
-                type="text"
-                placeholder="Search"
-                className="w-full rounded-md border border-gray-600 bg-gray-800 py-2 pl-10 pr-8 text-sm text-white placeholder-gray-400 focus:border-gray-500 focus:outline-none"
-              />
-              <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                <span className="text-xs text-gray-400">⌘K</span>
-              </div>
-            </div>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Documentation</h2>
           </div>
 
           {/* Navigation */}
-          <nav className="space-y-6">
+          <nav className="space-y-8">
             {/* GET STARTED */}
             <div>
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
-                GET STARTED
+              <h3 className="mb-4 text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                Get Started
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-1">
                 <li>
-                  <Link href="/docs/overview" className="block rounded-md bg-gray-700 px-3 py-2 text-sm text-white">
+                  <Link href="/docs/overview" className="block rounded-md bg-gray-100 px-3 py-2 text-sm font-medium text-gray-900 dark:bg-gray-800 dark:text-white">
                     Overview
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/quickstart" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
+                  <Link href="/docs/quickstart" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
                     Quickstart
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/models" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
+                  <Link href="/docs/models" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
                     Models
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/pricing" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
+                  <Link href="/docs/pricing" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
                     Pricing
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/libraries" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
+                  <Link href="/docs/libraries" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
                     Libraries
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* CORE CONCEPTS */}
+            {/* GUIDES */}
             <div>
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
-                CORE CONCEPTS
+              <h3 className="mb-4 text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                Guides
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-1">
                 <li>
-                  <Link href="/docs/text-prompting" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
-                    Text and prompting
+                  <Link href="/docs/guides/frontend" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                    Frontend integration
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/images-vision" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
-                    Images and vision
+                  <Link href="/docs/guides/backend" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                    Backend integration
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/audio-speech" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
-                    Audio and speech
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/docs/structured-outputs" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
-                    Structured Outputs
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/docs/function-calling" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
-                    Function calling
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/docs/conversation-state" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
-                    Conversation state
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/docs/reasoning" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
-                    Reasoning
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/docs/streaming" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
+                  <Link href="/docs/guides/streaming" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
                     Streaming
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/file-inputs" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
-                    File inputs
+                  <Link href="/docs/guides/prompt-engineering" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                    Prompt engineering
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/background" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
-                    Background
+                  <Link href="/docs/guides/safety" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                    Safety & guardrails
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* TOOLS */}
+            {/* API REFERENCE */}
             <div>
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
-                TOOLS
+              <h3 className="mb-4 text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                API Reference
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-1">
                 <li>
-                  <Link href="/docs/using-tools" className="block px-3 py-2 text-sm text-gray-300 hover:text-white">
-                    Using tools
+                  <Link href="/docs/api/messages" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                    Messages
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/cookbook" className="flex items-center px-3 py-2 text-sm text-gray-300 hover:text-white">
-                    <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                    Cookbook
+                  <Link href="/docs/api/completions" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                    Completions
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/forum" className="flex items-center px-3 py-2 text-sm text-gray-300 hover:text-white">
-                    <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                    Forum
+                  <Link href="/docs/api/streaming" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                    Streaming API
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/help" className="flex items-center px-3 py-2 text-sm text-gray-300 hover:text-white">
-                    <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    Help
+                  <Link href="/docs/api/authentication" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                    Authentication
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/api/errors" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                    Error handling
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* EXAMPLES */}
+            <div>
+              <h3 className="mb-4 text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                Examples
+              </h3>
+              <ul className="space-y-1">
+                <li>
+                  <Link href="/docs/examples/chatbot" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                    Chatbot
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/examples/content-generation" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                    Content generation
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/examples/code-assistant" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                    Code assistant
                   </Link>
                 </li>
               </ul>
@@ -186,7 +161,7 @@ export default function Documentation() {
                 Sign up
               </Link>
             </div>
-            
+
             <h1 className="mb-8 text-4xl font-bold text-gray-900 dark:text-gray-100 md:text-5xl">
               Developer Documentation
             </h1>
