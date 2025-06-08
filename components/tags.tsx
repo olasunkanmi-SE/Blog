@@ -16,7 +16,7 @@ export default function Tags({ tags }: TagsProps) {
         return (
           <div
             key={t}
-            className="2xl rounded-lg bg-amber-600  px-2 py-1 text-sm text-white hover:scale-110 hover:bg-amber-600 dark:bg-yellow-950 "
+            className="2xl rounded-lg bg-black px-2 py-1 text-sm text-white hover:scale-110 hover:bg-gray-800 dark:bg-black dark:hover:bg-gray-800"
           >
             <Tag text={t} className="mr-3 text-sm font-medium lowercase  " />
             <Link
