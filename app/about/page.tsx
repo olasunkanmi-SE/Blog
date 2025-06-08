@@ -14,7 +14,7 @@ export default function About() {
   if (!author) notFound()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-amber-400/5"></div>
       {/* Hero Section */}
       <section className="relative overflow-hidden py-24 lg:py-32">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-amber-600/10 dark:from-blue-400/5 dark:via-purple-400/5 dark:to-amber-400/5"></div>
