@@ -2,9 +2,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-
 import headerNavLinks from "@/config/nav-links"
-
 import Link from "./link"
 
 const MobileNav = () => {
@@ -21,17 +19,29 @@ const MobileNav = () => {
     })
   }
 
+  const closeNav = () => {
+    setNavShow(false)
+    document.body.style.overflow = "auto"
+  }
+
   // Close nav on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && navShow) {
-        onToggleNav()
+        closeNav()
       }
     }
     
     document.addEventListener('keydown', handleEscape)
     return () => document.removeEventListener('keydown', handleEscape)
   }, [navShow])
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [])
 
   return (
     <div className="[@media(min-width:800px)]:hidden">
@@ -50,25 +60,25 @@ const MobileNav = () => {
         </div>
       </button>
 
-      {/* Mobile Menu Overlay - Fixed Modal Implementation */}
+      {/* Mobile Menu Overlay */}
       {navShow && (
-        <div className="fixed inset-0 z-[9999] flex justify-end">
-          {/* Backdrop with solid black background */}
+        <div className="fixed inset-0 z-[9999]">
+          {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-black"
-            onClick={onToggleNav}
+            className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
+            onClick={closeNav}
             aria-hidden="true"
           />
           
           {/* Menu Panel */}
-          <div className="relative w-80 max-w-[85vw] h-full bg-white dark:bg-gray-900 shadow-2xl border-l border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ease-in-out">
+          <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white dark:bg-gray-900 shadow-2xl border-l border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ease-in-out">
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Navigation</h2>
               <button
                 className="w-8 h-8 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 aria-label="Close Menu"
-                onClick={onToggleNav}
+                onClick={closeNav}
               >
                 <svg
                   className="w-5 h-5 mx-auto text-gray-700 dark:text-gray-300"
@@ -88,7 +98,7 @@ const MobileNav = () => {
                   key={link.title}
                   href={link.href}
                   className="group flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
-                  onClick={onToggleNav}
+                  onClick={closeNav}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <span className="w-2 h-2 rounded-full bg-amber-500 mr-3 scale-0 group-hover:scale-100 transition-transform duration-200"></span>
