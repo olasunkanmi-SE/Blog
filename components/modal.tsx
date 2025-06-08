@@ -68,7 +68,7 @@ export const Modal: React.FC<ModalProps> = ({
       <div
         className="fixed inset-0 bg-black opacity-75 transition-opacity duration-300"
         onClick={onClose}
-        aria-hidden="true" // for screen readers
+        aria-hidden="true"
       ></div>
 
       {/* Modal Content */}
