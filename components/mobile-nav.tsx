@@ -73,8 +73,8 @@ const MobileNav = () => {
 
       {/* Mobile Menu Panel */}
       {navShow && (
-        <div className={`fixed left-0 top-0 z-40 h-screen w-80 max-w-[85vw] overflow-y-auto border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900 transform transition-transform duration-300 ease-in-out ${
-          navShow ? 'translate-x-0' : '-translate-x-full'
+        <div className={`fixed right-0 top-0 z-40 h-screen w-80 max-w-[85vw] overflow-y-auto border-l border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900 transform transition-transform duration-300 ease-in-out ${
+          navShow ? 'translate-x-0' : 'translate-x-full'
         }`}>
           <div className="p-6">
             {/* Close button for mobile */}
