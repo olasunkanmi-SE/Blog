@@ -31,7 +31,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_APP_URL ?? siteMetadata.siteUrl
   ),
-  description: siteMetadata.description,
+  description:
+    "Experienced Software Engineer and creator of CodeBuddy, an advanced AI coding assistant. Proven track record in designing and building scalable software applications. CodeBuddy offers AI-powered code generation, debugging, and documentation. Skilled in full-stack development, with a particular emphasis on back-end technologies and AI solutions.",
   keywords: [
     "Olasunkanmi Oyinlola",
     "Kuala Lumpur Software Engineer",
