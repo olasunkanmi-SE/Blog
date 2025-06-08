@@ -1,9 +1,8 @@
+
 "use client"
 
 import { useState, useEffect } from "react"
-
 import headerNavLinks from "@/config/nav-links"
-
 import Link from "./link"
 
 const MobileNav = () => {
@@ -20,17 +19,29 @@ const MobileNav = () => {
     })
   }
 
+  const closeNav = () => {
+    setNavShow(false)
+    document.body.style.overflow = "auto"
+  }
+
   // Close nav on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && navShow) {
-        onToggleNav()
+        closeNav()
       }
     }
     
     document.addEventListener('keydown', handleEscape)
     return () => document.removeEventListener('keydown', handleEscape)
   }, [navShow])
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [])
 
   return (
     <div className="[@media(min-width:800px)]:hidden">
@@ -50,62 +61,61 @@ const MobileNav = () => {
       </button>
 
       {/* Mobile Menu Overlay */}
-      <div
-        className={`fixed inset-0 z-50 transform transition-transform duration-300 ease-in-out ${
-          navShow ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        {/* Backdrop */}
-        <div 
-          className="absolute inset-0 bg-black/20 backdrop-blur-sm"
-          onClick={onToggleNav}
-        ></div>
-        
-        {/* Menu Panel */}
-        <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white dark:bg-gray-900 shadow-2xl border-l border-gray-200 dark:border-gray-700">
-          {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Navigation</h2>
-            <button
-              className="w-8 h-8 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500"
-              aria-label="Close Menu"
-              onClick={onToggleNav}
-            >
-              <svg
-                className="w-5 h-5 mx-auto text-gray-700 dark:text-gray-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+      {navShow && (
+        <div className="fixed inset-0 z-[9999]">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
+            onClick={closeNav}
+            aria-hidden="true"
+          />
+          
+          {/* Menu Panel */}
+          <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white dark:bg-gray-900 shadow-2xl border-l border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ease-in-out">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Navigation</h2>
+              <button
+                className="w-8 h-8 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                aria-label="Close Menu"
+                onClick={closeNav}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
+                <svg
+                  className="w-5 h-5 mx-auto text-gray-700 dark:text-gray-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
 
-          {/* Navigation Links */}
-          <nav className="flex flex-col p-6 space-y-2">
-            {headerNavLinks.map((link, index) => (
-              <Link
-                key={link.title}
-                href={link.href}
-                className="group flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
-                onClick={onToggleNav}
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                <span className="w-2 h-2 rounded-full bg-amber-500 mr-3 scale-0 group-hover:scale-100 transition-transform duration-200"></span>
-                {link.title}
-              </Link>
-            ))}
-          </nav>
+            {/* Navigation Links */}
+            <nav className="flex flex-col p-6 space-y-2">
+              {headerNavLinks.map((link, index) => (
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  className="group flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
+                  onClick={closeNav}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <span className="w-2 h-2 rounded-full bg-amber-500 mr-3 scale-0 group-hover:scale-100 transition-transform duration-200"></span>
+                  {link.title}
+                </Link>
+              ))}
+            </nav>
 
-          {/* Footer */}
-          <div className="absolute bottom-6 left-6 right-6">
-            <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
-              Press <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">ESC</kbd> to close
+            {/* Footer */}
+            <div className="absolute bottom-6 left-6 right-6">
+              <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                Press <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">ESC</kbd> to close
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }
