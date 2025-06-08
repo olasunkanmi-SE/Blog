@@ -22,7 +22,7 @@ export default function CodeBuddy() {
               <Button className="bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 px-6 py-3 rounded-lg">
                 Start building
               </Button>
-              <Link href="/codebuddy/plans">
+              <Link href="/codeBuddy/plans">
                 <Button variant="outline" className="border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-6 py-3 rounded-lg">
                   View Plans
                 </Button>
@@ -275,7 +275,7 @@ export default function CodeBuddy() {
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold mb-8">Start building with the CodeBuddy API</h2>
           <div className="flex justify-center gap-6">
-            <Link href="/codebuddy/plans">
+            <Link href="/codeBuddy/plans">
               <Button variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900">
                 See pricing
               </Button>
