@@ -100,7 +100,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Featured Section */}
+      {/* Featured Section - Slider */}
       <section className="py-16">
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-4xl text-center">
@@ -108,23 +108,136 @@ export default async function Home() {
               Featured Work
             </h2>
             
-            <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-8 shadow-sm">
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
-                🤖
-              </div>
-              <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
-                CodeBuddy AI
-              </h3>
-              <p className="mb-6 text-gray-600 dark:text-gray-400">
-                An advanced AI coding assistant that helps developers write better code faster. 
-                Features include code generation, debugging, documentation, and intelligent suggestions.
-              </p>
-              <Link
-                href="/codeBuddy"
-                className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+            <div className="relative overflow-hidden">
+              <div 
+                className="flex transition-transform duration-300 ease-in-out"
+                style={{ transform: 'translateX(0%)' }}
+                id="featured-slider"
               >
-                Learn more →
-              </Link>
+                {/* Slide 1 - CodeBuddy AI */}
+                <div className="w-full flex-shrink-0">
+                  <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-8 shadow-sm">
+                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+                      🤖
+                    </div>
+                    <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+                      CodeBuddy AI
+                    </h3>
+                    <p className="mb-6 text-gray-600 dark:text-gray-400">
+                      An advanced AI coding assistant that helps developers write better code faster. 
+                      Features include code generation, debugging, documentation, and intelligent suggestions.
+                    </p>
+                    <Link
+                      href="/codeBuddy"
+                      className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                    >
+                      Learn more →
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Slide 2 - Portfolio Website */}
+                <div className="w-full flex-shrink-0">
+                  <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-8 shadow-sm">
+                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+                      🌐
+                    </div>
+                    <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+                      Portfolio Website
+                    </h3>
+                    <p className="mb-6 text-gray-600 dark:text-gray-400">
+                      A modern, responsive portfolio built with Next.js 14, featuring blog capabilities, 
+                      project showcases, and optimized for performance and SEO.
+                    </p>
+                    <Link
+                      href="/projects"
+                      className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                    >
+                      View projects →
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Slide 3 - Technical Blog */}
+                <div className="w-full flex-shrink-0">
+                  <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-8 shadow-sm">
+                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+                      📝
+                    </div>
+                    <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+                      Technical Blog
+                    </h3>
+                    <p className="mb-6 text-gray-600 dark:text-gray-400">
+                      In-depth articles on software development, AI technologies, and engineering best practices. 
+                      Sharing knowledge and insights from real-world development experience.
+                    </p>
+                    <Link
+                      href="/blog"
+                      className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                    >
+                      Read articles →
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation Buttons */}
+              <button 
+                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white dark:bg-gray-800 p-2 shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                onClick={() => {
+                  const slider = document.getElementById('featured-slider');
+                  const currentTransform = slider.style.transform;
+                  const currentIndex = currentTransform ? parseInt(currentTransform.match(/-?\d+/)[0]) / 100 : 0;
+                  const newIndex = currentIndex <= -200 ? 0 : currentIndex - 100;
+                  slider.style.transform = `translateX(${newIndex}%)`;
+                }}
+                aria-label="Previous slide"
+              >
+                <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              <button 
+                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white dark:bg-gray-800 p-2 shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                onClick={() => {
+                  const slider = document.getElementById('featured-slider');
+                  const currentTransform = slider.style.transform;
+                  const currentIndex = currentTransform ? parseInt(currentTransform.match(/-?\d+/)[0]) / 100 : 0;
+                  const newIndex = currentIndex >= 0 ? -200 : currentIndex + 100;
+                  slider.style.transform = `translateX(${newIndex}%)`;
+                }}
+                aria-label="Next slide"
+              >
+                <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* Slide Indicators */}
+              <div className="flex justify-center mt-6 space-x-2">
+                <button 
+                  className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 transition-opacity"
+                  onClick={() => {
+                    document.getElementById('featured-slider').style.transform = 'translateX(0%)';
+                  }}
+                  aria-label="Go to slide 1"
+                ></button>
+                <button 
+                  className="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 transition-opacity hover:bg-gray-400 dark:hover:bg-gray-500"
+                  onClick={() => {
+                    document.getElementById('featured-slider').style.transform = 'translateX(-100%)';
+                  }}
+                  aria-label="Go to slide 2"
+                ></button>
+                <button 
+                  className="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 transition-opacity hover:bg-gray-400 dark:hover:bg-gray-500"
+                  onClick={() => {
+                    document.getElementById('featured-slider').style.transform = 'translateX(-200%)';
+                  }}
+                  aria-label="Go to slide 3"
+                ></button>
+              </div>
             </div>
           </div>
         </div>
