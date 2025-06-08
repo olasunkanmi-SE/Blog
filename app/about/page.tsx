@@ -3,6 +3,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { allAuthors } from "@/.contentlayer/generated/index.mjs"
 import { Mdx } from "@/components/mdx/mdx"
+import { QRCode } from "@/components/qrcode"
 import siteMetadata from "@/config/site-metadata"
 
 export const metadata = {
@@ -89,6 +90,29 @@ export default function About() {
                 <hr className="border-gray-200 dark:border-gray-700" />
               </div>
               <Mdx code={author.body.code} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Connect Section with QR Code */}
+      <section className="py-16 bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
+              Connect with me on LinkedIn
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-12">
+              Scan the QR code below to connect with me on LinkedIn and stay updated with my professional journey.
+            </p>
+            
+            <div className="flex justify-center">
+              <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                <QRCode />
+                <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+                  Scan to connect on LinkedIn
+                </p>
+              </div>
             </div>
           </div>
         </div>
