@@ -1,8 +1,10 @@
 
+"use client"
+
 import Link from "next/link"
 import siteMetadata from "@/config/site-metadata"
 
-export default async function Home() {
+export default function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
