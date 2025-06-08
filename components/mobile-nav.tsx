@@ -51,18 +51,18 @@ const MobileNav = () => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-0 z-[9999] transform transition-transform duration-300 ease-in-out ${
           navShow ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Backdrop */}
         <div 
-          className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
           onClick={onToggleNav}
         ></div>
         
         {/* Menu Panel */}
-        <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white dark:bg-gray-900 shadow-2xl border-l border-gray-200 dark:border-gray-700">
+        <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white dark:bg-gray-900 shadow-2xl border-l border-gray-200 dark:border-gray-700 z-10">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Navigation</h2>
