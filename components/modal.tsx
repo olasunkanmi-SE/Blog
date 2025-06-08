@@ -1,3 +1,4 @@
+
 "use client"
 
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react"
@@ -76,7 +77,7 @@ export const Modal: React.FC<ModalProps> = ({
         ref={modalRef}
         aria-modal="true"
         role="dialog"
-      ></div>
+      >
         {title && (
           <div className="mb-4 w-full text-center">
             <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
