@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import headerNavLinks from "@/config/nav-links"
 
@@ -14,83 +14,97 @@ const MobileNav = () => {
       if (status) {
         document.body.style.overflow = "auto"
       } else {
-        // Prevent scrolling
         document.body.style.overflow = "hidden"
       }
       return !status
     })
   }
 
+  // Close nav on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && navShow) {
+        onToggleNav()
+      }
+    }
+    
+    document.addEventListener('keydown', handleEscape)
+    return () => document.removeEventListener('keydown', handleEscape)
+  }, [navShow])
+
   return (
-    <div className="[@media(min-width:700px)]:hidden">
+    <div className="[@media(min-width:800px)]:hidden">
+      {/* Hamburger Button */}
       <button
-        className=" size-[34px] rounded border border-gray-800 bg-gray-200 p-1.5 dark:border-gray-200 dark:bg-gray-900"
+        className="relative w-8 h-8 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500"
         aria-label="Toggle Menu"
         onClick={onToggleNav}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          className="text-gray-900 dark:text-gray-100"
-        >
-          <path
-            fillRule="evenodd"
-            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-            clipRule="evenodd"
-          />
-        </svg>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-5 h-4 flex flex-col justify-between">
+            <span className={`block h-0.5 w-full bg-gray-700 dark:bg-gray-300 transition-all duration-300 ${navShow ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+            <span className={`block h-0.5 w-full bg-gray-700 dark:bg-gray-300 transition-opacity duration-300 ${navShow ? 'opacity-0' : ''}`}></span>
+            <span className={`block h-0.5 w-full bg-gray-700 dark:bg-gray-300 transition-all duration-300 ${navShow ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+          </div>
+        </div>
       </button>
+
+      {/* Mobile Menu Overlay */}
       <div
-        className={`fixed left-0 top-0 z-10 size-full bg-gray-200 opacity-95 duration-300 ease-in-out dark:bg-black ${
+        className={`fixed inset-0 z-50 transform transition-transform duration-300 ease-in-out ${
           navShow ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex justify-end">
-          <button
-            className="mr-5 mt-11 size-8 rounded"
-            aria-label="Toggle Menu"
-            onClick={onToggleNav}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="text-gray-900 dark:text-gray-100"
-            >
-              <path
-                fillRule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
-        <nav className="fixed mt-8 h-full">
-          <div key={"home"} className="px-12 py-4">
-            {/* <Link
-              href={"/"}
-              className="text-2xl font-bold  text-gray-900 dark:text-gray-100"
+        {/* Backdrop */}
+        <div 
+          className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+          onClick={onToggleNav}
+        ></div>
+        
+        {/* Menu Panel */}
+        <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white dark:bg-gray-900 shadow-2xl">
+          {/* Header */}
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Navigation</h2>
+            <button
+              className="w-8 h-8 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              aria-label="Close Menu"
               onClick={onToggleNav}
             >
-              {"Home"}
-            </Link> */}
-          </div>
-          {headerNavLinks.map((link) => (
-            <div key={link.title} className="px-12 py-4">
-              <Link
-                href={link.href}
-                className="text-2xl font-bold  text-gray-900 dark:text-gray-100"
-                onClick={onToggleNav}
+              <svg
+                className="w-5 h-5 mx-auto text-gray-700 dark:text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Navigation Links */}
+          <nav className="flex flex-col p-6 space-y-2">
+            {headerNavLinks.map((link, index) => (
+              <Link
+                key={link.title}
+                href={link.href}
+                className="group flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
+                onClick={onToggleNav}
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                <span className="w-2 h-2 rounded-full bg-amber-500 mr-3 scale-0 group-hover:scale-100 transition-transform duration-200"></span>
                 {link.title}
               </Link>
+            ))}
+          </nav>
+
+          {/* Footer */}
+          <div className="absolute bottom-6 left-6 right-6">
+            <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
+              Press <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-xs">ESC</kbd> to close
             </div>
-          ))}
-          {/* <div className="px-12 py-4">
-            <DarkModeSwitch variant="button" />
-          </div> */}
-        </nav>
+          </div>
+        </div>
       </div>
     </div>
   )
