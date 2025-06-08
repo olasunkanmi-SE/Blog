@@ -1,5 +1,6 @@
+
 import CodeBuddy from "@/components/codebuddy"
 
-export default function About() {
+export default function CodeBuddyPage() {
   return <CodeBuddy />
 }
