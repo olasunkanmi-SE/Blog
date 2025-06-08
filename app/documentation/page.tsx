@@ -1,19 +1,68 @@
+
+"use client"
+
 import { Metadata } from "next"
 import Link from "next/link"
+import { useState } from "react"
 
-export const metadata: Metadata = {
-  title: "Documentation",
-  description: "Developer documentation and guides for building with modern web technologies",
-}
-
+// Note: Since we're using client components, we'll handle metadata differently
 export default function Documentation() {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen)
+  }
+
   return (
     <div className="flex min-h-screen bg-white dark:bg-gray-900">
+      {/* Mobile menu button */}
+      <div className="fixed top-4 left-4 z-50 md:hidden">
+        <button
+          onClick={toggleSidebar}
+          className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+          aria-expanded="false"
+        >
+          <span className="sr-only">Open main menu</span>
+          <svg
+            className="block h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 z-40 bg-black bg-opacity-50 md:hidden"
+          onClick={toggleSidebar}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="fixed left-0 top-0 z-30 h-full w-64 overflow-y-auto border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+      <aside className={`fixed left-0 top-0 z-40 h-full w-64 overflow-y-auto border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900 transform transition-transform duration-300 ease-in-out md:translate-x-0 ${
+        sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      } md:static md:z-auto`}>
         <div className="p-6">
-          {/* Logo */}
-          <div className="mb-8">
+          {/* Close button for mobile */}
+          <div className="flex justify-between items-center mb-6 md:hidden">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Documentation</h2>
+            <button
+              onClick={toggleSidebar}
+              className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Logo - hidden on mobile when close button is shown */}
+          <div className="mb-8 hidden md:block">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Documentation</h2>
           </div>
 
@@ -26,27 +75,27 @@ export default function Documentation() {
               </h3>
               <ul className="space-y-1">
                 <li>
-                  <Link href="/docs/overview" className="block rounded-md bg-gray-100 px-3 py-2 text-sm font-medium text-gray-900 dark:bg-gray-800 dark:text-white">
+                  <Link href="/docs/overview" className="block rounded-md bg-gray-100 px-3 py-2 text-sm font-medium text-gray-900 dark:bg-gray-800 dark:text-white" onClick={() => setSidebarOpen(false)}>
                     Overview
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/quickstart" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/quickstart" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Quickstart
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/models" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/models" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Models
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/pricing" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/pricing" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Pricing
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/libraries" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/libraries" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Libraries
                   </Link>
                 </li>
@@ -60,27 +109,27 @@ export default function Documentation() {
               </h3>
               <ul className="space-y-1">
                 <li>
-                  <Link href="/docs/guides/frontend" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/guides/frontend" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Frontend integration
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/guides/backend" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/guides/backend" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Backend integration
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/guides/streaming" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/guides/streaming" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Streaming
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/guides/prompt-engineering" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/guides/prompt-engineering" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Prompt engineering
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/guides/safety" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/guides/safety" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Safety & guardrails
                   </Link>
                 </li>
@@ -94,27 +143,27 @@ export default function Documentation() {
               </h3>
               <ul className="space-y-1">
                 <li>
-                  <Link href="/docs/api/messages" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/api/messages" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Messages
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/api/completions" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/api/completions" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Completions
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/api/streaming" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/api/streaming" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Streaming API
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/api/authentication" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/api/authentication" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Authentication
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/api/errors" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/api/errors" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Error handling
                   </Link>
                 </li>
@@ -128,17 +177,17 @@ export default function Documentation() {
               </h3>
               <ul className="space-y-1">
                 <li>
-                  <Link href="/docs/examples/chatbot" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/examples/chatbot" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Chatbot
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/examples/content-generation" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/examples/content-generation" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Content generation
                   </Link>
                 </li>
                 <li>
-                  <Link href="/docs/examples/code-assistant" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white">
+                  <Link href="/docs/examples/code-assistant" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white" onClick={() => setSidebarOpen(false)}>
                     Code assistant
                   </Link>
                 </li>
@@ -149,11 +198,11 @@ export default function Documentation() {
       </aside>
 
       {/* Main Content */}
-      <main className="ml-64 flex-1">
-        <div className="container mx-auto max-w-4xl px-6 py-8">
+      <main className="flex-1 md:ml-64 lg:ml-64">
+        <div className="container mx-auto max-w-4xl px-4 md:px-6 py-8 pt-16 md:pt-8">
           {/* Header Section */}
           <div className="mb-12 text-center">
-            <div className="mb-4 flex justify-center space-x-4 text-sm">
+            <div className="mb-4 flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm">
               <Link href="/login" className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
                 Log in
               </Link>
@@ -162,7 +211,7 @@ export default function Documentation() {
               </Link>
             </div>
 
-            <h1 className="mb-8 text-4xl font-bold text-gray-900 dark:text-gray-100 md:text-5xl">
+            <h1 className="mb-8 text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100">
               Developer Documentation
             </h1>
 
@@ -182,23 +231,23 @@ export default function Documentation() {
 
           {/* Code Examples Section */}
           <div className="mb-12">
-            <div className="rounded-lg bg-gray-50 p-6 dark:bg-gray-900">
+            <div className="rounded-lg bg-gray-50 p-4 md:p-6 dark:bg-gray-900">
               {/* Language Tabs */}
-              <div className="mb-4 flex space-x-4 border-b border-gray-200 dark:border-gray-700">
-                <button className="border-b-2 border-blue-500 pb-2 text-sm font-medium text-blue-600 dark:text-blue-400">
+              <div className="mb-4 flex space-x-4 border-b border-gray-200 dark:border-gray-700 overflow-x-auto">
+                <button className="border-b-2 border-blue-500 pb-2 text-sm font-medium text-blue-600 dark:text-blue-400 whitespace-nowrap">
                   curl
                 </button>
-                <button className="pb-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                <button className="pb-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 whitespace-nowrap">
                   javascript
                 </button>
-                <button className="pb-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                <button className="pb-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 whitespace-nowrap">
                   python
                 </button>
               </div>
 
               {/* Code Block */}
               <div className="overflow-x-auto">
-                <pre className="text-sm text-gray-800 dark:text-gray-200">
+                <pre className="text-xs md:text-sm text-gray-800 dark:text-gray-200">
                   <code>{`curl https://api.example.com/v1/requests \\
     -H "Content-Type: application/json" \\
     -H "Authorization: Bearer $API_KEY" \\
@@ -214,15 +263,15 @@ export default function Documentation() {
           {/* Browse Models Section */}
           <div className="mb-12">
             <div className="mb-6 flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100">
                 Browse Technologies
               </h2>
-              <Link href="/docs/technologies" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+              <Link href="/docs/technologies" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm md:text-base">
                 View all
               </Link>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <Link href="/docs/nextjs" className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800">
                 <h3 className="mb-2 font-semibold text-gray-900 dark:text-gray-100">
                   Next.js 14
@@ -254,11 +303,11 @@ export default function Documentation() {
 
           {/* Start Building Section */}
           <div className="mb-12">
-            <h2 className="mb-8 text-2xl font-bold text-gray-900 dark:text-gray-100">
+            <h2 className="mb-8 text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100">
               Start building
             </h2>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               <Link href="/docs/guides/frontend" className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800">
                 <h3 className="mb-2 font-semibold text-gray-900 dark:text-gray-100">
                   Frontend Development
@@ -334,7 +383,7 @@ export default function Documentation() {
           </div>
 
           {/* Resources Section */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <Link href="/help" className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800">
               <h3 className="mb-2 font-semibold text-gray-900 dark:text-gray-100">
                 Help center
