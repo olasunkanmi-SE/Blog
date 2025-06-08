@@ -77,27 +77,18 @@ input:-webkit-autofill:focus {
   }
 }
 
-.typing-demo {
-  width: 11ch;
-  animation:
-    typing 2s steps(16),
-    blink 0.5s step-end 5 alternate;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 5px solid;
-  border-color: transparent;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
+/* Modern pulse animation for status indicators */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
   }
-}
-
-@keyframes blink {
   50% {
-    border-color: white;
+    opacity: 0.5;
   }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .giscus-frame {
