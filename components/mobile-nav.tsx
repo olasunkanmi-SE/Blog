@@ -44,7 +44,7 @@ const MobileNav = () => {
   }, [])
 
   return (
-    <div className="[@media(min-width:800px)]:hidden">
+    <div className="lg:hidden">
       {/* Hamburger Button */}
       <button
         className="relative w-8 h-8 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500"

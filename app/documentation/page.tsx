@@ -14,7 +14,7 @@ export default function Documentation() {
   }
 
   return (
-    <div className="flex min-h-screen bg-white dark:bg-gray-900">
+    <div className="flex min-h-screen bg-white dark:bg-gray-900 w-full">
       {/* Mobile menu button */}
       <div className="fixed top-4 left-4 z-50 lg:hidden">
         <button
@@ -44,9 +44,9 @@ export default function Documentation() {
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed left-0 top-0 z-40 h-full w-80 sm:w-64 overflow-y-auto border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+      <aside className={`fixed left-0 top-0 z-40 h-screen w-80 sm:w-64 overflow-y-auto border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-      } lg:static lg:z-auto`}>
+      } lg:relative lg:z-auto lg:w-64 lg:flex-shrink-0`}>
         <div className="p-6">
           {/* Close button for mobile */}
           <div className="flex justify-between items-center mb-6 lg:hidden">
@@ -198,8 +198,8 @@ export default function Documentation() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 lg:ml-64">
-        <div className="container mx-auto max-w-4xl px-4 sm:px-6 py-8 pt-16 lg:pt-8">
+      <main className="flex-1 lg:ml-0 w-full">
+        <div className="container mx-auto max-w-4xl px-4 sm:px-6 py-8 pt-16 lg:pt-8 min-h-screen">
           {/* Header Section */}
           <div className="mb-12 text-center">
             <div className="mb-4 flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm">
