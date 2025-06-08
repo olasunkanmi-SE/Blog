@@ -16,7 +16,7 @@ export default function Documentation() {
   return (
     <div className="flex min-h-screen bg-white dark:bg-gray-900">
       {/* Mobile menu button */}
-      <div className="fixed top-4 left-4 z-50 md:hidden">
+      <div className="fixed top-4 left-4 z-50 lg:hidden">
         <button
           onClick={toggleSidebar}
           className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
@@ -38,18 +38,18 @@ export default function Documentation() {
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div 
-          className="fixed inset-0 z-40 bg-black bg-opacity-50 md:hidden"
+          className="fixed inset-0 z-30 bg-black bg-opacity-50 lg:hidden"
           onClick={toggleSidebar}
         />
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed left-0 top-0 z-40 h-full w-64 overflow-y-auto border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900 transform transition-transform duration-300 ease-in-out md:translate-x-0 ${
+      <aside className={`fixed left-0 top-0 z-40 h-full w-80 sm:w-64 overflow-y-auto border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-      } md:static md:z-auto`}>
+      } lg:static lg:z-auto`}>
         <div className="p-6">
           {/* Close button for mobile */}
-          <div className="flex justify-between items-center mb-6 md:hidden">
+          <div className="flex justify-between items-center mb-6 lg:hidden">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Documentation</h2>
             <button
               onClick={toggleSidebar}
@@ -62,7 +62,7 @@ export default function Documentation() {
           </div>
 
           {/* Logo - hidden on mobile when close button is shown */}
-          <div className="mb-8 hidden md:block">
+          <div className="mb-8 hidden lg:block">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Documentation</h2>
           </div>
 
@@ -198,8 +198,8 @@ export default function Documentation() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 md:ml-64 lg:ml-64">
-        <div className="container mx-auto max-w-4xl px-4 md:px-6 py-8 pt-16 md:pt-8">
+      <main className="flex-1 lg:ml-64">
+        <div className="container mx-auto max-w-4xl px-4 sm:px-6 py-8 pt-16 lg:pt-8">
           {/* Header Section */}
           <div className="mb-12 text-center">
             <div className="mb-4 flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm">
