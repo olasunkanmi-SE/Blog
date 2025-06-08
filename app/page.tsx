@@ -1,10 +1,36 @@
-
 "use client"
 
 import Link from "next/link"
 import siteMetadata from "@/config/site-metadata"
+import { useState, useEffect, useRef } from 'react';
 
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef(null);
+  const totalSlides = 3;
+
+  const goToSlide = (slideIndex) => {
+    setCurrentSlide(slideIndex);
+    if (sliderRef.current) {
+      sliderRef.current.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+  };
+
+  const nextSlide = () => {
+    const newSlide = (currentSlide + 1) % totalSlides;
+    goToSlide(newSlide);
+  };
+
+  const prevSlide = () => {
+    const newSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    goToSlide(newSlide);
+  };
+
+  useEffect(() => {
+    goToSlide(0); // Initialize to the first slide
+  }, []);
+
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
@@ -15,15 +41,15 @@ export default function Home() {
               <span className="mr-2">👋</span>
               Welcome to my portfolio
             </div>
-            
+
             <h1 className="mb-8 text-5xl font-bold text-gray-900 dark:text-white sm:text-6xl lg:text-7xl">
               Software Engineer
             </h1>
-            
+
             <p className="mb-12 max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
               Building innovative solutions with modern technologies. Explore my work, read my thoughts, and discover CodeBuddy - my AI coding assistant.
             </p>
-            
+
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center">
               <Link
                 href="/about"
@@ -31,7 +57,7 @@ export default function Home() {
               >
                 About Me
               </Link>
-              
+
               <Link
                 href="/projects"
                 className="inline-flex items-center justify-center rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-6 py-3 text-sm font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
@@ -109,12 +135,13 @@ export default function Home() {
             <h2 className="mb-8 text-3xl font-bold text-gray-900 dark:text-white">
               Featured Work
             </h2>
-            
+
             <div className="relative overflow-hidden">
-              <div 
+              <div
                 className="flex transition-transform duration-300 ease-in-out"
                 style={{ transform: 'translateX(0%)' }}
                 id="featured-slider"
+                ref={sliderRef}
               >
                 {/* Slide 1 - CodeBuddy AI */}
                 <div className="w-full flex-shrink-0">
@@ -126,7 +153,7 @@ export default function Home() {
                       CodeBuddy AI
                     </h3>
                     <p className="mb-6 text-gray-600 dark:text-gray-400">
-                      An advanced AI coding assistant that helps developers write better code faster. 
+                      An advanced AI coding assistant that helps developers write better code faster.
                       Features include code generation, debugging, documentation, and intelligent suggestions.
                     </p>
                     <Link
@@ -148,7 +175,7 @@ export default function Home() {
                       Portfolio Website
                     </h3>
                     <p className="mb-6 text-gray-600 dark:text-gray-400">
-                      A modern, responsive portfolio built with Next.js 14, featuring blog capabilities, 
+                      A modern, responsive portfolio built with Next.js 14, featuring blog capabilities,
                       project showcases, and optimized for performance and SEO.
                     </p>
                     <Link
@@ -160,39 +187,33 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Slide 3 - Technical Blog */}
+                {/* Slide 3 - Full-Stack Development */}
                 <div className="w-full flex-shrink-0">
                   <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-8 shadow-sm">
                     <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
-                      📝
+                      ⚡
                     </div>
                     <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
-                      Technical Blog
+                      Full-Stack Development
                     </h3>
                     <p className="mb-6 text-gray-600 dark:text-gray-400">
-                      In-depth articles on software development, AI technologies, and engineering best practices. 
-                      Sharing knowledge and insights from real-world development experience.
+                      Expertise in modern web technologies including React, Next.js, TypeScript, Node.js,
+                      and cloud deployment solutions for scalable applications.
                     </p>
                     <Link
-                      href="/blog"
+                      href="/about"
                       className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
                     >
-                      Read articles →
+                      Learn more →
                     </Link>
                   </div>
                 </div>
               </div>
 
               {/* Navigation Buttons */}
-              <button 
+              <button
                 className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white dark:bg-gray-800 p-2 shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                onClick={() => {
-                  const slider = document.getElementById('featured-slider');
-                  const currentTransform = slider.style.transform;
-                  const currentIndex = currentTransform ? parseInt(currentTransform.match(/-?\d+/)[0]) / 100 : 0;
-                  const newIndex = currentIndex <= -200 ? 0 : currentIndex - 100;
-                  slider.style.transform = `translateX(${newIndex}%)`;
-                }}
+                onClick={prevSlide}
                 aria-label="Previous slide"
               >
                 <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -200,15 +221,9 @@ export default function Home() {
                 </svg>
               </button>
 
-              <button 
+              <button
                 className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white dark:bg-gray-800 p-2 shadow-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                onClick={() => {
-                  const slider = document.getElementById('featured-slider');
-                  const currentTransform = slider.style.transform;
-                  const currentIndex = currentTransform ? parseInt(currentTransform.match(/-?\d+/)[0]) / 100 : 0;
-                  const newIndex = currentIndex >= 0 ? -200 : currentIndex + 100;
-                  slider.style.transform = `translateX(${newIndex}%)`;
-                }}
+                onClick={nextSlide}
                 aria-label="Next slide"
               >
                 <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -218,27 +233,14 @@ export default function Home() {
 
               {/* Slide Indicators */}
               <div className="flex justify-center mt-6 space-x-2">
-                <button 
-                  className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 transition-opacity"
-                  onClick={() => {
-                    document.getElementById('featured-slider').style.transform = 'translateX(0%)';
-                  }}
-                  aria-label="Go to slide 1"
-                ></button>
-                <button 
-                  className="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 transition-opacity hover:bg-gray-400 dark:hover:bg-gray-500"
-                  onClick={() => {
-                    document.getElementById('featured-slider').style.transform = 'translateX(-100%)';
-                  }}
-                  aria-label="Go to slide 2"
-                ></button>
-                <button 
-                  className="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 transition-opacity hover:bg-gray-400 dark:hover:bg-gray-500"
-                  onClick={() => {
-                    document.getElementById('featured-slider').style.transform = 'translateX(-200%)';
-                  }}
-                  aria-label="Go to slide 3"
-                ></button>
+                {Array.from({ length: totalSlides }, (_, index) => (
+                  <button
+                    key={index}
+                    className={`w-2 h-2 rounded-full transition-opacity ${currentSlide === index ? 'bg-blue-600 dark:bg-blue-400' : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'}`}
+                    onClick={() => goToSlide(index)}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>
