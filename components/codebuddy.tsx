@@ -82,8 +82,10 @@ export default function CodeBuddy() {
               </h2>
 
               <p className="mt-4 max-w-xs leading-normal">
-                Create user-facing experiences, new products, and new ways to
-                work with the most advanced AI coding assistant on the market.
+                CodeBuddy is an AI-powered coding assistant that helps
+                developers streamline their workflow, automate repetitive tasks,
+                and enhance their coding experience with intelligent suggestions
+                and context-aware code completions.
               </p>
 
               {/* Navigation */}
@@ -91,7 +93,7 @@ export default function CodeBuddy() {
                 className="nav hidden lg:block"
                 aria-label="In-page jump links"
               >
-                <ul className="mt-16 w-max">
+                {/* <ul className="mt-16 w-max">
                   <li>
                     <a
                       className="active group flex items-center py-3"
@@ -122,22 +124,22 @@ export default function CodeBuddy() {
                       </span>
                     </a>
                   </li>
-                </ul>
+                </ul> */}
               </nav>
             </div>
 
             {/* Action Buttons */}
             <div className="mt-8 lg:mt-0">
               <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
-                <Button className="inline-flex items-center justify-center rounded-md bg-teal-400/10 px-6 py-3 text-sm font-medium text-teal-300 transition-colors hover:bg-teal-400/20">
+                {/* <Button className="inline-flex items-center justify-center rounded-md bg-teal-400/10 px-6 py-3 text-sm font-medium text-teal-300 transition-colors hover:bg-teal-400/20">
                   Start building
-                </Button>
-                <Link href="/codeBuddy/plans">
+                </Button> */}
+                <Link href="https://marketplace.visualstudio.com/items?itemName=fiatinnovations.ola-code-buddy">
                   <Button
                     variant="outline"
                     className="inline-flex w-full items-center justify-center rounded-md border border-slate-600 px-6 py-3 text-sm font-medium text-slate-300 transition-colors hover:border-slate-500 hover:text-slate-200"
                   >
-                    View Plans
+                    Start building
                   </Button>
                 </Link>
               </div>
@@ -168,7 +170,7 @@ export default function CodeBuddy() {
                   Get Started
                 </h2>
               </div>
-              <div className="prose prose-slate prose-invert max-w-none">
+              {/* <div className="prose prose-slate prose-invert max-w-none">
                 <p className="text-lg leading-relaxed text-slate-400">
                   Launch your own{" "}
                   <span className="font-semibold text-slate-200">
@@ -228,11 +230,11 @@ export default function CodeBuddy() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </section>
 
             {/* Model Family Section */}
-            <section
+            {/* <section
               id="models"
               className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
             >
@@ -270,7 +272,6 @@ export default function CodeBuddy() {
                   ))}
                 </div>
 
-                {/* Navigation Buttons */}
                 <button
                   className="absolute left-0 top-1/2 -translate-y-1/2 rounded-full bg-slate-800/50 p-2 text-slate-400 backdrop-blur transition-colors hover:bg-slate-700/50 hover:text-slate-200"
                   onClick={prevSlide}
@@ -311,7 +312,6 @@ export default function CodeBuddy() {
                   </svg>
                 </button>
 
-                {/* Slide Indicators */}
                 <div className="mt-6 flex justify-center space-x-2">
                   {Array.from({ length: totalSlides }, (_, index) => (
                     <button
@@ -323,7 +323,7 @@ export default function CodeBuddy() {
                   ))}
                 </div>
               </div>
-            </section>
+            </section> */}
 
             {/* Use Cases Section */}
             <section
@@ -384,7 +384,7 @@ export default function CodeBuddy() {
                   ))}
                 </ul>
 
-                <div className="mt-12">
+                {/* <div className="mt-12">
                   <Link
                     className="group inline-flex items-center font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300"
                     href="/codeBuddy/plans"
@@ -410,7 +410,7 @@ export default function CodeBuddy() {
                       </span>
                     </span>
                   </Link>
-                </div>
+                </div> */}
               </div>
             </section>
           </main>
@@ -418,7 +418,7 @@ export default function CodeBuddy() {
       </div>
 
       {/* CTA Section */}
-      <section className="bg-slate-800 py-20">
+      {/* <section className="bg-slate-800 py-20">
         <div className="container mx-auto px-6 text-center">
           <h2 className="mb-8 text-4xl font-bold text-slate-200">
             Start building with the CodeBuddy API
@@ -437,7 +437,7 @@ export default function CodeBuddy() {
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }

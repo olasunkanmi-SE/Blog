@@ -13,7 +13,7 @@ const Tag = ({ text, className }: TagProps) => {
       href={`/tags/${slug(text)}`}
       className={
         className ??
-        "mr-3 text-sm font-medium uppercase text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+        "inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1 text-xs text-zinc-400 transition-colors hover:border-zinc-700 hover:text-zinc-300"
       }
     >
       {text.split(" ").join("-")}

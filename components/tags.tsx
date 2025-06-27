@@ -16,15 +16,15 @@ export default function Tags({ tags }: TagsProps) {
         return (
           <div
             key={t}
-            className="rounded-lg bg-blue-600 px-2 py-1 text-sm text-white hover:scale-110 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-all duration-200"
+            className="flex items-center gap-1 rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1 text-sm text-zinc-400 transition-all duration-200 hover:border-zinc-700 hover:text-zinc-300"
           >
-            <Tag text={t} className="mr-3 text-sm font-medium lowercase" />
+            <Tag text={t} className="text-sm lowercase" />
             <Link
               href={`/tags/${slug(t)}`}
-              className="-ml-2 text-sm font-semibold uppercase text-white"
+              className="text-xs text-zinc-500"
               aria-label={`View posts tagged ${t}`}
             >
-              {` (${tags[t]})`}
+              {tags[t] === 1 ? " 1" : ` (${tags[t]})`}
             </Link>
           </div>
         )

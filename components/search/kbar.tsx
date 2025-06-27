@@ -77,27 +77,11 @@ export const KBarSearchProvider: FC<{
           priority: Priority.HIGH,
         },
         {
-          id: "youtube",
-          name: "YouTube",
-          keywords: "youtube channel subscribe",
-          section: "Home",
-          perform: () => window.open("", "_blank"),
-          priority: Priority.HIGH,
-        },
-        {
           id: "projects",
           name: "Projects",
           keywords: "projects portfolio examples demo showcase",
           section: "Home",
           perform: () => router.push("/projects"),
-          priority: Priority.HIGH,
-        },
-        {
-          id: "about",
-          name: "About",
-          keywords: "about who",
-          section: "Home",
-          perform: () => router.push("/about"),
           priority: Priority.HIGH,
         },
         {

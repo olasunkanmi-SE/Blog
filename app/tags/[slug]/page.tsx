@@ -70,85 +70,120 @@ export default async function PagePage({ params }: TagPageProps) {
   )
 
   return (
-    <>
-      <div className="container divide-y divide-gray-400 dark:divide-gray-700">
-        <div className="space-y-2 py-6 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+    <div className="relative min-h-screen bg-[#030014]">
+      {/* Minimal Grid Background */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, #ffffff08 1px, transparent 1px), linear-gradient(to bottom, #ffffff08 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+        />
+      </div>
+
+      {/* Subtle gradient orb */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div className="absolute right-[15%] top-[10%] size-[500px] rounded-full bg-cyan-500/10 blur-[120px]" />
+      </div>
+
+      <div className="container relative z-10 px-6 py-16">
+        {/* Header */}
+        <div className="mx-auto max-w-4xl text-center">
+          <div className="mb-8 inline-flex items-center rounded-full border border-zinc-800 px-4 py-2 text-sm text-zinc-400">
+            Tag
+          </div>
+          <h1 className="mb-8 text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
             {title}
           </h1>
         </div>
 
-        <div className="grid grid-cols-12 gap-3 pt-6 ">
-          <div className="col-span-12 col-start-1 sm:col-span-8 ">
-            <div className="flex-1 rounded-3xl bg-gradient-to-br from-amber-200  p-px transition duration-300">
-              <ul className="flex h-full flex-col justify-between divide-y divide-gray-400 rounded-3xl bg-slate-200 px-6 dark:divide-gray-700 dark:bg-slate-950">
-                {posts.map((post) => {
-                  const { slug, date, title, summary, tags } = post
-                  return (
-                    <li key={slug} className="py-6">
-                      <article>
-                        <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                          <div className="space-y-5 xl:col-span-full">
-                            <div className="space-y-6">
-                              <div>
-                                <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                                  <Link
-                                    href={`/blog/${slug}`}
-                                    className="text-gray-900 dark:text-gray-100"
-                                  >
-                                    {title}
-                                  </Link>
-                                </h2>
-                                <div className="flex flex-wrap gap-2 pt-2">
-                                  {tags &&
-                                    tags.map((tag) => (
-                                      <Tag
-                                        key={tag}
-                                        text={tag}
-                                        className="2xl rounded-lg bg-amber-600  px-2 py-1 text-sm text-white hover:scale-110 hover:bg-amber-600 dark:bg-yellow-950 "
-                                      />
-                                    ))}
-                                </div>
-                              </div>
-                              <div className="  max-w-none text-gray-600 dark:text-gray-400">
-                                {summary}
-                              </div>
-                            </div>
-                            <div className="flex w-full justify-between text-base font-medium leading-6">
-                              <time dateTime={date}>{formatDate(date)}</time>
+        <div className="mx-auto grid max-w-7xl gap-8 pt-16 lg:grid-cols-[2fr,1fr]">
+          {/* Posts List */}
+          <div className="space-y-8">
+            {posts.map((post) => {
+              const { slug, date, title, summary, tags } = post
+              return (
+                <article
+                  key={slug}
+                  className="group relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="space-y-4">
+                    <div>
+                      <h2 className="mb-2 text-2xl font-semibold tracking-tight">
+                        <Link
+                          href={`/blog/${slug}`}
+                          className="text-white transition-colors duration-200 hover:text-cyan-400"
+                        >
+                          {title}
+                        </Link>
+                      </h2>
 
-                              <Link
-                                href={`/blog/${slug}`}
-                                className="text-primary-700 hover:text-primary-600 dark:text-primary-500 dark:hover:text-primary-400"
-                                aria-label={`Read "${title}"`}
-                              >
-                                Read more &rarr;
-                              </Link>
-                            </div>
-                          </div>
+                      {/* Tags */}
+                      {tags && tags.length > 0 && (
+                        <div className="mb-3 flex flex-wrap gap-2">
+                          {tags.map((tag) => (
+                            <Tag
+                              key={tag}
+                              text={tag}
+                              className="rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1 text-xs text-zinc-400 transition-colors hover:border-zinc-700 hover:text-zinc-300"
+                            />
+                          ))}
                         </div>
-                      </article>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
+                      )}
+                    </div>
+
+                    {/* Summary */}
+                    <p className="leading-relaxed text-zinc-400">{summary}</p>
+
+                    {/* Meta information */}
+                    <div className="flex items-center justify-between border-t border-zinc-800 pt-4">
+                      <time dateTime={date} className="text-sm text-zinc-500">
+                        {formatDate(date)}
+                      </time>
+
+                      <Link
+                        href={`/blog/${slug}`}
+                        className="inline-flex items-center text-sm font-medium text-cyan-400 transition-colors hover:text-cyan-300"
+                        aria-label={`Read "${title}"`}
+                      >
+                        Read more →
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              )
+            })}
           </div>
 
-          <div className="col-span-12 row-start-3 h-fit divide-y divide-gray-400 rounded-xl bg-gray-200   dark:divide-gray-700  dark:bg-gray-900 sm:col-span-4 sm:col-start-9 sm:row-start-1">
-            <div className=" relative h-full rounded-2xl bg-card-gradient-dark p-px dark:bg-card-gradient">
-              <div className="flex h-full flex-col gap-4 rounded-2xl bg-gradient-to-b from-slate-200 to-slate-100 p-6 dark:from-slate-950 dark:to-gray-950">
-                <h2 className="pb-2  text-2xl font-bold leading-8 tracking-tight">
-                  Tags
-                </h2>
-                <div className="pt-2">
-                  <Tags tags={tags} />
-                </div>
+          {/* Sidebar */}
+          <div className="lg:sticky lg:top-8">
+            <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-6 backdrop-blur-sm">
+              <div className="mb-4 flex items-center gap-3">
+                <svg
+                  className="size-5 text-cyan-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                  />
+                </svg>
+                <h2 className="text-lg font-medium text-white">All Tags</h2>
+              </div>
+
+              <div className="mt-4">
+                <Tags tags={tags} />
               </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

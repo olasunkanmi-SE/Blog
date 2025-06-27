@@ -1,4 +1,3 @@
-
 import Link from "next/link"
 
 import { allBlogs } from "contentlayer/generated"
@@ -28,31 +27,44 @@ export default async function BlogPage() {
   // If initialDisplayPosts exist, display it if no searchValue is specified
   const displayPosts = initialDisplayPosts
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="relative min-h-screen bg-[#030014]">
+      {/* Minimal Grid Background */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
+      </div>
+
+      {/* Subtle gradient orb */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div className="absolute right-[15%] top-[10%] h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[120px]" />
+      </div>
+
       {/* Hero Section */}
-      <section className="py-20 lg:py-32">
+      <section className="relative py-20 lg:py-32">
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-8 inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-              <span className="mr-2">📝</span>
+            {/* Simple category label */}
+            <div className="mb-8 inline-flex items-center rounded-full border border-zinc-800 px-4 py-2 text-sm text-zinc-400">
               Thoughts & Insights
             </div>
 
-            <h1 className="mb-8 text-5xl font-bold text-gray-900 dark:text-white sm:text-6xl lg:text-7xl">
+            {/* Clean title */}
+            <h1 className="mb-8 text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
               My Blog
             </h1>
 
-            <p className="mb-12 max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+            {/* Simple subtitle */}
+            <p className="mx-auto mb-12 max-w-2xl text-lg text-zinc-400">
               Exploring software engineering, AI, and technology through detailed articles and tutorials.
             </p>
 
-            <div className="flex items-center justify-center gap-4">
-              <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                <div className="h-2 w-2 rounded-full bg-green-500"></div>
+            {/* Minimal stats */}
+            <div className="flex items-center justify-center gap-8">
+              <div className="flex items-center gap-2 text-sm text-zinc-400">
+                <div className="size-1.5 rounded-full bg-cyan-500"></div>
                 {filteredBlogPosts.length} Articles
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+              <div className="flex items-center gap-2 text-sm text-zinc-400">
+                <div className="size-1.5 rounded-full bg-emerald-500"></div>
                 {Object.keys(tags).length} Topics
               </div>
             </div>
@@ -61,17 +73,19 @@ export default async function BlogPage() {
       </section>
 
       {/* Blog Posts Section */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800/50">
+      <section className="relative py-16">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-12">
             {/* Main Content */}
             <div className="lg:col-span-8">
               {!filteredBlogPosts.length && (
-                <div className="text-center py-20">
-                  <div className="mx-auto mb-4 w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center">
+                <div className="flex flex-col items-center justify-center py-20">
+                  <div className="mb-4 flex size-16 items-center justify-center rounded-full bg-white/50 backdrop-blur-sm dark:bg-white/5">
                     <span className="text-2xl">📄</span>
                   </div>
-                  <p className="text-gray-600 dark:text-gray-300">No posts found.</p>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    No posts found.
+                  </p>
                 </div>
               )}
 
@@ -79,34 +93,39 @@ export default async function BlogPage() {
                 {displayPosts.map((post, index) => {
                   const { slug, date, title, summary, tags } = post
                   return (
-                    <article key={slug} className="group rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 shadow-sm transition-shadow hover:shadow-md">
-                      {/* Featured badge for first post */}
+                    <article
+                      key={slug}
+                      className="group relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1"
+                    >
                       {index === 0 && (
-                        <div className="mb-4 inline-flex items-center rounded-md bg-blue-50 dark:bg-blue-900/30 px-3 py-1 text-xs font-medium text-blue-600 dark:text-blue-400">
+                        <div className="mb-4 inline-flex items-center rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-500">
                           Latest
                         </div>
                       )}
-                      
+
                       <div className="space-y-4">
                         <div>
-                          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 mb-2">
-                            <Link href={`/blog/${slug}`}>
+                          <h2 className="mb-2 text-2xl font-semibold tracking-tight">
+                            <Link
+                              href={`/blog/${slug}`}
+                              className="text-white transition-colors duration-200 hover:text-cyan-400"
+                            >
                               {title}
                             </Link>
                           </h2>
-                          
+
                           {/* Tags */}
-                          {tags && tags.length > 0 && (
-                            <div className="flex flex-wrap gap-2 mb-3">
+                          {tags?.length > 0 && (
+                            <div className="mb-3 flex flex-wrap gap-2">
                               {tags.slice(0, 3).map((tag) => (
                                 <Tag
                                   key={tag}
                                   text={tag}
-                                  className="rounded-md bg-gray-100 dark:bg-gray-700 px-2 py-1 text-xs font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                                  className="rounded-full border border-zinc-800 bg-zinc-900 px-2 py-1 text-xs text-zinc-400 transition-colors hover:border-zinc-700 hover:text-zinc-300"
                                 />
                               ))}
                               {tags.length > 3 && (
-                                <span className="rounded-md bg-gray-100 dark:bg-gray-700 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300">
+                                <span className="rounded-full border border-zinc-800 bg-zinc-900 px-2 py-1 text-xs text-zinc-500">
                                   +{tags.length - 3} more
                                 </span>
                               )}
@@ -115,33 +134,26 @@ export default async function BlogPage() {
                         </div>
 
                         {/* Summary */}
-                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p className="leading-relaxed text-zinc-400">
                           {summary}
                         </p>
 
                         {/* Meta information */}
-                        <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
-                          <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-                            <time dateTime={date} className="flex items-center gap-1">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                              </svg>
+                        <div className="flex items-center justify-between border-t border-zinc-800 pt-4">
+                          <div className="flex items-center gap-4 text-sm text-zinc-500">
+                            <time dateTime={date} className="flex items-center">
                               {formatDate(date)}
                             </time>
-                            <span className="flex items-center gap-1">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
-                              {post.readingTime?.text || "5 min read"}
-                            </span>
+                            <span>·</span>
+                            <span>{post.readingTime?.text ?? "5 min read"}</span>
                           </div>
 
                           <Link
                             href={`/blog/${slug}`}
-                            className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+                            className="inline-flex items-center text-sm font-medium text-cyan-400 transition-colors hover:text-cyan-300"
                             aria-label={`Read "${title}"`}
                           >
-                            Read article →
+                            Read more →
                           </Link>
                         </div>
                       </div>
@@ -155,36 +167,44 @@ export default async function BlogPage() {
             <div className="lg:col-span-4">
               <div className="sticky top-8 space-y-6">
                 {/* Tags Section */}
-                <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 shadow-sm">
+                <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-6 backdrop-blur-sm">
                   <div className="mb-4 flex items-center gap-3">
-                    <div className="rounded-md bg-gray-100 dark:bg-gray-700 p-2">
-                      <svg className="h-5 w-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                      </svg>
-                    </div>
-                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      Topics
-                    </h2>
+                    <svg
+                      className="size-5 text-cyan-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                      />
+                    </svg>
+                    <h2 className="text-lg font-medium text-white">Topics</h2>
                   </div>
-                  <p className="mb-4 text-sm text-gray-600 dark:text-gray-300">
+
+                  <p className="mb-4 text-sm text-zinc-400">
                     Browse articles by category
                   </p>
+
                   <Tags tags={tags} />
                 </div>
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 text-center shadow-sm">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 text-center backdrop-blur-sm">
+                    <div className="text-2xl font-bold text-white">
                       {filteredBlogPosts.length}
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Articles</div>
+                    <div className="mt-1 text-sm text-zinc-400">Articles</div>
                   </div>
-                  <div className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 text-center shadow-sm">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 text-center backdrop-blur-sm">
+                    <div className="text-2xl font-bold text-white">
                       {Object.keys(tags).length}
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Topics</div>
+                    <div className="mt-1 text-sm text-zinc-400">Topics</div>
                   </div>
                 </div>
               </div>
