@@ -8,18 +8,47 @@ interface TOCItem {
   text: string
 }
 
+function createIdFromText(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")
+}
+
 export function TableOfContents() {
   const [headings, setHeadings] = useState<TOCItem[]>([])
   const [activeId, setActiveId] = useState("")
 
   useEffect(() => {
-    const elements = Array.from(document.querySelectorAll("h2, h3, h4")).map(
-      (elem) => ({
-        id: elem.id,
-        text: elem.textContent || "",
-        level: Number(elem.tagName.charAt(1)),
+    // Find the main article content
+    const articleContent = document.querySelector("article.prose")
+    if (!articleContent) {
+      console.warn("No article content found")
+      return
+    }
+
+    // Select headings within the article content
+    const elements = Array.from(articleContent.querySelectorAll("h2, h3, h4"))
+      .filter((elem) => {
+        // Filter out empty headings or those marked to be excluded from TOC
+        const text = elem.textContent?.trim() || ""
+        const shouldExclude =
+          elem.hasAttribute("data-toc-exclude") ||
+          elem.closest(".not-prose") !== null // Exclude headings in .not-prose sections
+        return text.length > 0 && !shouldExclude
       })
-    )
+      .map((elem) => {
+        // If the heading doesn't have an ID, create one
+        if (!elem.id) {
+          elem.id = createIdFromText(elem.textContent || "")
+        }
+        return {
+          id: elem.id,
+          text: elem.textContent || "",
+          level: Number(elem.tagName.charAt(1)),
+        }
+      })
+
     setHeadings(elements)
 
     const observer = new IntersectionObserver(
@@ -65,11 +94,13 @@ export function TableOfContents() {
         {headings.map((heading) => (
           <li
             key={heading.id}
-            style={{ paddingLeft: `${(heading.level - 2) * 1}rem` }}
+            style={{
+              paddingLeft: `${(heading.level - 2) * 1}rem`,
+            }}
           >
             <a
               href={`#${heading.id}`}
-              className={`block text-zinc-400 transition-colors hover:text-cyan-400 ${
+              className={`group flex items-center text-zinc-400 transition-colors hover:text-cyan-400 ${
                 activeId === heading.id ? "text-cyan-400" : ""
               }`}
               onClick={(e) => {
@@ -79,7 +110,27 @@ export function TableOfContents() {
                 })
               }}
             >
-              {heading.text}
+              {heading.level === 2 && (
+                <svg
+                  className="mr-2 size-3 text-zinc-600 transition-colors group-hover:text-cyan-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h7"
+                  />
+                </svg>
+              )}
+              {heading.level === 3 && (
+                <span className="mr-2 text-zinc-600">•</span>
+              )}
+              <span className={heading.level > 2 ? "text-[13px]" : ""}>
+                {heading.text}
+              </span>
             </a>
           </li>
         ))}

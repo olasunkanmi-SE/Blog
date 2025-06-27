@@ -159,7 +159,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <div className="container relative z-10">
         <div className="mx-auto flex max-w-7xl gap-8 px-6 py-16">
           <div className="flex-1">
-            <article className="prose prose-invert prose-zinc max-w-none">
+            <article className="prose prose-invert prose-zinc prose-headings:scroll-mt-20 prose-headings:text-white prose-h2:border-b prose-h2:border-zinc-800 prose-p:text-zinc-400 prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:text-cyan-300 prose-blockquote:border-l-2 prose-blockquote:border-zinc-800 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-zinc-400 max-w-none">
               <header className="not-prose mb-16">
                 <div className="mb-4 flex flex-wrap items-center gap-4">
                   <time
