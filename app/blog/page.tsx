@@ -35,7 +35,7 @@ export default async function BlogPage() {
 
       {/* Subtle gradient orb */}
       <div className="pointer-events-none fixed inset-0 z-0">
-        <div className="absolute right-[15%] top-[10%] h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[120px]" />
+        <div className="absolute right-[15%] top-[10%] size-[500px] rounded-full bg-cyan-500/10 blur-[120px]" />
       </div>
 
       {/* Hero Section */}
