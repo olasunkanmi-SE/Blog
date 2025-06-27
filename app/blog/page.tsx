@@ -54,7 +54,8 @@ export default async function BlogPage() {
 
             {/* Simple subtitle */}
             <p className="mx-auto mb-12 max-w-2xl text-lg text-zinc-400">
-              Exploring software engineering, AI, and technology through detailed articles and tutorials.
+              Exploring software engineering, AI, and technology through
+              detailed articles and tutorials.
             </p>
 
             {/* Minimal stats */}
@@ -115,18 +116,18 @@ export default async function BlogPage() {
                           </h2>
 
                           {/* Tags */}
-                          {tags?.length > 0 && (
+                          {(tags ?? []).length > 0 && (
                             <div className="mb-3 flex flex-wrap gap-2">
-                              {tags.slice(0, 3).map((tag) => (
+                              {(tags ?? []).slice(0, 3).map((tag) => (
                                 <Tag
                                   key={tag}
                                   text={tag}
                                   className="rounded-full border border-zinc-800 bg-zinc-900 px-2 py-1 text-xs text-zinc-400 transition-colors hover:border-zinc-700 hover:text-zinc-300"
                                 />
                               ))}
-                              {tags.length > 3 && (
+                              {(tags ?? []).length > 3 && (
                                 <span className="rounded-full border border-zinc-800 bg-zinc-900 px-2 py-1 text-xs text-zinc-500">
-                                  +{tags.length - 3} more
+                                  +{(tags ?? []).length - 3} more
                                 </span>
                               )}
                             </div>
@@ -145,7 +146,9 @@ export default async function BlogPage() {
                               {formatDate(date)}
                             </time>
                             <span>·</span>
-                            <span>{post.readingTime?.text ?? "5 min read"}</span>
+                            <span>
+                              {post.readingTime?.text ?? "5 min read"}
+                            </span>
                           </div>
 
                           <Link

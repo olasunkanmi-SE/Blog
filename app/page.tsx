@@ -2,12 +2,40 @@
 
 import Link from "next/link"
 
-function renderWorkCard(work, isFullWidth = false) {
+import { motion } from "framer-motion"
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
+
+interface WorkCard {
+  title: string
+  description: string
+  link: string
+  icon: string
+  technologies: string[]
+}
+
+interface Skill {
+  name: string
+  level: number
+  category: string
+}
+
+const skills: Skill[] = [
+  { name: "System Architecture", level: 95, category: "Architecture" },
+  { name: "Cloud Computing", level: 90, category: "Cloud" },
+  { name: "Node.js", level: 95, category: "Backend" },
+  { name: "TypeScript", level: 90, category: "Languages" },
+  { name: "AWS", level: 85, category: "Cloud" },
+  { name: "React", level: 85, category: "Frontend" },
+]
+
+function renderWorkCard(work: WorkCard) {
   return (
-    <div
-      className={`group relative rounded-xl backdrop-blur-sm transition-all duration-300 lg:hover:!opacity-100 ${
-        isFullWidth ? "w-full" : ""
-      }`}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="group relative rounded-xl backdrop-blur-sm transition-all duration-300 lg:hover:!opacity-100"
     >
       <div className="absolute -inset-4 z-0 hidden rounded-xl transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/70 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-2xl"></div>
       <div className="relative z-10 h-full p-6 transition-all duration-300 hover:scale-[1.01]">
@@ -46,6 +74,31 @@ function renderWorkCard(work, isFullWidth = false) {
           ))}
         </ul>
       </div>
+    </motion.div>
+  )
+}
+
+function SkillBar({ skill }: { skill: Skill }) {
+  return (
+    <div className="mb-6">
+      <div className="mb-1 flex justify-between">
+        <span className="text-sm font-medium text-zinc-400">{skill.name}</span>
+        <span className="text-sm font-medium text-emerald-400">
+          {skill.level}%
+        </span>
+      </div>
+      <motion.div
+        className="h-2 rounded-full bg-zinc-800"
+        initial={{ width: 0 }}
+        whileInView={{ width: `${skill.level}%` }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, ease: "easeOut" }}
+      >
+        <div
+          className="h-2 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400"
+          style={{ width: `${skill.level}%` }}
+        />
+      </motion.div>
     </div>
   )
 }
@@ -117,7 +170,7 @@ export default function Home() {
 
       <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
         <div className="lg:flex lg:justify-between lg:gap-4">
-          {/* Left Column - Fixed Header */}
+          {/* Left Column - Header */}
           <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
             <div>
               <div className="mb-8 inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/30 px-4 py-2 text-sm font-medium text-emerald-400 backdrop-blur-md">
@@ -177,56 +230,124 @@ export default function Home() {
                 </ul>
               </nav>
             </div>
+
+            {/* Social Links */}
+            <div className="mt-8 flex gap-6">
+              <motion.a
+                whileHover={{ y: -2 }}
+                href="https://github.com/olasunkanmi-SE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 hover:text-emerald-400"
+              >
+                <FaGithub size={24} />
+              </motion.a>
+              <motion.a
+                whileHover={{ y: -2 }}
+                href="https://linkedin.com/in/your-profile"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 hover:text-emerald-400"
+              >
+                <FaLinkedin size={24} />
+              </motion.a>
+              <motion.a
+                whileHover={{ y: -2 }}
+                href="https://twitter.com/your-profile"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 hover:text-emerald-400"
+              >
+                <FaTwitter size={24} />
+              </motion.a>
+            </div>
           </header>
-
           {/* Right Column - Content */}
-          <main id="content" className="pt-24 lg:w-1/2 lg:py-24">
-            {/* Intro Section */}
-            <section
-              id="intro"
-              className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+          <main className="pt-24 lg:w-1/2 lg:py-24">
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-16"
             >
-              <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-[#030014]/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:p-0 lg:opacity-0">
-                <h2 className="text-sm font-bold uppercase tracking-widest text-emerald-400 lg:sr-only">
-                  Introduction
-                </h2>
+              <h1 className="mb-6 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-4xl font-bold text-transparent">
+                Building the Future of Software
+              </h1>
+              <div className="prose-invert prose relative max-w-none">
+                <p className="text-lg leading-relaxed text-zinc-400">
+                  As a seasoned Software Architect and Technical Lead, I
+                  specialize in designing and implementing large-scale
+                  distributed systems. With extensive experience in cloud
+                  architecture and system design, I've led teams in delivering
+                  mission-critical applications that serve millions of users,
+                  while maintaining high availability and performance standards.
+                </p>
+                <p className="mt-4 leading-relaxed text-zinc-400">
+                  Beyond my core engineering work, I actively contribute to the
+                  tech community through mentorship, technical writing, and
+                  open-source contributions. I'm particularly passionate about
+                  leveraging AI and cloud technologies to solve complex
+                  engineering challenges at scale.
+                </p>
               </div>
-              <div className="group relative rounded-2xl border border-zinc-800/50 bg-zinc-900/20 p-8 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1">
-                <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-cyan-500/10 to-purple-500/10 opacity-0 blur transition duration-500 group-hover:opacity-100"></div>
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-cyan-500/5 to-purple-500/10 opacity-0 transition duration-500 group-hover:opacity-100"></div>
-                <div className="prose-invert prose relative max-w-none">
-                  <p className="text-lg leading-relaxed text-zinc-400">
-                    As a seasoned Software Architect and Technical Lead, I
-                    specialize in designing and implementing large-scale
-                    distributed systems. With extensive experience in cloud
-                    architecture and system design, I've led teams in delivering
-                    mission-critical applications that serve millions of users,
-                    while maintaining high availability and performance
-                    standards.
-                  </p>
-                  <p className="leading-relaxed text-zinc-400">
-                    Beyond my core engineering work, I actively contribute to
-                    the tech community through mentorship, technical writing,
-                    and open-source contributions. I'm particularly passionate
-                    about leveraging AI and cloud technologies to solve complex
-                    engineering challenges at scale.
-                  </p>
-                </div>
+            </motion.section>
+
+            <motion.section
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="mb-16"
+            >
+              <h2 className="mb-8 text-2xl font-bold text-zinc-200">
+                Technical Expertise
+              </h2>
+              <div className="grid grid-cols-1 gap-6">
+                {skills.map((skill) => (
+                  <SkillBar key={skill.name} skill={skill} />
+                ))}
+              </div>
+            </motion.section>
+
+            <section id="featured" className="mb-16">
+              <h2 className="mb-8 text-2xl font-bold text-zinc-200">
+                Expertise
+              </h2>
+              <div className="space-y-12">
+                {featuredWork.map((work, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    {renderWorkCard(work)}
+                  </motion.div>
+                ))}
               </div>
             </section>
 
-            {/* Featured Work Section */}
-            <section id="featured">
-              <div>
-                <div>
-                  {featuredWork.map((work, index) => (
-                    <div key={index} className="w-full">
-                      {renderWorkCard(work)}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
+            {/* CTA Section */}
+            <motion.section
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="rounded-2xl border border-zinc-800/50 bg-zinc-900/20 p-8 backdrop-blur-sm"
+            >
+              <h2 className="mb-4 text-2xl font-bold text-zinc-200">
+                Let's Work Together
+              </h2>
+              <p className="mb-6 text-zinc-400">
+                Looking for a technical leader to help drive your next project
+                to success? Let's connect and discuss how I can help.
+              </p>
+              <Link
+                href="/contact"
+                className="rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 px-6 py-3 font-medium text-black transition-opacity hover:opacity-90"
+              >
+                Get in Touch
+              </Link>
+            </motion.section>
           </main>
         </div>
       </div>

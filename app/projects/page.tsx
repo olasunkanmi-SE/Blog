@@ -1,23 +1,78 @@
+"use client"
+
+import { useState } from "react"
+
 import projectsData from "@/data/projectsData"
+import { AnimatePresence, motion } from "framer-motion"
 
 import ProjectCard from "@/components/project-card"
 
-export const metadata = {
-  title: "Projects",
-  description: `My projects page, where I showcase some of my software engineering projects. From building web apps with TypeScript and Rust, my projects demonstrate my diverse skill set and experience.`,
-}
+type FilterType = "All" | "Featured" | "Open Source"
+type SortType = "Latest" | "Alphabetical" | "Popular"
 
-export default async function Projects() {
-  const featuredProjects = projectsData
-    .filter((d) => d.type !== "Open")
-    .slice(0, 4)
-  const openSourceProjects = projectsData.filter((d) => d.type === "Open")
+export default function Projects() {
+  const [filter, setFilter] = useState<FilterType>("All")
+  const [sort, setSort] = useState<SortType>("Latest")
+  const [searchQuery, setSearchQuery] = useState("")
+
+  const filteredProjects = projectsData
+    .filter((project) => {
+      // First apply type filter
+      const matchesFilter =
+        filter === "All" ||
+        (filter === "Featured" && project.type !== "Open") ||
+        (filter === "Open Source" && project.type === "Open")
+
+      if (!matchesFilter) return false
+
+      // Then apply search if there's a query
+      if (searchQuery.trim()) {
+        const query = searchQuery.trim().toLowerCase()
+        const searchableText = [
+          project.title,
+          project.description,
+          project.skills,
+          project.designPattern,
+          ...(project.links?.map((link) => link.title) || []),
+        ]
+          .join(" ")
+          .toLowerCase()
+
+        return searchableText.includes(query)
+      }
+
+      return true
+    })
+    .sort((a, b) => {
+      switch (sort) {
+        case "Alphabetical":
+          return a.title.localeCompare(b.title)
+        case "Popular":
+          return (b.links?.length || 0) - (a.links?.length || 0)
+        case "Latest":
+        default:
+          return -1 // Assuming projects are already in chronological order
+      }
+    })
+
+  const stats = {
+    total: projectsData.length,
+    featured: projectsData.filter((p) => p.type !== "Open").length,
+    openSource: projectsData.filter((p) => p.type === "Open").length,
+  }
 
   return (
     <div className="min-h-screen bg-black dark:bg-black">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-24">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+        <div
+          className="absolute inset-0 [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"
+          style={{
+            background:
+              "linear-gradient(to right,#4f4f4f2e 1px,transparent 1px), linear-gradient(to bottom,#4f4f4f2e 1px,transparent 1px)",
+            backgroundSize: "14px 24px",
+          }}
+        ></div>
         <div className="container relative mx-auto px-6">
           <div className="mx-auto max-w-4xl text-center">
             <div className="mb-6 inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm font-medium text-zinc-400 backdrop-blur-md">
@@ -25,7 +80,7 @@ export default async function Projects() {
               Portfolio Showcase
             </div>
             <h1 className="mb-6 bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-5xl font-bold leading-tight text-transparent sm:text-6xl lg:text-7xl">
-              Creative
+              Creative{" "}
               <span className="block bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
                 Engineering
               </span>
@@ -42,103 +97,126 @@ export default async function Projects() {
               </div>
               <div className="flex items-center gap-2 text-sm text-zinc-500">
                 <div className="size-1.5 rounded-full bg-cyan-400/80 shadow-lg shadow-cyan-400/50"></div>
-                {openSourceProjects.length} Open Source
+                {stats.openSource} Open Source
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Projects Section */}
-      <section className="py-20">
+      {/* Projects Filter Section */}
+      <section className="py-8">
         <div className="container mx-auto px-6">
-          <div className="mb-16 text-center">
-            <div className="mb-4 inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm font-medium text-zinc-400 backdrop-blur-md">
-              <span className="mr-2 inline-block size-1 rounded-full bg-emerald-400"></span>
-              Featured Work
-            </div>
-            <h2 className="mb-4 text-4xl font-bold text-white">
-              Selected Projects
-            </h2>
-            <p className="mx-auto max-w-2xl text-lg text-zinc-400">
-              Showcasing innovative solutions and technical excellence
-            </p>
-          </div>
-
-          <div className="grid gap-16 lg:grid-cols-1">
-            {featuredProjects.map((project, index) => (
-              <div
-                key={project.title}
-                className={`transition-all duration-300 hover:scale-[1.02]${
-                  index === 0 ? "lg:col-span-2" : ""
-                }`}
-              >
-                <ProjectCard
-                  title={project.title}
-                  description={project.description}
-                  titleLink={project.titleLink}
-                  skills={project.skills}
-                  links={project.links}
-                  icons={project.icons}
-                  designPattern={project.designPattern}
-                  type={project.type}
-                  className={`h-full border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm ${
-                    index === 0 ? "p-6" : "p-4"
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-wrap gap-2">
+              {["All", "Featured", "Open Source"].map((filterType) => (
+                <button
+                  key={filterType}
+                  onClick={() => setFilter(filterType as FilterType)}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                    filter === filterType
+                      ? "bg-emerald-400 text-black"
+                      : "border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:border-emerald-400/50"
                   }`}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Open Source Section */}
-      {openSourceProjects.length > 0 && (
-        <section className="border-y border-zinc-800 bg-zinc-900/30 py-20 backdrop-blur-sm">
-          <div className="container mx-auto px-6">
-            <div className="mb-16 text-center">
-              <div className="mb-4 inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm font-medium text-zinc-400 backdrop-blur-md">
-                <span className="mr-2 inline-block size-1 rounded-full bg-cyan-400"></span>
-                Open Source
-              </div>
-              <h2 className="mb-4 text-4xl font-bold text-white">
-                Community Contributions
-              </h2>
-              <p className="mx-auto max-w-2xl text-lg text-zinc-400">
-                Open-source projects crafted to empower developers
-              </p>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {openSourceProjects.map((project) => (
-                <div
-                  key={project.title}
-                  className="transition-all duration-300 hover:scale-[1.02]"
                 >
-                  <ProjectCard
-                    title={project.title}
-                    description={project.description}
-                    titleLink={project.titleLink}
-                    skills={project.skills}
-                    links={project.links}
-                    icons={project.icons}
-                    designPattern={project.designPattern}
-                    type={project.type}
-                    className="h-full border border-zinc-800/50 bg-zinc-900/50 p-4 backdrop-blur-sm"
-                  />
-                </div>
+                  {filterType}
+                </button>
               ))}
             </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="relative flex-1 sm:min-w-[200px]">
+                <input
+                  type="text"
+                  placeholder="Search projects..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-400 placeholder:text-zinc-600 focus:border-emerald-400/50 focus:outline-none"
+                />
+              </div>
+              <select
+                value={sort}
+                onChange={(e) => setSort(e.target.value as SortType)}
+                className="rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-400 focus:border-emerald-400/50 focus:outline-none"
+              >
+                <option value="Latest">Latest</option>
+                <option value="Alphabetical">A-Z</option>
+                <option value="Popular">Popular</option>
+              </select>
+            </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
+
+      {/* Projects Grid */}
+      <section className="py-12">
+        <div className="container mx-auto px-6">
+          <AnimatePresence mode="popLayout">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredProjects.map((project, index) => (
+                <motion.div
+                  key={project.title}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: index * 0.1,
+                  }}
+                >
+                  <ProjectCard
+                    {...project}
+                    className="h-full border border-zinc-800/50 bg-zinc-900/50 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-emerald-400/20"
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </AnimatePresence>
+
+          {filteredProjects.length === 0 && (
+            <div className="my-20 text-center">
+              <p className="text-lg text-zinc-400">
+                No projects found matching your criteria.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Project Stats */}
+      <section className="border-t border-zinc-800 bg-zinc-900/30 py-20 backdrop-blur-sm">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-emerald-400">
+                {stats.total}
+              </div>
+              <div className="mt-2 text-sm text-zinc-400">Total Projects</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-cyan-400">
+                {stats.featured}
+              </div>
+              <div className="mt-2 text-sm text-zinc-400">
+                Featured Projects
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-purple-400">
+                {stats.openSource}
+              </div>
+              <div className="mt-2 text-sm text-zinc-400">Open Source</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Technologies Section */}
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-4xl text-center">
             <div className="mb-4 inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm font-medium text-zinc-400 backdrop-blur-md">
-              <span className="mr-2 inline-block size-1 rounded-full bg-emerald-400"></span>
+              <span className="mr-2 inline-block size-1 rounded-full bg-emerald-400"></span>{" "}
               Tech Stack
             </div>
             <h2 className="mb-8 text-3xl font-bold text-white">
