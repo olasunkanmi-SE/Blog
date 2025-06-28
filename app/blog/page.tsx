@@ -1,14 +1,21 @@
+import Image from "next/image"
+
 import type { Blog } from "contentlayer/generated"
-
 import { allBlogs } from "contentlayer/generated"
-import { allCoreContent, getAllTags, sortedBlogPost } from "../../lib/contentlayer"
 
-import Tags from "@/components/tags"
 import { BlogList } from "@/components/blog/blog-list"
+import Tags from "@/components/tags"
+
+import {
+  allCoreContent,
+  getAllTags,
+  sortedBlogPost,
+} from "../../lib/contentlayer"
 
 export const metadata = {
   title: "Blog - Thoughts & Insights",
-  description: "Exploring software engineering, AI, and technology through detailed articles and tutorials.",
+  description:
+    "Exploring software engineering, AI, and technology through detailed articles and tutorials.",
 }
 
 export default async function BlogPage() {
@@ -19,10 +26,14 @@ export default async function BlogPage() {
     <div className="relative min-h-screen bg-[#030014]">
       {/* Minimal Grid Background */}
       <div className="pointer-events-none fixed inset-0 z-0">
-        <div className="absolute inset-0" style={{ 
-          background: 'linear-gradient(to right, #ffffff08 1px, transparent 1px), linear-gradient(to bottom, #ffffff08 1px, transparent 1px)',
-          backgroundSize: '64px 64px'
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, #ffffff08 1px, transparent 1px), linear-gradient(to bottom, #ffffff08 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+        />
       </div>
 
       {/* Subtle gradient orb */}
@@ -34,6 +45,21 @@ export default async function BlogPage() {
       <section className="relative py-20 lg:py-32">
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-4xl text-center">
+            {/* Author Image */}
+            <div className="mb-8 flex justify-center">
+              <div className="relative">
+                <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500 opacity-70 blur"></div>
+                <Image
+                  src="/assets/ola.jpeg"
+                  alt="Olasunkanmi Oyinlola"
+                  width={96}
+                  height={96}
+                  className="relative size-24 rounded-full border-2 border-zinc-800 object-cover"
+                  priority={true}
+                />
+              </div>
+            </div>
+
             {/* Simple category label */}
             <div className="mb-8 inline-flex items-center rounded-full border border-zinc-800 px-4 py-2 text-sm text-zinc-400">
               Thoughts & Insights
@@ -46,8 +72,8 @@ export default async function BlogPage() {
 
             {/* Simple subtitle */}
             <p className="mx-auto mb-12 max-w-2xl text-lg text-zinc-400">
-              Exploring software engineering, AI, and technology through detailed
-              articles and tutorials.
+              Exploring software engineering, AI, and technology through
+              detailed articles and tutorials.
             </p>
 
             {/* Stats */}

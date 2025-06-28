@@ -7,6 +7,7 @@ import localFont from "next/font/local"
 import siteMetadata from "@/config/site-metadata"
 
 import Analytics from "@/components/analytics"
+import { FloatingResumeButton } from "@/components/floating-resume-button"
 import Footer from "@/components/footer"
 import Nav from "@/components/nav"
 import { Providers } from "@/components/providers"
@@ -120,6 +121,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <main className="flex-1">{children}</main>
             <Footer />
             <Analytics />
+            <FloatingResumeButton />
           </div>
         </Providers>
       </body>
