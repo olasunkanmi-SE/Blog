@@ -1,6 +1,5 @@
-
-import CodeBuddy from "@/components/codebuddy"
+// import CodeBuddy from "@/components/codebuddy"
 
 export default function CodeBuddyPage() {
-  return <CodeBuddy />
+  return <></>
 }

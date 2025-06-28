@@ -1,4 +1,3 @@
-
 "use client"
 
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react"
@@ -63,7 +62,7 @@ export const Modal: React.FC<ModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4">
       {/* Background Overlay */}
       <div
         className="fixed inset-0 bg-black opacity-75 transition-opacity duration-300"
@@ -73,7 +72,7 @@ export const Modal: React.FC<ModalProps> = ({
 
       {/* Modal Content */}
       <div
-        className="relative z-10 w-full max-w-md mx-auto bg-white rounded-xl shadow-2xl transition-all duration-300 p-6"
+        className="relative z-10 mx-auto w-full max-w-md rounded-xl bg-white p-6 shadow-2xl transition-all duration-300"
         ref={modalRef}
         aria-modal="true"
         role="dialog"

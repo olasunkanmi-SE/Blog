@@ -3,12 +3,18 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import Link from "next/link"
 
-import { useInView } from "react-intersection-observer" // Import intersection-observer
-
 import siteMetadata from "@/config/site-metadata"
 
 // Component for Featured Work Items
-const FeaturedWorkItem = ({ work }) => {
+type FeaturedWork = {
+  title: string
+  description: string
+  link: string
+  icon: string
+  technologies: string[]
+}
+
+const FeaturedWorkItem = ({ work }: { work: FeaturedWork }) => {
   return (
     <div className="w-full shrink-0">
       <div className="group relative rounded-md transition-all lg:hover:!opacity-100">
@@ -29,9 +35,9 @@ const FeaturedWorkItem = ({ work }) => {
                   fill="currentColor"
                   className="inline-block size-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none"
                   aria-hidden="true"
-                  title="View Project"
-                  description={`Link to ${work.title} project`}
                 >
+                  <title>View Project</title>
+                  <desc>{`Link to ${work.title} project`}</desc>
                   <path
                     fillRule="evenodd"
                     d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0V6.75a.75.75 0 00-.75-.75H7.75a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
@@ -60,7 +66,14 @@ const FeaturedWorkItem = ({ work }) => {
 }
 
 // Component for Quick Links
-const QuickLinkItem = ({ link }) => {
+type QuickLink = {
+  title: string
+  description: string
+  href: string
+  icon: string
+}
+
+const QuickLinkItem = ({ link }: { link: QuickLink }) => {
   return (
     <li key={link.title} className="mb-8">
       <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
@@ -112,10 +125,6 @@ export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const sliderRef = useRef<HTMLDivElement | null>(null)
   const totalSlides = 3
-  const { ref, inView } = useInView({
-    threshold: 0.2,
-    triggerOnce: true,
-  })
 
   // Use useCallback to memoize goToSlide
   const goToSlide = useCallback((slideIndex: number) => {

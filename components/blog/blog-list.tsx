@@ -18,6 +18,7 @@ interface BlogListProps {
   allTags: Record<string, number>
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function BlogList({ posts, allTags }: BlogListProps) {
   const searchParams = useSearchParams()
   const page = Number(searchParams?.get("page")) || 1
