@@ -157,19 +157,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <ReadingProgress />
 
       <div className="container relative z-10">
-        <div className="mx-auto flex max-w-7xl gap-8 px-6 py-16">
+        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-8 lg:flex-row lg:gap-12 lg:px-6 lg:py-16">
           <div className="flex-1">
             <article className="prose prose-invert prose-zinc prose-headings:scroll-mt-20 prose-headings:text-white prose-h2:border-b prose-h2:border-zinc-800 prose-p:text-zinc-400 prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:text-cyan-300 prose-blockquote:border-l-2 prose-blockquote:border-zinc-800 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-zinc-400 max-w-none">
-              <header className="not-prose mb-16">
-                <div className="mb-4 flex flex-wrap items-center gap-4">
-                  <time
-                    dateTime={date}
-                    className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-400"
-                  >
-                    {formatDate(date)}
-                  </time>
-                  <div className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-400">
-                    {post.readingTime?.text ?? "5 min read"}
+              <header className="not-prose mb-8 lg:mb-16">
+                <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+                  <div className="flex flex-wrap gap-3">
+                    <time
+                      dateTime={date}
+                      className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 sm:px-4 sm:py-2 sm:text-sm"
+                    >
+                      {formatDate(date)}
+                    </time>
+                    <div className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 sm:px-4 sm:py-2 sm:text-sm">
+                      {post.readingTime?.text ?? "5 min read"}
+                    </div>
                   </div>
                   {post.tags && (
                     <div className="flex flex-wrap gap-2">
@@ -177,7 +179,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         <Link
                           key={tag}
                           href={`/tags/${tag}`}
-                          className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-400 transition-colors hover:text-cyan-400"
+                          className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 transition-colors hover:text-cyan-400 sm:px-4 sm:py-2 sm:text-sm"
                         >
                           #{tag}
                         </Link>
@@ -186,25 +188,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   )}
                 </div>
 
-                <h1 className="mb-8 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                <h1 className="mb-6 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:mb-8 lg:text-6xl">
                   {title}
                 </h1>
 
                 <div className="flex justify-start">
-                  <ul className="flex flex-wrap items-center gap-4">
+                  <ul className="flex flex-wrap gap-3">
                     {authorDetails.map((author) =>
                       !author ? null : (
                         <li
                           key={author.name}
-                          className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2"
+                          className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm"
                         >
-                          <span className="text-sm text-zinc-400">
-                            {author.name}
-                          </span>
+                          <span className="text-zinc-400">{author.name}</span>
                           {author.twitter && (
                             <Link
                               href={author.twitter}
-                              className="text-sm text-cyan-400 transition-colors hover:text-cyan-300"
+                              className="text-cyan-400 transition-colors hover:text-cyan-300"
                             >
                               {author.twitter.replace(
                                 "https://twitter.com/",
@@ -219,22 +219,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
               </header>
 
-              <div className="prose-headings:scroll-mt-20">
+              <div className="prose-headings:scroll-mt-20 prose-p:leading-relaxed prose-pre:my-6 prose-pre:overflow-x-auto prose-pre:rounded-lg prose-pre:bg-zinc-900/75 prose-pre:p-4">
                 <Mdx code={post.body.code} />
               </div>
 
               {/* Post Footer */}
-              <div className="not-prose mt-16 border-t border-zinc-800 pt-8">
-                <div className="flex flex-col gap-8 sm:flex-row sm:justify-between">
+              <div className="not-prose mt-12 border-t border-zinc-800 pt-8 lg:mt-16">
+                <div className="flex flex-col gap-6 sm:flex-row sm:justify-between sm:gap-8">
                   {prev && (
                     <Link
                       href={`/blog/${prev.slug}`}
-                      className="group flex max-w-[calc(50%-1rem)] flex-col gap-2"
+                      className="group flex flex-col gap-2 sm:max-w-[calc(50%-1rem)]"
                     >
-                      <span className="text-sm text-zinc-400">
+                      <span className="text-xs text-zinc-400 sm:text-sm">
                         Previous article
                       </span>
-                      <span className="text-base font-medium text-zinc-200 transition-colors group-hover:text-cyan-400">
+                      <span className="text-sm font-medium text-zinc-200 transition-colors group-hover:text-cyan-400 sm:text-base">
                         {prev.title}
                       </span>
                     </Link>
@@ -242,12 +242,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   {next && (
                     <Link
                       href={`/blog/${next.slug}`}
-                      className="group flex max-w-[calc(50%-1rem)] flex-col gap-2 text-right sm:ml-auto"
+                      className="group flex flex-col gap-2 text-right sm:ml-auto sm:max-w-[calc(50%-1rem)]"
                     >
-                      <span className="text-sm text-zinc-400">
+                      <span className="text-xs text-zinc-400 sm:text-sm">
                         Next article
                       </span>
-                      <span className="text-base font-medium text-zinc-200 transition-colors group-hover:text-cyan-400">
+                      <span className="text-sm font-medium text-zinc-200 transition-colors group-hover:text-cyan-400 sm:text-base">
                         {next.title}
                       </span>
                     </Link>
@@ -257,10 +257,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <div className="mt-8 flex justify-center">
                   <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-400 transition-colors hover:text-cyan-400"
+                    className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 transition-colors hover:text-cyan-400 sm:px-4 sm:py-2 sm:text-sm"
                   >
                     <svg
-                      className="size-4"
+                      className="size-3.5 sm:size-4"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -280,7 +280,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           {/* Table of Contents Sidebar */}
-          <TableOfContents />
+          <div className="hidden lg:block">
+            <TableOfContents />
+          </div>
         </div>
       </div>
 
