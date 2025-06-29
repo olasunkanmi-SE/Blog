@@ -53,9 +53,9 @@ export const Portal = ({
 
   return (
     <KBarPortal>
-      <KBarPositioner className="bg-gray-300/50 p-4 backdrop-blur dark:bg-black/50">
+      <KBarPositioner className="fixed inset-0 z-[9999] bg-[#030014]/80 p-4 backdrop-blur-sm">
         <KBarAnimator className="w-full max-w-xl">
-          <div className="overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 dark:border-gray-800 dark:bg-gray-900">
+          <div className="overflow-hidden rounded-lg border border-zinc-800 bg-[#030014]/95 backdrop-blur-xl">
             <div className="flex items-center space-x-4 p-4">
               <span className="block w-5">
                 <svg
@@ -73,8 +73,8 @@ export const Portal = ({
                   />
                 </svg>
               </span>
-              <KBarSearch className="h-8 w-full bg-transparent text-slate-600 placeholder:text-slate-400 focus:outline-none dark:text-slate-200 dark:placeholder:text-slate-500" />
-              <span className="inline-block whitespace-nowrap rounded border border-slate-400/70 px-1.5 align-middle font-medium leading-4 tracking-wide text-slate-500 [font-size:10px] dark:border-slate-600 dark:text-slate-400">
+              <KBarSearch className="h-8 w-full bg-transparent text-zinc-400 placeholder:text-zinc-500 focus:outline-none focus:ring-0" />
+              <span className="inline-block whitespace-nowrap rounded-full border border-zinc-800 bg-zinc-900/50 px-2 py-1 text-xs font-medium text-zinc-400">
                 ESC
               </span>
             </div>

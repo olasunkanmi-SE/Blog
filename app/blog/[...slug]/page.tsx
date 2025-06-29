@@ -1,30 +1,21 @@
 import "@/styles/mdx.css"
 
 import { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
-import { allAuthors, allBlogs } from "contentlayer/generated"
 import type { Blog } from "contentlayer/generated"
-
-import siteMetadata from "@/config/site-metadata"
+import { allAuthors, allBlogs } from "contentlayer/generated"
 
 import { formatDate } from "@/lib/utils"
 
 import Comments from "@/components/comments"
 import ScrollTopAndComment from "@/components/floating-buttons"
 import { Mdx } from "@/components/mdx/mdx"
-import PageTitle from "@/components/page-title"
+import { ReadingProgress } from "@/components/mdx/reading-progress"
+import { TableOfContents } from "@/components/mdx/toc"
 
 import { coreContent, sortedBlogPost } from "../../../lib/contentlayer"
-
-const editUrl = (path: string) =>
-  `${siteMetadata.siteRepo}/blob/main/data/${path}`
-const discussUrl = (path: string) =>
-  `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-    `${siteMetadata.siteUrl}/${path}`
-  )}`
 
 interface BlogPostPageProps {
   params: {
@@ -130,8 +121,8 @@ export async function generateStaticParams(): Promise<
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const pageDetails = await getPostFromParams(params)
   if (!pageDetails) return notFound()
-  const { post, authorDetails } = pageDetails
-  const { filePath, path, date, title } = post
+  const { post, prev, next, authorDetails } = pageDetails
+  const { date, title } = post
   const jsonLd = post.structuredData
   jsonLd["author"] = authorDetails.map((author) => {
     return {
@@ -145,101 +136,162 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <>
-      <article className="container relative">
-        <div className="">
-          <header className="pt-6 xl:pb-6">
-            <div className="space-y-1 text-center">
-              <dl className="space-y-10">
-                <div>
-                  <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>{formatDate(date)}</time>
-                  </dd>
-                </div>
-              </dl>
-              <div>
-                <PageTitle>{title}</PageTitle>
-              </div>
-            </div>
-          </header>
-          <div className="grid-rows-[auto_1fr]  xl:grid xl:gap-x-6">
-            <dl className="col-span-12 flex items-center  justify-center pb-10 pt-10 xl:pt-3">
-              <dt className="sr-only">Authors</dt>
-              <dd>
-                <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
-                  {authorDetails.map((author) =>
-                    !author ? null : (
-                      <li
-                        className="flex items-center space-x-2"
-                        key={author.name}
-                      >
-                        {/* {author.avatar && (
-                          <Image
-                            src={author.avatar}
-                            width={138}
-                            height={138}
-                            alt={author.name}
-                            className="h-10 w-10 rounded-full"
-                          />
-                        )} */}
-                        <dl className="whitespace-nowrap text-sm font-medium leading-5">
-                          <dt className="sr-only">Name</dt>
-                          <dd className="text-gray-900 dark:text-gray-100">
-                            {author.name}
-                          </dd>
-                          <dt className="sr-only">Twitter</dt>
-                          <dd>
-                            {author.twitter && (
-                              <Link
-                                href={author.twitter}
-                                className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                              >
-                                {author.twitter.replace(
-                                  "https://twitter.com/",
-                                  "@"
-                                )}
-                              </Link>
-                            )}
-                          </dd>
-                        </dl>
-                      </li>
-                    )
+    <div className="relative min-h-screen bg-[#030014]">
+      {/* Minimal Grid Background */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, #ffffff08 1px, transparent 1px), linear-gradient(to bottom, #ffffff08 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+        />
+      </div>
+
+      {/* Subtle gradient orb */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div className="absolute right-[15%] top-[10%] size-[500px] rounded-full bg-cyan-500/10 blur-[120px]" />
+      </div>
+
+      <ReadingProgress />
+
+      <div className="container relative z-10">
+        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-8 lg:flex-row lg:gap-12 lg:px-6 lg:py-16">
+          <div className="flex-1">
+            <article className="prose prose-invert prose-zinc prose-headings:scroll-mt-20 prose-headings:text-white prose-h2:border-b prose-h2:border-zinc-800 prose-p:text-zinc-400 prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:text-cyan-300 prose-blockquote:border-l-2 prose-blockquote:border-zinc-800 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-zinc-400 max-w-none">
+              <header className="not-prose mb-8 lg:mb-16">
+                <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+                  <div className="flex flex-wrap gap-3">
+                    <time
+                      dateTime={date}
+                      className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 sm:px-4 sm:py-2 sm:text-sm"
+                    >
+                      {formatDate(date)}
+                    </time>
+                    <div className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 sm:px-4 sm:py-2 sm:text-sm">
+                      {post.readingTime?.text ?? "5 min read"}
+                    </div>
+                  </div>
+                  {post.tags && (
+                    <div className="flex flex-wrap gap-2">
+                      {post.tags.map((tag) => (
+                        <Link
+                          key={tag}
+                          href={`/tags/${tag}`}
+                          className="inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 transition-colors hover:text-cyan-400 sm:px-4 sm:py-2 sm:text-sm"
+                        >
+                          #{tag}
+                        </Link>
+                      ))}
+                    </div>
                   )}
-                </ul>
-              </dd>
-            </dl>
-            <div className="col-span-8 col-start-3 divide-y divide-gray-200 dark:divide-gray-700  xl:row-span-2 xl:pb-0">
-              <div className="max-w-none rounded-xl bg-gray-200 px-6 py-6  dark:bg-black">
+                </div>
+
+                <h1 className="mb-6 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:mb-8 lg:text-6xl">
+                  {title}
+                </h1>
+
+                <div className="flex justify-start">
+                  <ul className="flex flex-wrap gap-3">
+                    {authorDetails.map((author) =>
+                      !author ? null : (
+                        <li
+                          key={author.name}
+                          className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm"
+                        >
+                          <span className="text-zinc-400">{author.name}</span>
+                          {author.twitter && (
+                            <Link
+                              href={author.twitter}
+                              className="text-cyan-400 transition-colors hover:text-cyan-300"
+                            >
+                              {author.twitter.replace(
+                                "https://twitter.com/",
+                                "@"
+                              )}
+                            </Link>
+                          )}
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              </header>
+
+              <div className="prose-headings:scroll-mt-20 prose-p:leading-relaxed prose-pre:my-6 prose-pre:overflow-x-auto prose-pre:rounded-lg prose-pre:bg-zinc-900/75 prose-pre:p-4">
                 <Mdx code={post.body.code} />
               </div>
-              <div className="mt-10 pb-6 pt-6 text-center text-sm text-gray-700 dark:text-gray-300">
-                <a
-                  href={discussUrl(path)}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Discuss on Twitter
-                </a>
-                {` • `}
-                <a
-                  href={editUrl(filePath)}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  View on GitHub
-                </a>
+
+              {/* Post Footer */}
+              <div className="not-prose mt-12 border-t border-zinc-800 pt-8 lg:mt-16">
+                <div className="flex flex-col gap-6 sm:flex-row sm:justify-between sm:gap-8">
+                  {prev && (
+                    <Link
+                      href={`/blog/${prev.slug}`}
+                      className="group flex flex-col gap-2 sm:max-w-[calc(50%-1rem)]"
+                    >
+                      <span className="text-xs text-zinc-400 sm:text-sm">
+                        Previous article
+                      </span>
+                      <span className="text-sm font-medium text-zinc-200 transition-colors group-hover:text-cyan-400 sm:text-base">
+                        {prev.title}
+                      </span>
+                    </Link>
+                  )}
+                  {next && (
+                    <Link
+                      href={`/blog/${next.slug}`}
+                      className="group flex flex-col gap-2 text-right sm:ml-auto sm:max-w-[calc(50%-1rem)]"
+                    >
+                      <span className="text-xs text-zinc-400 sm:text-sm">
+                        Next article
+                      </span>
+                      <span className="text-sm font-medium text-zinc-200 transition-colors group-hover:text-cyan-400 sm:text-base">
+                        {next.title}
+                      </span>
+                    </Link>
+                  )}
+                </div>
+
+                <div className="mt-8 flex justify-center">
+                  <Link
+                    href="/blog"
+                    className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-xs text-zinc-400 transition-colors hover:text-cyan-400 sm:px-4 sm:py-2 sm:text-sm"
+                  >
+                    <svg
+                      className="size-3.5 sm:size-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M7 16l-4-4m0 0l4-4m-4 4h18"
+                      />
+                    </svg>
+                    Back to blog
+                  </Link>
+                </div>
               </div>
-              <Comments />
-            </div>
+            </article>
+          </div>
+
+          {/* Table of Contents Sidebar */}
+          <div className="hidden lg:block">
+            <TableOfContents />
           </div>
         </div>
-      </article>
+      </div>
+
+      <Comments />
       <ScrollTopAndComment />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </>
+    </div>
   )
 }

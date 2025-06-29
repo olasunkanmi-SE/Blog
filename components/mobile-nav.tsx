@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import headerNavLinks from "@/config/nav-links"
 
@@ -14,83 +14,132 @@ const MobileNav = () => {
       if (status) {
         document.body.style.overflow = "auto"
       } else {
-        // Prevent scrolling
         document.body.style.overflow = "hidden"
       }
       return !status
     })
   }
 
+  const closeNav = () => {
+    setNavShow(false)
+    document.body.style.overflow = "auto"
+  }
+
+  // Close nav on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && navShow) {
+        closeNav()
+      }
+    }
+
+    document.addEventListener("keydown", handleEscape)
+    return () => document.removeEventListener("keydown", handleEscape)
+  }, [navShow])
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  }, [])
+
   return (
-    <div className="[@media(min-width:700px)]:hidden">
+    <div className="[@media(max-width:799px)]:block [@media(min-width:800px)]:hidden">
+      {/* Mobile menu button */}
       <button
-        className=" size-[34px] rounded border border-gray-800 bg-gray-200 p-1.5 dark:border-gray-200 dark:bg-gray-900"
-        aria-label="Toggle Menu"
         onClick={onToggleNav}
+        className="inline-flex items-center justify-center rounded-full border border-zinc-800 bg-zinc-900/50 p-2 text-zinc-400 backdrop-blur-sm transition-colors duration-200 hover:text-white"
+        aria-expanded="false"
       >
+        <span className="sr-only">Open main menu</span>
         <svg
+          className="size-6"
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          className="text-gray-900 dark:text-gray-100"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
           <path
-            fillRule="evenodd"
-            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-            clipRule="evenodd"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16M4 18h16"
           />
         </svg>
       </button>
+
+      {/* Mobile overlay */}
       <div
-        className={`fixed left-0 top-0 z-10 size-full bg-gray-200 opacity-95 duration-300 ease-in-out dark:bg-black ${
-          navShow ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 z-30 bg-[#030014]/80 backdrop-blur-sm transition-all duration-500 ${
+          navShow ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        onClick={closeNav}
+        aria-hidden="true"
+      />
+
+      {/* Mobile Menu Panel */}
+      <div
+        className={`fixed right-0 top-0 z-40 h-screen w-80 max-w-[85vw] overflow-y-auto border-l border-zinc-800 bg-[#030014]/95 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform ${
+          navShow
+            ? "translate-x-0 scale-100 opacity-100"
+            : "pointer-events-none translate-x-[10%] scale-95 opacity-0"
         }`}
       >
-        <div className="flex justify-end">
-          <button
-            className="mr-5 mt-11 size-8 rounded"
-            aria-label="Toggle Menu"
-            onClick={onToggleNav}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="text-gray-900 dark:text-gray-100"
+        <div className="p-6">
+          {/* Close button for mobile */}
+          <div className="mb-8 flex items-center justify-between">
+            <h2 className="text-lg font-medium text-white">Menu</h2>
+            <button
+              onClick={closeNav}
+              className="rounded-full border border-zinc-800 bg-zinc-900/50 p-2 text-zinc-400 transition-colors duration-200 hover:text-white"
             >
-              <path
-                fillRule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
-        <nav className="fixed mt-8 h-full">
-          <div key={"home"} className="px-12 py-4">
-            {/* <Link
-              href={"/"}
-              className="text-2xl font-bold  text-gray-900 dark:text-gray-100"
-              onClick={onToggleNav}
-            >
-              {"Home"}
-            </Link> */}
+              <svg
+                className="size-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
           </div>
-          {headerNavLinks.map((link) => (
-            <div key={link.title} className="px-12 py-4">
+
+          {/* Navigation Links */}
+          <nav className="space-y-1.5">
+            {headerNavLinks.map((link, index) => (
               <Link
+                key={link.title}
                 href={link.href}
-                className="text-2xl font-bold  text-gray-900 dark:text-gray-100"
-                onClick={onToggleNav}
+                className={`group flex items-center rounded-full border border-transparent px-4 py-2 text-sm text-zinc-400 opacity-0 transition-all duration-300 hover:border-zinc-800 hover:bg-zinc-900/50 hover:text-white ${
+                  navShow ? "animate-slideIn" : ""
+                }`}
+                onClick={closeNav}
+                style={{
+                  animationDelay: `${index * 0.1}s`,
+                }}
               >
                 {link.title}
               </Link>
+            ))}
+          </nav>
+
+          {/* Footer */}
+          <div className="absolute inset-x-6 bottom-6">
+            <div className="text-center text-xs text-zinc-500">
+              Press{" "}
+              <kbd className="rounded bg-zinc-900/50 px-2 py-1 text-xs text-zinc-400">
+                ESC
+              </kbd>{" "}
+              to close
             </div>
-          ))}
-          {/* <div className="px-12 py-4">
-            <DarkModeSwitch variant="button" />
-          </div> */}
-        </nav>
+          </div>
+        </div>
       </div>
     </div>
   )

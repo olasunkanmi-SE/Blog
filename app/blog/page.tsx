@@ -1,11 +1,10 @@
-import Link from "next/link"
+import { Suspense } from "react"
+import Image from "next/image"
 
-import { allBlogs } from "contentlayer/generated"
 import type { Blog } from "contentlayer/generated"
+import { allBlogs } from "contentlayer/generated"
 
-import { formatDate } from "@/lib/utils"
-
-import Tag from "@/components/tag"
+import { BlogList } from "@/components/blog/blog-list"
 import Tags from "@/components/tags"
 
 import {
@@ -15,110 +14,150 @@ import {
 } from "../../lib/contentlayer"
 
 export const metadata = {
-  title: "Blog",
+  title: "Blog - Thoughts & Insights",
+  description:
+    "Exploring software engineering, AI, and technology through detailed articles and tutorials.",
 }
 
 export default async function BlogPage() {
   const posts = allCoreContent(sortedBlogPost(allBlogs)) as Blog[]
-  const initialDisplayPosts = allCoreContent(posts)
   const tags = await getAllTags(allBlogs)
-  const filteredBlogPosts = posts
 
-  // If initialDisplayPosts exist, display it if no searchValue is specified
-  const displayPosts = initialDisplayPosts
   return (
-    <>
-      <div className="container divide-y divide-gray-400 dark:divide-gray-700">
-        <div className="space-y-2 pb-6 pt-6 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Blog
-          </h1>
+    <div className="relative min-h-screen bg-[#030014]">
+      <Suspense
+        fallback={
+          <div className="flex min-h-screen items-center justify-center">
+            <div className="text-zinc-400">Loading...</div>
+          </div>
+        }
+      >
+        {/* Minimal Grid Background */}
+        <div className="pointer-events-none fixed inset-0 z-0">
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, #ffffff08 1px, transparent 1px), linear-gradient(to bottom, #ffffff08 1px, transparent 1px)",
+              backgroundSize: "64px 64px",
+            }}
+          />
         </div>
 
-        <div className="grid grid-cols-12 gap-3 pt-6 ">
-          <div className="col-span-12 col-start-1 sm:col-span-8 ">
-            <div className="flex-1 rounded-3xl bg-gradient-to-br from-amber-200 p-[1px] transition duration-300  ">
-              <ul className="flex h-full flex-col justify-between divide-y divide-gray-400 rounded-3xl bg-slate-200 px-6 dark:divide-gray-700 dark:bg-slate-950">
-                {!filteredBlogPosts.length && (
-                  <p className="py-3">No posts found.</p>
-                )}
-                {displayPosts.map((post) => {
-                  const { slug, date, title, summary, tags } = post
-                  return (
-                    <li key={slug} className="py-6">
-                      <article>
-                        <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                          <div className="space-y-5 xl:col-span-full">
-                            <div className="space-y-6">
-                              <div>
-                                <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                                  <Link
-                                    href={`/blog/${slug}`}
-                                    className="text-gray-900 dark:text-gray-100"
-                                  >
-                                    {title}
-                                  </Link>
-                                </h2>
-                                <div className="flex flex-wrap gap-2 pt-2">
-                                  {tags &&
-                                    tags.map((tag) => (
-                                      <Tag
-                                        key={tag}
-                                        text={tag}
-                                        className="2xl rounded-lg bg-amber-600  px-2 py-1 text-sm text-white hover:scale-110 hover:bg-amber-600 dark:bg-yellow-950 "
-                                      />
-                                    ))}
-                                </div>
-                              </div>
-                              <div className="  max-w-none text-gray-600 dark:text-gray-400">
-                                {summary}
-                              </div>
-                            </div>
-                            <div className="flex w-full justify-between text-base font-medium leading-6">
-                              <time dateTime={date}>{formatDate(date)}</time>
+        {/* Subtle gradient orb */}
+        <div className="pointer-events-none fixed inset-0 z-0">
+          <div className="absolute right-[15%] top-[10%] size-[500px] rounded-full bg-cyan-500/10 blur-[120px]" />
+        </div>
 
-                              <Link
-                                href={`/blog/${slug}`}
-                                className="text-primary-700 hover:text-primary-600 dark:text-primary-500 dark:hover:text-primary-400"
-                                aria-label={`Read "${title}"`}
-                              >
-                                {`Read ${
-                                  post.readingTime.text
-                                    ? "(" +
-                                      post.readingTime.text.replace(
-                                        " read",
-                                        ""
-                                      ) +
-                                      ")"
-                                    : "more"
-                                }`}
-                                &rarr;
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          </div>
+        {/* Hero Section */}
+        <section className="relative py-20 lg:py-32">
+          <div className="container mx-auto px-6">
+            <div className="mx-auto max-w-4xl text-center">
+              {/* Author Image */}
+              <div className="mb-8 flex justify-center">
+                <div className="relative">
+                  <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500 opacity-70 blur"></div>
+                  <Image
+                    src="/assets/ola.jpeg"
+                    alt="Olasunkanmi Oyinlola"
+                    width={96}
+                    height={96}
+                    className="relative size-24 rounded-full border-2 border-zinc-800 object-cover"
+                    priority={true}
+                  />
+                </div>
+              </div>
 
-          <div className="col-span-12 row-start-3 h-fit divide-y divide-gray-400 rounded-xl bg-gray-200   dark:divide-gray-700  dark:bg-slate-950 sm:col-span-4 sm:col-start-9 sm:row-start-1">
-            <div className=" relative h-full rounded-2xl bg-card-gradient-dark p-[1px] dark:bg-card-gradient">
-              <div className="flex h-full flex-col gap-4 rounded-2xl bg-gradient-to-b from-slate-200 to-slate-100 p-6 dark:from-slate-950 dark:to-gray-950">
-                <h2 className="pb-2  text-2xl font-bold leading-8 tracking-tight">
-                  Tags
-                </h2>
-                <div className="pt-2">
-                  <Tags tags={tags} />
+              {/* Simple category label */}
+              <div className="mb-8 inline-flex items-center rounded-full border border-zinc-800 px-4 py-2 text-sm text-zinc-400">
+                Thoughts & Insights
+              </div>
+
+              {/* Clean title */}
+              <h1 className="mb-8 text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
+                My Blog
+              </h1>
+
+              {/* Simple subtitle */}
+              <p className="mx-auto mb-12 max-w-2xl text-lg text-zinc-400">
+                Exploring software engineering, AI, and technology through
+                detailed articles and tutorials.
+              </p>
+
+              {/* Stats */}
+              <div className="flex items-center justify-center gap-8">
+                <div className="flex items-center gap-2 text-sm text-zinc-400">
+                  <div className="size-1.5 rounded-full bg-cyan-500"></div>
+                  {posts.length} Articles
+                </div>
+                <div className="flex items-center gap-2 text-sm text-zinc-400">
+                  <div className="size-1.5 rounded-full bg-emerald-500"></div>
+                  {Object.keys(tags).length} Topics
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </>
+        </section>
+
+        {/* Blog Posts Section */}
+        <section className="relative py-16">
+          <div className="container mx-auto px-6">
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-12">
+              {/* Main Content */}
+              <div className="lg:col-span-8">
+                <BlogList posts={posts} allTags={tags} />
+              </div>
+
+              {/* Sidebar */}
+              <div className="lg:col-span-4">
+                <div className="sticky top-8 space-y-6">
+                  {/* Tags Section */}
+                  <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-6 backdrop-blur-sm">
+                    <div className="mb-4 flex items-center gap-3">
+                      <svg
+                        className="size-5 text-cyan-500"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                        />
+                      </svg>
+                      <h2 className="text-lg font-medium text-white">Topics</h2>
+                    </div>
+
+                    <p className="mb-4 text-sm text-zinc-400">
+                      Browse articles by category
+                    </p>
+
+                    <Tags tags={tags} />
+                  </div>
+
+                  {/* Stats */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 text-center backdrop-blur-sm">
+                      <div className="text-2xl font-bold text-white">
+                        {posts.length}
+                      </div>
+                      <div className="mt-1 text-sm text-zinc-400">Articles</div>
+                    </div>
+                    <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 text-center backdrop-blur-sm">
+                      <div className="text-2xl font-bold text-white">
+                        {Object.keys(tags).length}
+                      </div>
+                      <div className="mt-1 text-sm text-zinc-400">Topics</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </Suspense>
+    </div>
   )
 }

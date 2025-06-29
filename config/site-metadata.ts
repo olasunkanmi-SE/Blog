@@ -32,9 +32,10 @@ const siteMetadata: SiteConfig = {
     mapping: "pathname",
     reactions: "1",
     metadata: "0",
-    theme: "light",
+    theme: "transparent_dark",
     darkTheme: "transparent_dark",
     themeURL: "",
+    inputPosition: "top",
     lang: "en",
   },
   kbarConfig: {
