@@ -13,20 +13,20 @@ interface WorkCard {
   technologies: string[]
 }
 
-interface Skill {
-  name: string
-  level: number
-  category: string
-}
+// interface Skill {
+//   name: string
+//   level: number
+//   category: string
+// }
 
-const skills: Skill[] = [
-  { name: "System Architecture", level: 95, category: "Architecture" },
-  { name: "Cloud Computing", level: 90, category: "Cloud" },
-  { name: "Node.js", level: 95, category: "Backend" },
-  { name: "TypeScript", level: 90, category: "Languages" },
-  { name: "AWS", level: 85, category: "Cloud" },
-  { name: "React", level: 85, category: "Frontend" },
-]
+// const skills: Skill[] = [
+//   { name: "System Architecture", level: 95, category: "Architecture" },
+//   { name: "Cloud Computing", level: 90, category: "Cloud" },
+//   { name: "Node.js", level: 95, category: "Backend" },
+//   { name: "TypeScript", level: 90, category: "Languages" },
+//   { name: "AWS", level: 85, category: "Cloud" },
+//   { name: "React", level: 85, category: "Frontend" },
+// ]
 
 function renderWorkCard(work: WorkCard) {
   return (
@@ -78,40 +78,45 @@ function renderWorkCard(work: WorkCard) {
   )
 }
 
-function SkillBar({ skill }: { skill: Skill }) {
-  return (
-    <div className="mb-6">
-      <div className="mb-1 flex justify-between">
-        <span className="text-sm font-medium text-zinc-400">{skill.name}</span>
-        <span className="text-sm font-medium text-emerald-400">
-          {skill.level}%
-        </span>
-      </div>
-      <motion.div
-        className="h-2 rounded-full bg-zinc-800"
-        initial={{ width: 0 }}
-        whileInView={{ width: `${skill.level}%` }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, ease: "easeOut" }}
-      >
-        <div
-          className="h-2 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400"
-          style={{ width: `${skill.level}%` }}
-        />
-      </motion.div>
-    </div>
-  )
-}
+// function SkillBar({ skill }: { skill: Skill }) {
+//   return (
+//     <div className="mb-6">
+//       <div className="mb-1 flex justify-between">
+//         <span className="text-sm font-medium text-zinc-400">{skill.name}</span>
+//         <span className="text-sm font-medium text-emerald-400">
+//           {skill.level}%
+//         </span>
+//       </div>
+//       <motion.div
+//         className="h-2 rounded-full bg-zinc-800"
+//         initial={{ width: 0 }}
+//         whileInView={{ width: `${skill.level}%` }}
+//         viewport={{ once: true }}
+//         transition={{ duration: 1, ease: "easeOut" }}
+//       >
+//         <div
+//           className="h-2 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400"
+//           style={{ width: `${skill.level}%` }}
+//         />
+//       </motion.div>
+//     </div>
+//   )
+// }
 
 export default function Home() {
   const featuredWork = [
     {
       title: "Technical Leadership",
       description:
-        "Spearheading cross-functional engineering teams in delivering high-impact enterprise solutions. Implementing robust CI/CD pipelines, mentoring junior developers, and driving architectural decisions that scaled our systems to handle millions of requests.",
+        "Leading cross-functional engineering teams in delivering high-impact enterprise solutions. Implementing robust CI/CD pipelines, mentoring junior developers, and driving architectural decisions that scaled our systems to handle millions of requests. Experienced in working with startups across various domains, including financial services and e-commerce.",
       link: "/technical-leadership",
       icon: "👨‍💼",
-      technologies: ["System Architecture", "Team Leadership", "Agile/Scrum"],
+      technologies: [
+        "System Design",
+        "Team Leadership",
+        "Agile/Scrum",
+        "Software Development",
+      ],
     },
     {
       title: "AWS Cloud Architecture",
@@ -119,15 +124,7 @@ export default function Home() {
         "Architecting and implementing cloud-native solutions using AWS. Expertise in designing highly available microservices, implementing serverless architectures, and optimizing cloud infrastructure for cost and performance.",
       link: "/aws",
       icon: "☁️",
-      technologies: ["AWS", "Microservices", "Infrastructure as Code"],
-    },
-    {
-      title: "Payment Systems Architecture",
-      description:
-        "Designed and implemented secure payment processing systems handling millions in transactions. Built robust error handling, implemented PCI compliance measures, and integrated multiple payment providers with 99.99% uptime.",
-      link: "/payment-gateway",
-      icon: "💳",
-      technologies: ["System Design", "Security", "Financial Systems"],
+      technologies: ["AWS", "Microservices", "Serverless"],
     },
     {
       title: "CodeBuddy AI",
@@ -136,6 +133,14 @@ export default function Home() {
       link: "/codeBuddy",
       icon: "🤖",
       technologies: ["ML/AI", "NLP", "Cloud Architecture"],
+    },
+    {
+      title: "Payment Systems Architecture",
+      description:
+        "Integrating third-party payment gateways to handle millions in transactions. Built robust error handling, implemented PCI compliance measures, and integrated multiple payment providers with 99.99% uptime.",
+      link: "/payment-gateway",
+      icon: "💳",
+      technologies: ["System Design", "Security", "Financial Systems"],
     },
   ]
 
@@ -173,10 +178,10 @@ export default function Home() {
           {/* Left Column - Header */}
           <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
             <div>
-              <div className="mb-8 inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/30 px-4 py-2 text-sm font-medium text-emerald-400 backdrop-blur-md">
+              {/* <div className="mb-8 inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/30 px-4 py-2 text-sm font-medium text-emerald-400 backdrop-blur-md">
                 <span className="mr-2 inline-block size-1 rounded-full bg-emerald-400 shadow-lg shadow-emerald-400/50"></span>
                 Software Architect & Technical Lead
-              </div>
+              </div> */}
 
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
                 <Link
@@ -187,7 +192,7 @@ export default function Home() {
                 </Link>
               </h1>
               <h2 className="mt-3 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-lg font-medium tracking-tight text-transparent sm:text-xl">
-                Principal Software Engineer
+                Software Engineer
               </h2>
               <p className="mt-4 max-w-xs leading-normal text-zinc-400">
                 Architecting scalable solutions and leading engineering
@@ -201,7 +206,7 @@ export default function Home() {
               >
                 <ul className="mt-16 w-max">
                   <li>
-                    <a className="group flex items-center py-3" href="#intro">
+                    <a className="group flex items-center py-3">
                       <span className="nav-indicator mr-4 h-px w-8 bg-gradient-to-r from-emerald-400/0 via-emerald-400/40 to-emerald-400/0 transition-all duration-300 ease-in-out group-hover:w-16 group-hover:from-emerald-400/40 group-hover:via-emerald-400 group-hover:to-emerald-400/40"></span>
                       <span className="nav-text text-xs font-bold uppercase tracking-widest text-zinc-400 transition-colors group-hover:text-emerald-400">
                         Backend
@@ -209,10 +214,7 @@ export default function Home() {
                     </a>
                   </li>
                   <li>
-                    <a
-                      className="group flex items-center py-3"
-                      href="#featured"
-                    >
+                    <a className="group flex items-center py-3">
                       <span className="nav-indicator mr-4 h-px w-8 bg-gradient-to-r from-cyan-400/0 via-cyan-400/40 to-cyan-400/0 transition-all duration-300 ease-in-out group-hover:w-16 group-hover:from-cyan-400/40 group-hover:via-cyan-400 group-hover:to-cyan-400/40"></span>
                       <span className="nav-text text-xs font-bold uppercase tracking-widest text-zinc-400 transition-colors group-hover:text-cyan-400">
                         Architecture
@@ -220,7 +222,7 @@ export default function Home() {
                     </a>
                   </li>
                   <li>
-                    <a className="group flex items-center py-3" href="#explore">
+                    <a className="group flex items-center py-3">
                       <span className="nav-indicator mr-4 h-px w-8 bg-gradient-to-r from-purple-400/0 via-purple-400/40 to-purple-400/0 transition-all duration-300 ease-in-out group-hover:w-16 group-hover:from-purple-400/40 group-hover:via-purple-400 group-hover:to-purple-400/40"></span>
                       <span className="nav-text text-xs font-bold uppercase tracking-widest text-zinc-400 transition-colors group-hover:text-purple-400">
                         Cloud
@@ -275,12 +277,12 @@ export default function Home() {
               </h1>
               <div className="prose-invert prose relative max-w-none">
                 <p className="text-lg leading-relaxed text-zinc-400">
-                  As a seasoned Software Architect and Technical Lead, I
-                  specialize in designing and implementing large-scale
-                  distributed systems. With extensive experience in cloud
-                  architecture and system design, I've led teams in delivering
-                  mission-critical applications that serve millions of users,
-                  while maintaining high availability and performance standards.
+                  As a seasoned Software Engineer, I specialize in designing and
+                  implementing large-scale distributed systems. With experience
+                  in cloud architecture and system design, I've led teams in
+                  delivering mission-critical applications that serve millions
+                  of users, while maintaining high availability and performance
+                  standards.
                 </p>
                 <p className="mt-4 leading-relaxed text-zinc-400">
                   Beyond my core engineering work, I actively contribute to the
@@ -292,7 +294,7 @@ export default function Home() {
               </div>
             </motion.section>
 
-            <motion.section
+            {/* <motion.section
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -306,7 +308,7 @@ export default function Home() {
                   <SkillBar key={skill.name} skill={skill} />
                 ))}
               </div>
-            </motion.section>
+            </motion.section> */}
 
             <section id="featured" className="mb-16">
               <h2 className="mb-8 text-2xl font-bold text-zinc-200">
@@ -342,7 +344,8 @@ export default function Home() {
                 to success? Let's connect and discuss how I can help.
               </p>
               <Link
-                href="/contact"
+                target="_blank"
+                href="https://www.linkedin.com/in/oyinlola-olasunkanmi-raymond-71b6b8aa/"
                 className="rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 px-6 py-3 font-medium text-black transition-opacity hover:opacity-90"
               >
                 Get in Touch

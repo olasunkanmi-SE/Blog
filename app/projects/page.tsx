@@ -270,7 +270,7 @@ export default function Projects() {
           </p>
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
             <a
-              href="mailto:your-email@example.com"
+              href="mailto:oyinolasunkanmi@gmail.com"
               className="group relative rounded-lg bg-emerald-400/10 px-8 py-3 backdrop-blur-sm transition-all duration-300 hover:bg-emerald-400/20"
             >
               <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-400/0 to-emerald-400/0 opacity-0 blur transition-opacity group-hover:opacity-20"></div>
@@ -279,7 +279,9 @@ export default function Projects() {
               </span>
             </a>
             <a
-              href="/"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.linkedin.com/in/oyinlola-olasunkanmi-raymond-71b6b8aa/"
               className="group relative rounded-lg border border-zinc-700 bg-zinc-900/50 px-8 py-3 backdrop-blur-sm transition-all duration-300 hover:border-zinc-600"
             >
               <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-zinc-400/0 to-zinc-400/0 opacity-0 blur transition-opacity group-hover:opacity-20"></div>
