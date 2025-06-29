@@ -16,13 +16,13 @@ const projectsData: ProjectData[] = [
     title: "CodeBuddy",
     description: `
    AI-powered coding assistant that employs  the use of Large Language Models (LLMs), context retrieval, code indexing, and workflow orchestration to generate code, automate tasks, and improve developers' output.`,
-    titleLink: "https://github.com/olasunkanmi-SE/codebuddy",
+    titleLink: "https://github.com/olasunkanmi-SE/codeBuddy",
     skills:
       "Event-Driven architecture, Workflow Orchestration, Reactjs, Generative AI, RAG, VectorDB, SQLite, Abstract Synthax Tree (AST), MCP, CodeIndexing, ",
     designPattern: "Orchestration, Event-Driven, Command Pattern.",
 
     links: [
-      { title: "GitHub", href: "https://github.com/olasunkanmi-SE/codebuddy" },
+      { title: "GitHub", href: "https://github.com/olasunkanmi-SE/codeBuddy" },
     ],
     type: "Open",
   },
